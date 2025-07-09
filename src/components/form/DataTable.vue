@@ -1,3 +1,4 @@
+<!-- src/components/news/NewsDataTable.vue -->
 <script setup lang="ts">
 import type {
   ColumnDef,
@@ -12,6 +13,7 @@ import {
   useVueTable,
 } from '@tanstack/vue-table'
 import { h, ref } from 'vue'
+import { Filter } from 'lucide-vue-next'
 import {
   Table,
   TableBody,
@@ -20,7 +22,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import {valueUpdater} from "~/lib/utils";
+import { valueUpdater } from "~/components/ui/table/utils"
 
 const props = defineProps({
   columns: {
@@ -31,17 +33,10 @@ const props = defineProps({
     type: Array as () => any[],
     required: true,
   },
-  showSelect: {
-    type: Boolean,
-    default: true,
-  },
-  createButton: {
-    type: Object as () => {label: string, route: string, icon?: any} | false,
-    required: false
-  },
 })
 
-const data = ref(props.data)
+const emit = defineEmits(['show-filter'])
+
 const sorting = ref<SortingState>([])
 const search = ref<string>('')
 
@@ -58,21 +53,38 @@ const table = useVueTable({
   },
 })
 
+const handleFilterClick = () => {
+  emit('show-filter')
+}
 </script>
 
 <template>
   <div class="w-full">
-    <template v-if="$slots.createButton">
-      <slot name="createButton"></slot>
-    </template>
-    <div class="mb-3">
-      <q-input outlined v-model="search" label="ค้นหา" debounce="500">
-        <template v-slot:append>
-          <q-icon v-if="search !== ''" name="close" @click="search = ''" class="cursor-pointer"></q-icon>
-          <q-icon name="search"></q-icon>
-        </template>
-      </q-input>
+    <!-- Create Button Slot -->
+    <slot name="createButton"></slot>
+    
+    <!-- Search and Filter Row -->
+    <div class="mb-3 flex items-center space-x-3">
+      <div class="flex-1">
+        <q-input outlined v-model="search" label="ค้นหา" debounce="500">
+          <template v-slot:append>
+            <q-icon v-if="search !== ''" name="close" @click="search = ''" class="cursor-pointer"></q-icon>
+            <q-icon name="search"></q-icon>
+          </template>
+        </q-input>
+      </div>
+      
+      <button
+        @click="handleFilterClick"
+        class="filter-button flex items-center justify-center px-3 py-2 border border-gray-300 rounded-md bg-white hover:bg-gray-50 transition-colors"
+        title="ตัวกรอง"
+        type="button"
+      >
+        <Filter class="w-4 h-4 text-gray-600" />
+      </button>
     </div>
+    
+    <!-- Data Table -->
     <div class="rounded-[10px] border">
       <Table class="rounded-tl-[8px] rounded-tr-[8px] data-table">
         <TableHeader>
@@ -91,25 +103,22 @@ const table = useVueTable({
                   <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
                 </TableCell>
               </TableRow>
-              <TableRow v-if="row.getIsExpanded()">
-                <TableCell :colspan="row.getAllCells().length">
-                  {{ JSON.stringify(row.original) }}
-                </TableCell>
-              </TableRow>
             </template>
           </template>
 
           <TableRow v-else>
             <TableCell
-                :colspan="columns.length"
+                :colspan="props.columns.length"
                 class="h-24 text-center"
             >
-              No results.
+              ไม่พบข้อมูล
             </TableCell>
           </TableRow>
         </TableBody>
       </Table>
     </div>
+    
+    <!-- Pagination -->
     <div class="mt-5">
       <table-pagination></table-pagination>
     </div>
@@ -117,31 +126,21 @@ const table = useVueTable({
 </template>
 
 <style scoped>
-  .data-table th,td{
-    font-size: 16px;
-  }
-</style>
-<style>
-.create-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #69306D; /* A shade of purple similar to the image */
-  color: #ffffff; /* White text and icon */
-  border: none;
-  border-radius: 8px; /* Adjust as needed for desired roundedness */
-  padding: 12px 24px; /* Adjust padding for desired size */
-  font-size: 18px; /* Adjust font size for text */
+.data-table th, td {
+  font-size: 16px;
+}
+
+.filter-button {
+  height: 40px;
+  min-width: 40px;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
 
-.create-button:hover {
-  opacity: 0.9;
+.filter-button:hover {
+  background-color: #f9fafb;
 }
 
-.create-button:active {
-  background-color: #5c0f88; /* Slightly darker purple when clicked */
+.filter-button:active {
+  background-color: #f3f4f6;
 }
 </style>

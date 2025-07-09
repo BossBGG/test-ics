@@ -1,95 +1,256 @@
+<!-- src/pages/news/list.vue -->
 <template>
   <content-container
-      :breadcrumbs="[{ text: 'จัดการและรายงาน (Y3)' },{text: 'จัดการประกาศ'}]"
-      :last_update="'2025-06-19 10:00:00'"
+    :breadcrumbs="[{ text: 'จัดการและรายงาน (Y3)' }, { text: 'จัดการประกาศ' }]"
+    :last_update="'2025-06-19 10:00:00'"
   >
-
     <data-table
-        :columns="columns"
-        :data="data"
-        :create-button="{label: 'test',route: '/news/create'}"
+      :columns="columns"
+      :data="filteredData"
     >
       <template v-slot:createButton>
         <div class="flex justify-end mb-3">
           <RouterLink
-              class="create-button"
-              size="md"
-              to="/news/create"
+            class="create-button"
+            to="/news/create"
           >
-            <Plus /> สร้างประกาศ
+            <Plus class="w-4 h-4" /> สร้างประกาศ
           </RouterLink>
         </div>
       </template>
     </data-table>
+
+    <!-- Filter Dialog -->
+    <FilterDialog
+      v-model="showFilterDialog"
+      @apply-filters="handleApplyFilters"
+    />
   </content-container>
 </template>
+
 <script setup lang="ts">
-import type {ColumnDef, Header} from "@tanstack/vue-table";
-import {h} from "vue";
+import type { ColumnDef } from "@tanstack/vue-table";
+import { h, ref, computed } from "vue";
+import { Edit, Trash2, Plus, Filter } from 'lucide-vue-next'
 import DataTableColumnHeader from "~/components/form/DataTableColumnHeader.vue";
 import ContentContainer from "~/layouts/ContentContainer.vue";
-import { Plus } from 'lucide-vue-next'
+import FilterDialog from "~/components/dialog/FilterDialog.vue"; 
+import NewsStatusBadge from "~/components/news/NewsStatusBadge.vue";
+import { mockNewsData, type NewsData } from "~/data/newsData";
 
-export interface Payment {
-  id: string
-  amount: number
-  status: 'pending' | 'processing' | 'success' | 'failed'
-  email: string
+const showFilterDialog = ref(false)
+const currentFilters = ref({
+  startDate: '',
+  endDate: '',
+  status: ''
+})
+
+const filteredData = computed(() => {
+  let data = [...mockNewsData]
+  
+  if (currentFilters.value.status) {
+    data = data.filter(item => item.status === currentFilters.value.status)
+  }
+  
+  // Add date filtering logic here if needed
+  
+  return data
+})
+
+const handleApplyFilters = (filters: any) => {
+  currentFilters.value = { ...filters }
 }
 
-const data: Payment[] = [
+const handleEdit = (id: number) => {
+  // Navigate to edit page
+  console.log('Edit news:', id)
+}
+
+const handleDelete = (id: number) => {
+  // Show delete confirmation
+  console.log('Delete news:', id)
+}
+
+const columns: ColumnDef<NewsData>[] = [
   {
-    id: 'm5gr84i9',
-    amount: 316,
-    status: 'success',
-    email: 'ken99@yahoo.com',
+    accessorKey: 'id',
+    header: ({ column }) => {
+      return h(DataTableColumnHeader, {
+        column: column,
+        title: 'ลำดับ'
+      })
+    },
+    cell: ({ row }) => h('div', { class: 'text-center' }, row.getValue('id')),
+    enableSorting: true,
   },
   {
-    id: '3u1reuv4',
-    amount: 242,
-    status: 'success',
-    email: 'Abe45@gmail.com',
+    accessorKey: 'image',
+    header: ({ column }) => {
+      return h(DataTableColumnHeader, {
+        column: column,
+        title: 'ภาพปก'
+      })
+    },
+    cell: ({ row }) => {
+      const imageUrl = row.getValue('image') as string
+      return h('div', { class: 'flex justify-center' }, [
+        h('img', {
+          src: imageUrl,
+          alt: 'ภาพปก',
+          class: 'w-12 h-8 object-cover rounded'
+        })
+      ])
+    },
+    enableSorting: false,
   },
   {
-    id: 'derv1ws0',
-    amount: 837,
-    status: 'processing',
-    email: 'Monserrat44@gmail.com',
+    accessorKey: 'title',
+    header: ({ column }) => {
+      return h(DataTableColumnHeader, {
+        column: column,
+        title: 'หัวข้อ'
+      })
+    },
+    cell: ({ row }) => h('div', { class: 'font-medium' }, row.getValue('title')),
+    enableSorting: true,
   },
   {
-    id: '5kma53ae',
-    amount: 874,
-    status: 'success',
-    email: 'Silas22@gmail.com',
+    accessorKey: 'description',
+    header: ({ column }) => {
+      return h(DataTableColumnHeader, {
+        column: column,
+        title: 'รายละเอียด'
+      })
+    },
+    cell: ({ row }) => {
+      const description = row.getValue('description') as string
+      return h('div', { class: 'max-w-xs truncate' }, description)
+    },
+    enableSorting: false,
   },
   {
-    id: 'bhqecj4p',
-    amount: 721,
-    status: 'failed',
-    email: 'carmella@hotmail.com',
+    accessorKey: 'publish_date',
+    header: ({ column }) => {
+      return h(DataTableColumnHeader, {
+        column: column,
+        title: 'วันที่เผยแพร่'
+      })
+    },
+    cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('publish_date')),
+    enableSorting: true,
   },
-]
-const columns: ColumnDef<Payment>[] = [
+  {
+    accessorKey: 'is_active',
+    header: ({ column }) => {
+      return h(DataTableColumnHeader, {
+        column: column,
+        title: 'ปิด/เปิด'
+      })
+    },
+    cell: ({ row }) => {
+      const isActive = row.getValue('is_active') as boolean
+      return h('div', { class: 'flex justify-center' }, [
+        h('span', {
+          class: `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+            isActive 
+              ? 'bg-green-100 text-green-800' 
+              : 'bg-red-100 text-red-800'
+          }`
+        }, isActive ? 'เปิด' : 'ปิด')
+      ])
+    },
+    enableSorting: true,
+  },
   {
     accessorKey: 'status',
     header: ({ column }) => {
       return h(DataTableColumnHeader, {
-            column: column,
-            title: 'Status'
+        column: column,
+        title: 'สถานะ'
       })
     },
-    cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('status')),
+    cell: ({ row }) => {
+      const status = row.getValue('status') as string
+      return h('div', { class: 'flex justify-center' }, [
+        h(NewsStatusBadge, { status })
+      ])
+    },
     enableSorting: true,
   },
   {
-    accessorKey: 'email',
+    accessorKey: 'created_date',
     header: ({ column }) => {
       return h(DataTableColumnHeader, {
         column: column,
-        title: 'Email'
+        title: 'วันที่สร้าง'
       })
     },
-    cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('email')),
+    cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('created_date')),
+    enableSorting: true,
   },
+  {
+    accessorKey: 'created_by',
+    header: ({ column }) => {
+      return h(DataTableColumnHeader, {
+        column: column,
+        title: 'ผู้สร้างประกาศ'
+      })
+    },
+    cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('created_by')),
+    enableSorting: false,
+  },
+  {
+    id: 'actions',
+    header: 'การจัดการ',
+    cell: ({ row }) => {
+      const newsId = row.getValue('id') as number
+      return h('div', { class: 'flex items-center justify-center space-x-2' }, [
+        h('button', {
+          class: 'p-1 text-blue-600 hover:text-blue-800 transition-colors',
+          onClick: () => handleEdit(newsId),
+          title: 'แก้ไข'
+        }, [
+          h(Edit, { class: 'w-4 h-4' })
+        ]),
+        h('button', {
+          class: 'p-1 text-red-600 hover:text-red-800 transition-colors',
+          onClick: () => handleDelete(newsId),
+          title: 'ลบ'
+        }, [
+          h(Trash2, { class: 'w-4 h-4' })
+        ])
+      ])
+    },
+    enableSorting: false,
+  }
 ]
 </script>
+
+<style scoped>
+.create-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #69306D;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  gap: 8px;
+}
+
+.create-button:hover {
+  opacity: 0.9;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.create-button:active {
+  background-color: #5c0f88;
+}
+</style>
