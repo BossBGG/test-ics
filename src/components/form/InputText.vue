@@ -77,6 +77,8 @@ const inputId = computed(() => props.id || `input-text-${props.name || Math.rand
   color: #333;
   margin-bottom: 8px;
   align-self: flex-start;
+  display: block;
+  font-size: 14px;
 }
 
 .input-label .required {

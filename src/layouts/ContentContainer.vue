@@ -49,7 +49,9 @@ watch(() => pageBreadcrumbs, () => { reCreateBreadcrumb() }, { deep: true })
         <div v-if="last_update">อัปเดตล่าสุดเมื่อ: {{ dateTimeFormatThaiMonth(last_update) }}</div>
       </div>
 
-      <slot/>
+      <div class="m-5">
+        <slot/>
+      </div>
     </div>
   </div>
 </template>

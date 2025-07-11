@@ -181,6 +181,47 @@
             </a>
           </q-expansion-item>
 
+          <q-expansion-item
+              class="bg_color"
+              expand-separator
+              icon="receipt_long"
+              label="จัดการและรายงาน (Y3)"
+          >
+            <a href="/material_equipment/list">
+              <q-expansion-item
+                  expand-separator
+                  :header-inset-level="1"
+                  label="จัดการวักลุม่วัสดุและอุปกรณ์"
+                  icon="campaign"
+                  hide-expand-icon
+                  class="bg_color space_mobile"
+              >
+              </q-expansion-item>
+            </a>
+            <a href="/news/list">
+              <q-expansion-item
+                  expand-separator
+                  :header-inset-level="1"
+                  label="จัดการรข่าวและประกาศ"
+                  icon="campaign"
+                  hide-expand-icon
+                  class="bg_color space_mobile"
+              >
+              </q-expansion-item>
+            </a>
+            <a href="/system_log/list">
+              <q-expansion-item
+                  expand-separator
+                  :header-inset-level="1"
+                  label="System Log"
+                  icon="browse_gallery"
+                  hide-expand-icon
+                  class="bg_color space_mobile"
+              >
+              </q-expansion-item>
+            </a>
+          </q-expansion-item>
+
           <a>
             <q-expansion-item
               expand-separator
@@ -255,3 +296,5 @@
   }
 }
 </style>
+<script setup>
+</script>

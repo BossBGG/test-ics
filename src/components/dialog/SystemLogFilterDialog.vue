@@ -1,4 +1,4 @@
-<!-- src/components/dialog/FilterDialog.vue -->
+<!-- src/components/dialog/SystemLogFilterDialog.vue -->
 <template>
   <q-dialog v-model="isVisible" persistent>
     <q-card class="filter-dialog-card">
@@ -65,23 +65,47 @@
           </div>
         </div>
 
-        <!-- สถานะ -->
+        <!-- ประเภท -->
         <div class="filter-group">
-          <label class="filter-label">สถานะ</label>
+          <label class="filter-label">ประเภท</label>
           <q-select
-            v-model="filters.status"
-            :options="statusOptions"
+            v-model="filters.level"
+            :options="logLevelOptions"
             option-label="label"
             option-value="value"
             emit-value
             map-options
             outlined
-            placeholder="สถานะทั้งหมด"
+            placeholder="ประเภททั้งหมด"
             class="filter-select"
             clearable
           >
-          
+            <template v-slot:append>
+              <q-icon name="keyboard_arrow_down" class="text-gray-400" />
+            </template>
           </q-select>
+        </div>
+
+        <!-- ผู้ใช้งาน -->
+        <div class="filter-group">
+          <label class="filter-label">ผู้ใช้งาน</label>
+          <q-input
+            v-model="filters.user"
+            class="filter-input"
+            outlined
+            placeholder="ชื่อผู้ใช้งาน"
+          />
+        </div>
+
+        <!-- IP Address -->
+        <div class="filter-group">
+          <label class="filter-label">IP Address</label>
+          <q-input
+            v-model="filters.ipAddress"
+            class="filter-input"
+            outlined
+            placeholder="IP Address"
+          />
         </div>
       </div>
 
@@ -105,14 +129,14 @@
 
 <script setup lang="ts">
 import { ref, reactive, watch } from 'vue'
+import { logLevelOptions } from '~/data/systemLogData'
 
-interface FilterData {
+interface SystemLogFilterData {
   startDate: string
   endDate: string
-  status: string
-  isActive: boolean | null
-  createdStartDate: string
-  createdEndDate: string
+  level: string
+  user: string
+  ipAddress: string
 }
 
 const props = defineProps<{
@@ -121,35 +145,18 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   'update:modelValue': [value: boolean]
-  'apply-filters': [filters: FilterData]
+  'apply-filters': [filters: SystemLogFilterData]
 }>()
 
 const isVisible = ref(props.modelValue)
 
-const filters = reactive<FilterData>({
+const filters = reactive<SystemLogFilterData>({
   startDate: '',
   endDate: '',
-  status: '',
-  isActive: null,
-  createdStartDate: '',
-  createdEndDate: ''
+  level: '',
+  user: '',
+  ipAddress: ''
 })
-
-// Status options for news
-const statusOptions = [
-  { label: 'ทั้งหมด', value: '' },
-  { label: 'แบบร่าง', value: 'draft' },
-  { label: 'เผยแพร่', value: 'published' },
-  { label: 'รอเผยแพร่', value: 'pending' },
-  { label: 'หมดเวลาเผยแพร่', value: 'expired' }
-]
-
-// Active status options
-const activeOptions = [
-  { label: 'ทั้งหมด', value: null },
-  { label: 'เปิดใช้งาน', value: true },
-  { label: 'ปิดใช้งาน', value: false }
-]
 
 // Watch for external changes to modelValue
 watch(() => props.modelValue, (val) => {
@@ -168,22 +175,15 @@ const closeDialog = () => {
 const clearFilters = () => {
   filters.startDate = ''
   filters.endDate = ''
-  filters.status = ''
-  filters.isActive = null
-  filters.createdStartDate = ''
-  filters.createdEndDate = ''
+  filters.level = ''
+  filters.user = ''
+  filters.ipAddress = ''
 }
 
 const applyFilters = () => {
   // Validate date ranges
   if (filters.startDate && filters.endDate && filters.startDate > filters.endDate) {
-    // Show error message
     console.warn('วันที่เริ่มต้นไม่สามารถมากกว่าวันที่สิ้นสุดได้')
-    return
-  }
-
-  if (filters.createdStartDate && filters.createdEndDate && filters.createdStartDate > filters.createdEndDate) {
-    console.warn('วันที่สร้างเริ่มต้นไม่สามารถมากกว่าวันที่สร้างสิ้นสุดได้')
     return
   }
 
@@ -191,7 +191,6 @@ const applyFilters = () => {
   closeDialog()
 }
 </script>
-
 
 <style scoped>
 .filter-dialog-card {
@@ -265,7 +264,8 @@ const applyFilters = () => {
   text-align: center;
 }
 
-.filter-select {
+.filter-select,
+.filter-input {
   width: 100%;
 }
 

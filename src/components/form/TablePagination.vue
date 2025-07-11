@@ -7,35 +7,24 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
-import {ref} from "vue";
+import {ref ,watch} from "vue";
+import { type Table } from '@tanstack/vue-table'
 
 const emit = defineEmits(['update:page'])
-const props = defineProps({
-  page: {
-    type: Number,
-    default: 1,
-  },
-  total: {
-    type: Number,
-    default: 100,
-  },
-  itemsPerPage: {
-    type: Number,
-    default: 10,
-  }
-})
-
-const currentPage = ref(props.page)
+interface DataTablePaginationProps<TData> {
+  table: Table<TData>
+}
+const props = defineProps<DataTablePaginationProps<any>>()
 </script>
 
 <template>
   <Pagination
       v-slot="{ page }"
-      :items-per-page="itemsPerPage"
-      :total="total"
+      :items-per-page="table.getState().pagination.pageSize"
+      :total="table.getPageCount() * table.getState().pagination.pageSize"
       :sibling-count="1"
       show-edges
-      v-model:page="currentPage"
+      @update:page="table.setPageIndex($event - 1)"
   >
     <PaginationContent v-slot="{ items }">
       <PaginationPrevious/>

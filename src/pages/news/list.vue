@@ -37,6 +37,7 @@ import ContentContainer from "~/layouts/ContentContainer.vue";
 import FilterDialog from "~/components/dialog/FilterDialog.vue"; 
 import NewsStatusBadge from "~/components/news/NewsStatusBadge.vue";
 import { mockNewsData, type NewsData } from "~/data/newsData";
+import {Switch} from "~/components/ui/switch";
 
 const showFilterDialog = ref(false)
 const currentFilters = ref({
@@ -147,17 +148,13 @@ const columns: ColumnDef<NewsData>[] = [
         title: 'ปิด/เปิด'
       })
     },
-    cell: ({ row }) => {
-      const isActive = row.getValue('is_active') as boolean
-      return h('div', { class: 'flex justify-center' }, [
-        h('span', {
-          class: `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-            isActive 
-              ? 'bg-green-100 text-green-800' 
-              : 'bg-red-100 text-red-800'
-          }`
-        }, isActive ? 'เปิด' : 'ปิด')
-      ])
+    cell: ({row}) => {
+      return h(Switch, {
+        // modelValue: row.getValue('is_active'),
+        'onUpdate:modelValue': (value) => {
+
+        },
+      });
     },
     enableSorting: true,
   },

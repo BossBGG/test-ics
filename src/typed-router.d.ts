@@ -59,6 +59,8 @@ declare module 'vue-router/auto/routes' {
     '/hi/[name]': RouteRecordInfo<'/hi/[name]', '/hi/:name', { name: ParamValue<true> }, { name: ParamValue<false> }>,
     '/informations': RouteRecordInfo<'/informations', '/informations', Record<never, never>, Record<never, never>>,
     '/keycloak': RouteRecordInfo<'/keycloak', '/keycloak', Record<never, never>, Record<never, never>>,
+    '/material_equipment/[id]': RouteRecordInfo<'/material_equipment/[id]', '/material_equipment/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    '/material_equipment/list': RouteRecordInfo<'/material_equipment/list', '/material_equipment/list', Record<never, never>, Record<never, never>>,
     '/news/[id]': RouteRecordInfo<'/news/[id]', '/news/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/news/list': RouteRecordInfo<'/news/list', '/news/list', Record<never, never>, Record<never, never>>,
     '/pokemon/': RouteRecordInfo<'/pokemon/', '/pokemon', Record<never, never>, Record<never, never>>,
@@ -72,6 +74,8 @@ declare module 'vue-router/auto/routes' {
     '/survey/[uid]': RouteRecordInfo<'/survey/[uid]', '/survey/:uid', { uid: ParamValue<true> }, { uid: ParamValue<false> }>,
     '/surveyInformation': RouteRecordInfo<'/surveyInformation', '/surveyInformation', Record<never, never>, Record<never, never>>,
     '/surveyUpdateInformation': RouteRecordInfo<'/surveyUpdateInformation', '/surveyUpdateInformation', Record<never, never>, Record<never, never>>,
+    '/system_log/[id]': RouteRecordInfo<'/system_log/[id]', '/system_log/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    '/system_log/list': RouteRecordInfo<'/system_log/list', '/system_log/list', Record<never, never>, Record<never, never>>,
     '/test': RouteRecordInfo<'/test', '/test', Record<never, never>, Record<never, never>>,
   }
 }
