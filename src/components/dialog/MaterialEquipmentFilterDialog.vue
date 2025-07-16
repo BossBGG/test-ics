@@ -1,4 +1,4 @@
-<!-- src/components/dialog/SystemLogFilterDialog.vue -->
+<!-- src/components/dialog/MaterialEquipmentFilterDialog.vue -->
 <template>
   <q-dialog v-model="isVisible" persistent>
     <q-card class="filter-dialog-card">
@@ -65,25 +65,24 @@
           </div>
         </div>
 
-        <!-- ประเภท -->
+        <!-- สถานะ -->
         <div class="filter-group">
-          <label class="filter-label">ประเภท</label>
+          <label class="filter-label">สถานะ</label>
           <q-select
-            v-model="filters.level"
-            :options="logLevelOptions"
+            v-model="filters.status"
+            :options="statusOptions"
             option-label="label"
             option-value="value"
             emit-value
             map-options
             outlined
-            placeholder="ประเภททั้งหมด"
+            placeholder="สถานะทั้งหมด"
             class="filter-select"
             
           >
-            
+          
           </q-select>
         </div>
-
       </div>
 
       <!-- Footer Actions -->
@@ -106,14 +105,14 @@
 
 <script setup lang="ts">
 import { ref, reactive, watch } from 'vue'
-import { logLevelOptions } from '~/data/systemLogData'
 
-interface SystemLogFilterData {
+interface MaterialEquipmentFilterData {
   startDate: string
   endDate: string
-  level: string
-  user: string
-  ipAddress: string
+  status: string
+  isActive: boolean | null
+  createdStartDate: string
+  createdEndDate: string
 }
 
 const props = defineProps<{
@@ -122,18 +121,26 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   'update:modelValue': [value: boolean]
-  'apply-filters': [filters: SystemLogFilterData]
+  'apply-filters': [filters: MaterialEquipmentFilterData]
 }>()
 
 const isVisible = ref(props.modelValue)
 
-const filters = reactive<SystemLogFilterData>({
+const filters = reactive<MaterialEquipmentFilterData>({
   startDate: '',
   endDate: '',
-  level: '',
-  user: '',
-  ipAddress: ''
+  status: '',
+  isActive: null,
+  createdStartDate: '',
+  createdEndDate: ''
 })
+
+// Status options for material equipment
+const statusOptions = [
+  { label: 'ทั้งหมด', value: '' },
+  { label: 'เปิดใช้งาน', value: 'active' },
+  { label: 'ปิดใช้งาน', value: 'inactive' }
+]
 
 // Watch for external changes to modelValue
 watch(() => props.modelValue, (val) => {
@@ -152,15 +159,22 @@ const closeDialog = () => {
 const clearFilters = () => {
   filters.startDate = ''
   filters.endDate = ''
-  filters.level = ''
-  filters.user = ''
-  filters.ipAddress = ''
+  filters.status = ''
+  filters.isActive = null
+  filters.createdStartDate = ''
+  filters.createdEndDate = ''
 }
 
 const applyFilters = () => {
   // Validate date ranges
   if (filters.startDate && filters.endDate && filters.startDate > filters.endDate) {
+    // Show error message
     console.warn('วันที่เริ่มต้นไม่สามารถมากกว่าวันที่สิ้นสุดได้')
+    return
+  }
+
+  if (filters.createdStartDate && filters.createdEndDate && filters.createdStartDate > filters.createdEndDate) {
+    console.warn('วันที่สร้างเริ่มต้นไม่สามารถมากกว่าวันที่สร้างสิ้นสุดได้')
     return
   }
 
@@ -168,6 +182,7 @@ const applyFilters = () => {
   closeDialog()
 }
 </script>
+
 
 <style scoped>
 .filter-dialog-card {
@@ -241,8 +256,7 @@ const applyFilters = () => {
   text-align: center;
 }
 
-.filter-select,
-.filter-input {
+.filter-select {
   width: 100%;
 }
 
@@ -267,6 +281,7 @@ const applyFilters = () => {
 }
 
 
+
 .search-btn {
   flex: 1;
   height: 48px;
@@ -279,7 +294,6 @@ const applyFilters = () => {
   cursor: pointer;
   transition: all 0.2s ease;
 }
-
 
 
 /* Override Quasar styles */

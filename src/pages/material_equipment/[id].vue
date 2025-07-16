@@ -138,7 +138,6 @@ const columns: ColumnDef<MaterialEquipment>[] = [
   },
   {
     id: 'actions',
-    header: 'การจัดการ',
     cell: ({row}) => {
       const id = row.getValue('id') as number
       return h('div', {class: 'flex items-center justify-center space-x-2'}, [

@@ -78,7 +78,7 @@
             outlined
             placeholder="สถานะทั้งหมด"
             class="filter-select"
-            clearable
+            
           >
           
           </q-select>
@@ -280,7 +280,7 @@ const applyFilters = () => {
   flex: 1;
   height: 48px;
   background-color: transparent;
-  color: #6b46c1;
+  color: #69306D;
   border: none;
   border-radius: 8px;
   font-size: 16px;
@@ -289,14 +289,12 @@ const applyFilters = () => {
   transition: all 0.2s ease;
 }
 
-.clear-btn:hover {
-  background-color: #f3f4f6;
-}
+
 
 .search-btn {
   flex: 1;
   height: 48px;
-  background-color: #6b46c1;
+  background-color: #69306D;
   color: white;
   border: none;
   border-radius: 8px;
@@ -306,9 +304,7 @@ const applyFilters = () => {
   transition: all 0.2s ease;
 }
 
-.search-btn:hover {
-  background-color: #553c9a;
-}
+
 
 /* Override Quasar styles */
 :deep(.q-field--outlined .q-field__control) {

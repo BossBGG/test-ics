@@ -37,6 +37,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  isMaterialEquipment: {
+    type: Boolean,
+    default: false,
+  },
   showFilter: {
     type: Boolean,
     default: true
@@ -181,6 +185,12 @@ const handleFilterApply = (filters: any) => {
         v-model="showFilterDialog"
         @apply-filters="handleFilterApply"
     />
+
+    <MaterialEquipmentFilterDialog
+      v-if="isMaterialEquipment"
+      v-model="showFilterDialog"
+      @apply-filters="handleFilterApply"
+  />
   </div>
 </template>
 

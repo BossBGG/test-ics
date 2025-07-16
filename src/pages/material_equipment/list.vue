@@ -1,4 +1,4 @@
-<!-- src/pages/news/list.vue -->
+<!-- src/pages/material_equipment/list.vue -->
 <template>
   <content-container
       :breadcrumbs="[{ text: 'น้าหลัก' }, { text: 'จัดการกลุ่มวัสดุและอุปกรณ์' }]"
@@ -7,6 +7,7 @@
     <data-table
         :columns="columns"
         :data="filteredData"
+        :is-material-equipment="true"
     >
       <template v-slot:createButton>
         <div class="flex justify-end mb-3">
@@ -20,28 +21,19 @@
         </div>
       </template>
     </data-table>
-
-    <!-- Filter Dialog -->
-    <FilterDialog
-        v-model="showFilterDialog"
-        @apply-filters="handleApplyFilters"
-    />
   </content-container>
 </template>
 
 <script setup lang="ts">
 import type {ColumnDef} from "@tanstack/vue-table";
 import {h, ref, computed} from "vue";
-import {Edit, Trash2, Plus, Filter} from 'lucide-vue-next'
+import {Plus} from 'lucide-vue-next'
 import DataTableColumnHeader from "~/components/form/DataTableColumnHeader.vue";
 import ContentContainer from "~/layouts/ContentContainer.vue";
-import FilterDialog from "~/components/dialog/FilterDialog.vue";
 import {mockGroupData} from "~/data/MaterialEquipment";
 import {GroupMaterial} from "~/api/types";
-import Badge from "~/components/list/Badge.vue";
 import {Switch} from "~/components/ui/switch";
 
-const showFilterDialog = ref(false)
 const currentFilters = ref({
   startDate: '',
   endDate: '',
@@ -55,23 +47,29 @@ const filteredData = computed(() => {
     data = data.filter(item => item.status === currentFilters.value.status)
   }
 
-  // Add date filtering logic here if needed
-
   return data
 })
 
-const handleApplyFilters = (filters: any) => {
-  currentFilters.value = {...filters}
-}
-
 const handleEdit = (id: number) => {
-  // Navigate to edit page
-  console.log('Edit news:', id)
+  console.log('Edit material equipment:', id)
 }
 
 const handleDelete = (id: number) => {
-  // Show delete it confirmation
-  console.log('Delete news:', id)
+  console.log('Delete material equipment:', id)
+}
+
+// Custom Badge component
+const StatusBadge = ({ label, variant }: { label: string, variant: string }) => {
+  const bgColor = variant === 'active' ? '#B36E9E' : '#57595B'
+  const textColor = '#ffffff'
+  
+  return h('span', {
+    class: 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium',
+    style: {
+      backgroundColor: bgColor,
+      color: textColor
+    }
+  }, label)
 }
 
 const columns: ColumnDef<GroupMaterial>[] = [
@@ -101,7 +99,7 @@ const columns: ColumnDef<GroupMaterial>[] = [
     cell: ({row}) => {
       const status = row.getValue('status') ? 'active' : 'inactive'
       const status_label = status === 'active' ? 'เปิดใช้งาน' : 'ปิดใช้งาน'
-      return h(Badge, {label: status_label, variant: status})
+      return h(StatusBadge, {label: status_label, variant: status})
     },
     enableSorting: true,
   },
@@ -114,34 +112,43 @@ const columns: ColumnDef<GroupMaterial>[] = [
       })
     },
     cell: ({row}) => {
-      return h(Switch, {
-        // modelValue: row.getValue('is_active'),
-        'onUpdate:modelValue': (value) => {
-
-        },
-      });
+      return h('div', { class: 'flex items-center' }, [
+        h(Switch, {
+          'onUpdate:modelValue': (value) => {
+            // Handle switch change
+          },
+        })
+      ]);
     },
     enableSorting: true,
   },
   {
     id: 'actions',
-    header: 'การจัดการ',
+    header: () => h('div', { class: 'text-center w-full' }, ''),
     cell: ({row}) => {
       const id = row.getValue('id') as number
-      return h('div', {class: 'flex items-center justify-center space-x-2'}, [
+      return h('div', {class: 'flex flex-row items-center justify-center space-x-1 min-w-[80px]'}, [
         h('button', {
-          class: 'p-1 text-blue-600 hover:text-blue-800 transition-colors',
+          class: 'inline-flex items-center justify-center p-1 hover:opacity-80 transition-opacity',
           onClick: () => handleEdit(id),
           title: 'แก้ไข'
         }, [
-          h(Edit, {size: 20})
+          h('img', { 
+            src: '/assets/images/edit-button.png',
+            alt: 'แก้ไข',
+            class: 'w-8 h-8'
+          })
         ]),
         h('button', {
-          class: 'p-1 text-red-600 hover:text-red-800 transition-colors',
+          class: 'inline-flex items-center justify-center p-1 hover:opacity-80 transition-opacity',
           onClick: () => handleDelete(id),
           title: 'ลบ'
         }, [
-          h(Trash2, {size: 20})
+          h('img', { 
+            src: '/assets/images/delete-button.png',
+            alt: 'ลบ',
+            class: 'w-8 h-8'
+          })
         ])
       ])
     },

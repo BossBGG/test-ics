@@ -6,7 +6,6 @@ import DataTable from '@/components/form/DataTable.vue'
 import DataTableColumnHeader from '@/components/form/DataTableColumnHeader.vue'
 
 import SystemLogFilterDialog from '@/components/dialog/SystemLogFilterDialog.vue'
-import { Search } from 'lucide-vue-next'
 import { mockSystemLogData, type SystemLogData } from '~/data/systemLogData'
 import { Button } from '~/components/ui/button'
 import SystemLogLevelBadge from '@/components/systemlog/SystemLogLevelBadge.vue'
@@ -25,7 +24,7 @@ const columns: ColumnDef<SystemLogData>[] = [
   {
     accessorKey: 'id',
     header: ({ column }) => h(DataTableColumnHeader, { column, title: 'ลำดับ' }),
-    cell: ({ row }) => h('div', { class: 'text-center ' }, row.getValue('id')),
+    cell: ({ row }) => h('div', { class: 'text-center' }, row.getValue('id')),
     enableSorting: true,
   },
   {
@@ -42,12 +41,13 @@ const columns: ColumnDef<SystemLogData>[] = [
   },
   {
     accessorKey: 'level',
-    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'ประเภท' }),
+    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'ประเภท (System Log)' }),
     cell: ({ row }) => {
-      const level = row.getValue('level') as string
-      // return h(SystemLogLevelBadge, { level })
-      return h('div', { class: '' }, level)
-      // return h(SystemLogLevelBadge, { level })
+      const data = row.original
+      return h('div', { class: '' }, [
+        h('div', { class: '' }, data.level),
+        h('div', { class: 'text-gray-500' }, data.sub_level)
+      ])
     },
     enableSorting: true,
   },
@@ -57,11 +57,6 @@ const columns: ColumnDef<SystemLogData>[] = [
     cell: ({ row }) => {
       const user = row.original.user
       return h('div', { class: 'flex items-center space-x-3' }, [
-        // h('img', {
-        //   src: user.avatar,
-        //   alt: user.name,
-        //   class: 'w-8 h-8 rounded-full',
-        // }),
         h('div', { class: '' }, user.name)
       ])
     },
@@ -92,15 +87,17 @@ const columns: ColumnDef<SystemLogData>[] = [
       const item = row.original
       
       return h('div', { class: 'flex justify-center' }, [
-        h(Button, {
-          variant: 'ghost',
-          size: 'sm',
-          class: 'h-8 w-8 p-0 text-purple-600 hover:text-purple-700 hover:bg-purple-50 cursor-pointer',
+        h('button', {
+          class: 'p-1 hover:opacity-80 transition-opacity',
           onClick: () => handleViewDetails(item.id),
           title: 'ดูรายละเอียด'
-        }, {
-          default: () => h(Search, { class: 'h-4 w-4' })
-        })
+        }, [
+          h('img', { 
+            src: '/assets/images/view-button.png',
+            alt: 'ดูรายละเอียด',
+            class: 'w-8 h-8'
+          })
+        ])
       ])
     },
     enableSorting: false,

@@ -123,7 +123,7 @@ const columns: ColumnDef<SystemLogDataDetail>[] = [
             <div class="m-4">
               <label class="text-sm font-medium text-gray-600">ประเภท System Log:</label>
               <div class="flex items-center space-x-2 mt-1">
-                <span class="font-medium">{{ logData.level }}</span>
+                <span class="font-medium">{{ logData.level }} {{ logData.sub_level }}</span>
               </div>
             </div>
           </div>

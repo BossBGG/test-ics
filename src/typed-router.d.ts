@@ -61,6 +61,8 @@ declare module 'vue-router/auto/routes' {
     '/keycloak': RouteRecordInfo<'/keycloak', '/keycloak', Record<never, never>, Record<never, never>>,
     '/material_equipment/[id]': RouteRecordInfo<'/material_equipment/[id]', '/material_equipment/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/material_equipment/list': RouteRecordInfo<'/material_equipment/list', '/material_equipment/list', Record<never, never>, Record<never, never>>,
+    '/new_and_announce/[id]': RouteRecordInfo<'/new_and_announce/[id]', '/new_and_announce/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    '/new_and_announce/list': RouteRecordInfo<'/new_and_announce/list', '/new_and_announce/list', Record<never, never>, Record<never, never>>,
     '/news/[id]': RouteRecordInfo<'/news/[id]', '/news/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/news/list': RouteRecordInfo<'/news/list', '/news/list', Record<never, never>, Record<never, never>>,
     '/pokemon/': RouteRecordInfo<'/pokemon/', '/pokemon', Record<never, never>, Record<never, never>>,

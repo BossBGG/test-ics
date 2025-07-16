@@ -4,7 +4,8 @@ export interface SystemLogData {
   date: string
   time: string
   date_time?: string
-  level: 'Error' | 'Info' | 'Warning' | 'Critical' | 'Success' | 'Debug' | 'Notice' | 'Alert' | 'Failure' | 'Caution'
+  level: 'Error' | 'Info' | 'Warning' | 'Emergency' | 'Security' | 'Debug' | 'Audit'
+  sub_level?: string
   user: {
     name: string
     avatar: string
@@ -26,6 +27,28 @@ export interface SystemLogDataDetail {
   new_data: string
 }
 
+// Helper function to get sub_level based on level
+const getSubLevel = (level: string): string => {
+  switch (level) {
+    case 'Error':
+      return '(ข้อผิดพลาด)'
+    case 'Info':
+      return '(ข้อมูลทั่วไป)'
+    case 'Warning':
+      return '(คำเตือน)'
+    case 'Emergency':
+      return '(ข้อผิดพลาดร้ายแรง)'
+    case 'Security':
+      return '(ความปลอดภัย)'
+    case 'Debug':
+      return '(วิเคราะห์รายละเอียด)'
+    case 'Audit':
+      return '(ข้อมูลใช้งาน)'
+    default:
+      return ''
+  }
+}
+
 export const mockSystemLogData: SystemLogData[] = [
   {
     id: 1,
@@ -33,6 +56,7 @@ export const mockSystemLogData: SystemLogData[] = [
     time: '14:05',
     date_time: '14 ธันวาคม 2566 14:05',
     level: 'Error',
+    sub_level: getSubLevel('Error'),
     user: {
       name: 'ธีระคุณ ฤทธิพงษ์',
       avatar: 'https://via.placeholder.com/40x40'
@@ -51,6 +75,7 @@ export const mockSystemLogData: SystemLogData[] = [
     date: '14 ธันวาคม 2566',
     time: '13:50',
     level: 'Info',
+    sub_level: getSubLevel('Info'),
     user: {
       name: 'แนนณัท ธรรมประดิษฐา',
       avatar: 'https://via.placeholder.com/40x40'
@@ -69,6 +94,7 @@ export const mockSystemLogData: SystemLogData[] = [
     date: '14 ธันวาคม 2566',
     time: '13:45',
     level: 'Warning',
+    sub_level: getSubLevel('Warning'),
     user: {
       name: 'นิรนาน มาชัย',
       avatar: 'https://via.placeholder.com/40x40'
@@ -86,7 +112,8 @@ export const mockSystemLogData: SystemLogData[] = [
     id: 4,
     date: '14 ธันวาคม 2566',
     time: '13:30',
-    level: 'Critical',
+    level: 'Emergency',
+    sub_level: getSubLevel('Emergency'),
     user: {
       name: 'ธีระคุณ ศรีไกรเวล',
       avatar: 'https://via.placeholder.com/40x40'
@@ -104,7 +131,8 @@ export const mockSystemLogData: SystemLogData[] = [
     id: 5,
     date: '14 ธันวาคม 2566',
     time: '13:15',
-    level: 'Success',
+    level: 'Security',
+    sub_level: getSubLevel('Security'),
     user: {
       name: 'มาริษา ประชาพุฒ',
       avatar: 'https://via.placeholder.com/40x40'
@@ -123,6 +151,7 @@ export const mockSystemLogData: SystemLogData[] = [
     date: '14 ธันวาคม 2566',
     time: '13:00',
     level: 'Debug',
+    sub_level: getSubLevel('Debug'),
     user: {
       name: 'กนษดินท์ วงศ์สวัสดิกุล',
       avatar: 'https://via.placeholder.com/40x40'
@@ -140,7 +169,8 @@ export const mockSystemLogData: SystemLogData[] = [
     id: 7,
     date: '14 ธันวาคม 2566',
     time: '12:45',
-    level: 'Notice',
+    level: 'Audit',
+    sub_level: getSubLevel('Audit'),
     user: {
       name: 'ไนทวี ศิริแสนพงศ์',
       avatar: 'https://via.placeholder.com/40x40'
@@ -158,7 +188,8 @@ export const mockSystemLogData: SystemLogData[] = [
     id: 8,
     date: '14 ธันวาคม 2566',
     time: '12:30',
-    level: 'Alert',
+    level: 'Info',
+    sub_level: getSubLevel('Info'),
     user: {
       name: 'พงศกร สำราชนิล',
       avatar: 'https://via.placeholder.com/40x40'
@@ -176,7 +207,8 @@ export const mockSystemLogData: SystemLogData[] = [
     id: 9,
     date: '14 ธันวาคม 2566',
     time: '12:15',
-    level: 'Failure',
+    level: 'Warning',
+    sub_level: getSubLevel('Warning'),
     user: {
       name: 'นันทกร แสงดวงวิณ',
       avatar: 'https://via.placeholder.com/40x40'
@@ -194,7 +226,8 @@ export const mockSystemLogData: SystemLogData[] = [
     id: 10,
     date: '14 ธันวาคม 2566',
     time: '12:00',
-    level: 'Caution',
+    level: 'Emergency',
+    sub_level: getSubLevel('Emergency'),
     user: {
       name: 'จรูวู วัฒนกิตติ',
       avatar: 'https://via.placeholder.com/40x40'
@@ -212,16 +245,13 @@ export const mockSystemLogData: SystemLogData[] = [
 
 export const logLevelOptions = [
   { label: 'ทั้งหมด', value: '' },
-  { label: 'Error', value: 'Error' },
-  { label: 'Info', value: 'Info' },
-  { label: 'Warning', value: 'Warning' },
-  { label: 'Critical', value: 'Critical' },
-  { label: 'Success', value: 'Success' },
-  { label: 'Debug', value: 'Debug' },
-  { label: 'Notice', value: 'Notice' },
-  { label: 'Alert', value: 'Alert' },
-  { label: 'Failure', value: 'Failure' },
-  { label: 'Caution', value: 'Caution' }
+  { label: 'Error (ข้อผิดพลาด)', value: 'Error' },
+  { label: 'Info (ข้อมูลทั่วไป)', value: 'Info' },
+  { label: 'Warning (คำเตือน)', value: 'Warning' },
+  { label: 'Emergency (ข้อผิดพลาดร้ายแรง)', value: 'Emergency' },
+  { label: 'Security (ความปลอดภัย)', value: 'Security' },
+  { label: 'Debug (วิเคราะห์รายละเอียด)', value: 'Debug' },
+  { label: 'Audit (ข้อมูลใช้งาน)', value: 'Audit' },
 ]
 
 export const getLogLevelColor = (level: string) => {
@@ -232,20 +262,14 @@ export const getLogLevelColor = (level: string) => {
       return 'bg-blue-100 text-blue-800'
     case 'Warning':
       return 'bg-yellow-100 text-yellow-800'
-    case 'Critical':
+    case 'Emergency':
       return 'bg-red-200 text-red-900'
-    case 'Success':
+    case 'Security':
       return 'bg-green-100 text-green-800'
     case 'Debug':
       return 'bg-gray-100 text-gray-800'
-    case 'Notice':
+    case 'Audit':
       return 'bg-indigo-100 text-indigo-800'
-    case 'Alert':
-      return 'bg-orange-100 text-orange-800'
-    case 'Failure':
-      return 'bg-red-100 text-red-800'
-    case 'Caution':
-      return 'bg-yellow-200 text-yellow-900'
     default:
       return 'bg-gray-100 text-gray-800'
   }
