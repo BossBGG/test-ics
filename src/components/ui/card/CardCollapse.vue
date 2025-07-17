@@ -56,7 +56,7 @@ const toggleExpanded = () => {
 
 <style scoped>
 .card-collapse {
-  background: white;
+  background: #F5F7F8;
   border-radius: 12px;
   margin-bottom: 16px;
   box-shadow: 0px 4px 4px 0px rgba(166, 175, 195, 0.4);
@@ -64,8 +64,8 @@ const toggleExpanded = () => {
 }
 
 .card-header {
-  background-color: #F4EEFF;
-  padding: 16px 20px;
+  background-color: #69306D;
+  padding: 8px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -74,7 +74,7 @@ const toggleExpanded = () => {
 }
 
 .card-header:hover {
-  background-color: #f0e6ff;
+  background-color: #69306D;
 }
 
 .header-content {
@@ -106,7 +106,7 @@ const toggleExpanded = () => {
 .header-title {
   font-size: 18px;
   font-weight: 600;
-  color: #333;
+  color: #ffffff;
   margin: 0;
 }
 

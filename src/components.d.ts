@@ -25,7 +25,7 @@ declare module 'vue' {
     CardCollapse: typeof import('./components/ui/card/CardCollapse.vue')['default']
     Checkbox: typeof import('./components/ui/checkbox/Checkbox.vue')['default']
     ContactTable: typeof import('./components/address/ContactTable.vue')['default']
-    CustomerInfo: typeof import('./components/worker/CustomerInfo.vue')['default']
+    CustomerInfo: typeof import('./components/work_order/CustomerInfo.vue')['default']
     DataServeyInformationAddressIDcard: typeof import('./components/survey/DataServeyInformationAddressIDcard.vue')['default']
     DataServeyInformationContactElectricityUser: typeof import('./components/survey/DataServeyInformationContactElectricityUser.vue')['default']
     DataServeyInformationMap: typeof import('./components/survey/DataServeyInformationMap.vue')['default']
@@ -47,6 +47,7 @@ declare module 'vue' {
     DropdownMenuSubContent: typeof import('./components/ui/dropdown-menu/DropdownMenuSubContent.vue')['default']
     DropdownMenuSubTrigger: typeof import('./components/ui/dropdown-menu/DropdownMenuSubTrigger.vue')['default']
     DropdownMenuTrigger: typeof import('./components/ui/dropdown-menu/DropdownMenuTrigger.vue')['default']
+    EquipmentInfo: typeof import('./components/work_order/EquipmentInfo.vue')['default']
     FilePreview: typeof import('./components/form/FilePreview.vue')['default']
     FilterDialog: typeof import('./components/dialog/FilterDialog.vue')['default']
     FormAddressBilling: typeof import('./components/formaddrees/FormAddressBilling.vue')['default']
@@ -257,7 +258,7 @@ declare module 'vue' {
     TheIndexTest: typeof import('./components/TheIndexTest.vue')['default']
     TheInput: typeof import('./components/TheInput.vue')['default']
     TheMenu: typeof import('./components/TheMenu.vue')['default']
-    WorkOrderInfo: typeof import('./components/worker/WorkOrderInfo.vue')['default']
-    WorkOrderStep: typeof import('./components/worker/WorkOrderStep.vue')['default']
+    WorkOrderInfo: typeof import('./components/work_order/WorkOrderInfo.vue')['default']
+    WorkOrderStep: typeof import('./components/work_order/WorkOrderStep.vue')['default']
   }
 }

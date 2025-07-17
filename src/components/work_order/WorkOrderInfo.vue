@@ -29,7 +29,6 @@ const jobPriorityOptions = [
 ]
 
 const isDesktop = computed(() => {
-  // You can implement screen size detection here
   return true
 })
 </script>
@@ -37,12 +36,12 @@ const isDesktop = computed(() => {
 <template>
   <CardCollapse 
     title="รายละเอียดคำร้อง" 
-    :is-show-header="!isDesktop"
+    
   >
     <div class="work-order-form">
-      <div class="form-grid">
-        <!-- เลขที่ใบสั่งงาน -->
-        <div class="form-group form-group-1">
+      <!-- Row 1: เลขที่ใบสั่งงาน, เลขที่คำร้อง, เลขที่คำร้อง (SAP), ประเภทคำร้อง, สถานะคำร้อง -->
+      <div class="form-row-1">
+        <div class="form-group">
           <label class="form-label">เลขที่ใบสั่งงาน</label>
           <q-input
             :model-value="data.order_no"
@@ -53,8 +52,7 @@ const isDesktop = computed(() => {
           />
         </div>
 
-        <!-- เลขที่คำร้อง -->
-        <div class="form-group form-group-1">
+        <div class="form-group">
           <label class="form-label">เลขที่คำร้อง</label>
           <q-input
             :model-value="data.request_no"
@@ -65,8 +63,7 @@ const isDesktop = computed(() => {
           />
         </div>
 
-        <!-- เลขที่คำร้อง (SAP) -->
-        <div class="form-group form-group-1">
+        <div class="form-group">
           <label class="form-label">เลขที่คำร้อง (SAP)</label>
           <q-input
             :model-value="data.request_sap_no"
@@ -77,8 +74,7 @@ const isDesktop = computed(() => {
           />
         </div>
 
-        <!-- ประเภทคำร้อง -->
-        <div class="form-group form-group-1">
+        <div class="form-group">
           <label class="form-label">ประเภทคำร้อง</label>
           <q-input
             :model-value="data.request_type"
@@ -89,9 +85,8 @@ const isDesktop = computed(() => {
           />
         </div>
 
-        <!-- สถานะคำร้อง -->
-        <div class="form-group form-group-1">
-          <label class="form-label">สถานะคำร้อง</label>
+        <div class="form-group">
+          <label class="form-label">สถานะใบร้อง</label>
           <q-input
             :model-value="data.request_status"
             outlined
@@ -100,9 +95,11 @@ const isDesktop = computed(() => {
             readonly
           />
         </div>
+      </div>
 
-        <!-- ลำดับความสำคัญของงาน -->
-        <div class="form-group form-group-2">
+      <!-- Row 2: ลำดับความสำคัญของงาน, วันที่รับชำระเงิน, คำอธิบายการทำงาน -->
+      <div class="form-row-2">
+        <div class="form-group">
           <label class="form-label">ลำดับความสำคัญของงาน</label>
           <q-select
             :model-value="data.job_priority"
@@ -118,9 +115,8 @@ const isDesktop = computed(() => {
           />
         </div>
 
-        <!-- วันที่รับชำระเงิน -->
-        <div class="form-group form-group-2">
-          <label class="form-label">วันที่รับชำระเงิน</label>
+        <div class="form-group">
+          <label class="form-label">วันที่ชำระเงิน</label>
           <q-input
             :model-value="data.payment_received_date"
             outlined
@@ -130,8 +126,7 @@ const isDesktop = computed(() => {
           />
         </div>
 
-        <!-- คำอธิบายการทำงาน -->
-        <div class="form-group form-group-2">
+        <div class="form-group">
           <label class="form-label">คำอธิบายการทำงาน</label>
           <q-input
             :model-value="data.work_description"
@@ -141,9 +136,11 @@ const isDesktop = computed(() => {
             readonly
           />
         </div>
+      </div>
 
-        <!-- กอง/กฟฟ. -->
-        <div class="form-group form-group-3">
+      <!-- Row 3: กอง/กฟฟ., รหัสโรงงาน, ศูนย์งาน, ศูนย์ต้นทุน -->
+      <div class="form-row-3">
+        <div class="form-group">
           <label class="form-label">กอง/กฟฟ.</label>
           <q-input
             :model-value="data.division"
@@ -154,8 +151,7 @@ const isDesktop = computed(() => {
           />
         </div>
 
-        <!-- รหัสโรงงาน -->
-        <div class="form-group form-group-3">
+        <div class="form-group">
           <label class="form-label">รหัสโรงงาน</label>
           <q-input
             :model-value="data.plant_code"
@@ -166,8 +162,7 @@ const isDesktop = computed(() => {
           />
         </div>
 
-        <!-- ศูนย์งาน -->
-        <div class="form-group form-group-3">
+        <div class="form-group">
           <label class="form-label">ศูนย์งาน</label>
           <q-input
             :model-value="data.operation_center"
@@ -178,8 +173,7 @@ const isDesktop = computed(() => {
           />
         </div>
 
-        <!-- ศูนย์ต้นทุน -->
-        <div class="form-group form-group-3">
+        <div class="form-group">
           <label class="form-label">ศูนย์ต้นทุน</label>
           <q-input
             :model-value="data.cost_center"
@@ -199,28 +193,30 @@ const isDesktop = computed(() => {
   padding: 8px 0;
 }
 
-.form-grid {
+.form-row-1,
+.form-row-2,
+.form-row-3 {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
   gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-row-1 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.form-row-2 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.form-row-3 {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-
-.form-group-1 {
-  grid-column: span 1;
-}
-
-.form-group-2 {
-  grid-column: span 2;
-}
-
-.form-group-3 {
-  grid-column: span 1;
 }
 
 .form-label {
@@ -236,7 +232,7 @@ const isDesktop = computed(() => {
 :deep(.q-field--outlined .q-field__control) {
   border-radius: 8px;
   border-color: #d1d5db;
-  background-color: #f9fafb;
+  background-color: white;
 }
 
 :deep(.q-field--outlined .q-field__control:hover) {
@@ -250,27 +246,25 @@ const isDesktop = computed(() => {
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-  .form-grid {
+  .form-row-1 {
     grid-template-columns: repeat(3, 1fr);
   }
   
-  .form-group-1,
-  .form-group-2,
-  .form-group-3 {
-    grid-column: span 1;
+  .form-row-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .form-row-3 {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .form-grid {
+  .form-row-1,
+  .form-row-2,
+  .form-row-3 {
     grid-template-columns: 1fr;
     gap: 12px;
-  }
-  
-  .form-group-1,
-  .form-group-2,
-  .form-group-3 {
-    grid-column: span 1;
   }
 }
 </style>

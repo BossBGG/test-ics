@@ -359,20 +359,20 @@
 }
 
 .cancel-btn {
-  background: #c8a2c8;
+  background: #994C80;
   color: white;
 }
 
 .cancel-btn:hover {
-  background: #b894b8;
+  background: #904277;
 }
 
-.save-btn {
+.save-success-btn {
   background: #69306D;
   color: white;
 }
 
-.save-btn:hover {
+.save-success-btn:hover {
   background: #5a285d;
 }
 
@@ -390,6 +390,7 @@
   }
   
   .header-actions {
+    
     justify-content: center;
   }
   

@@ -1,7 +1,7 @@
 <!-- src/components/work_order/WorkOrderStep.vue -->
 
 <script setup lang="ts">
-import CardCollapse from '~/components/ui/card/CardCollapse.vue'
+
 interface Step {
   name: string
   icon: string
@@ -112,7 +112,7 @@ const updateStep = (step: number) => {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: white;
+  background: #AAAAAA;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,7 +120,7 @@ const updateStep = (step: number) => {
 }
 
 .step-icon.is-active {
-  background: #671FAB;
+  background: #69306D;
   color: white;
 }
 
