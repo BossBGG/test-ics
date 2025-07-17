@@ -49,9 +49,7 @@ const handleImageUpload = (file: File) => {
   reader.readAsDataURL(file)
 }
 
-const goBack = () => {
-  router.push('/news/list')
-}
+
 
 const saveDraft = () => {
   news.value.status = 'draft'

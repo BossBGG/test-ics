@@ -57,6 +57,7 @@ declare module 'vue-router/auto/routes' {
     '/gallery/': RouteRecordInfo<'/gallery/', '/gallery', Record<never, never>, Record<never, never>>,
     '/gallery/[id]': RouteRecordInfo<'/gallery/[id]', '/gallery/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/hi/[name]': RouteRecordInfo<'/hi/[name]', '/hi/:name', { name: ParamValue<true> }, { name: ParamValue<false> }>,
+    '/ineligible/ineligible': RouteRecordInfo<'/ineligible/ineligible', '/ineligible/ineligible', Record<never, never>, Record<never, never>>,
     '/informations': RouteRecordInfo<'/informations', '/informations', Record<never, never>, Record<never, never>>,
     '/keycloak': RouteRecordInfo<'/keycloak', '/keycloak', Record<never, never>, Record<never, never>>,
     '/material_equipment/[id]': RouteRecordInfo<'/material_equipment/[id]', '/material_equipment/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
@@ -79,6 +80,7 @@ declare module 'vue-router/auto/routes' {
     '/system_log/[id]': RouteRecordInfo<'/system_log/[id]', '/system_log/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/system_log/list': RouteRecordInfo<'/system_log/list', '/system_log/list', Record<never, never>, Record<never, never>>,
     '/test': RouteRecordInfo<'/test', '/test', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s301/list': RouteRecordInfo<'/work_order/special-form/s301/list', '/work_order/special-form/s301/list', Record<never, never>, Record<never, never>>,
   }
 }
 
