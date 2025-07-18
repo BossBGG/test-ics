@@ -56,7 +56,10 @@
     <div v-else-if="currentStep === 1">
       <!-- Worker Information -->
       <AddWorker />
-      <DateAppointment :data="appointmentData" @update:data="updateAppointmentData" />
+      <DateAppointment
+        :data="appointmentData"
+        @update:data="updateAppointmentData"
+      />
     </div>
 
     <div v-else-if="currentStep === 2">
@@ -66,17 +69,39 @@
 
     <div v-else-if="currentStep === 3">
       <!-- Work Results -->
-      <WorkExecution :data="workExecutionData" @update:data="updateWorkExecutionData" />
-      <AddImages 
-        :model-value="workExecutionData.images"
-        @images-change="(images) => workExecutionData.images = images"
+      <WorkExecution
+        :data="workExecutionData"
+        @update:data="updateWorkExecutionData"
       />
+      <AddImages
+        :model-value="workExecutionData.images"
+        @images-change="(images) => (workExecutionData.images = images)"
+      />
+
+      <AddFile v-model="files" @files-change="handleFilesChange" />
+
+      <Comment
+        v-model="commentText"
+        :max-length="250"
+        @comment-change="handleCommentChange"
+      />
+
+      <SatisfactionAssessment 
+        v-model="workOrderData.satisfaction"
+        @data-change="handleSatisfactionUpdate"
+      />
+
+      <RecordKeeper 
+        v-model="workOrderData.recordKeeper"
+        @data-change="handleRecordKeeperUpdate"
+      />
+
     </div>
 
     <!-- Step Navigation -->
     <div class="step-navigation">
       <!-- Previous Step Button -->
-      <button 
+      <button
         v-if="currentStep > 0"
         @click="goToPreviousStep"
         class="nav-button prev-button"
@@ -102,7 +127,7 @@
       <div class="nav-spacer"></div>
 
       <!-- Next Step Button -->
-      <button 
+      <button
         v-if="currentStep < steps.length - 1"
         @click="goToNextStep"
         class="nav-button next-button"
@@ -127,16 +152,30 @@
 
     <!-- Action Buttons -->
     <div class="action-section">
-      <div class="action-buttons-grid">
-        <button class="action-button cancel-btn" @click="cancelWorkOrder">
-          ยกเลิกใบสั่งงาน
-        </button>
+    <div v-if="currentStep === 3" class="action-buttons-grid">
+      <!-- ปุ่มแก้ไขใบงาน (step 3) -->
+      <button class="action-button end-step-edit-btn" @click="editWorkOrder">
+        <q-icon name="edit" class="action-icon" />
+        แก้ไขใบงาน
+      </button>
 
-        <button class="action-button save-success-btn" @click="saveWorkOrder">
-          <img src="/assets/images/save-btn.png" alt="" class="save-icon-btn" />
-          บันทึก
-        </button>
-      </div>
+      <!-- ปุ่มสิ้นสุดการกระบวนการ (step 3) -->
+      <button class="action-button complete-btn" @click="completeWorkOrder">
+        สิ้นสุดการกระบวนการบน ICS ดำเนินการต่อบน SAP
+      </button>
+    </div>
+
+    <!-- ปุ่มเดิมสำหรับ step อื่นๆ -->
+    <div v-else class="action-buttons-grid">
+      <button class="action-button cancel-btn" @click="cancelWorkOrder">
+        ยกเลิกใบสั่งงาน
+      </button>
+
+      <button class="action-button save-success-btn" @click="saveWorkOrder">
+        <img src="/assets/images/save-btn.png" alt="" class="save-icon-btn" />
+        บันทึก
+      </button>
+    </div>
     </div>
   </content-container>
 </template>
@@ -153,6 +192,10 @@ import DateAppointment from "~/components/worker/DateAppointment.vue";
 import AddMaterial from "~/components/material_equipment_list/AddMaterial.vue";
 import WorkExecution from "~/components/work_execution/WorkExecution.vue";
 import AddImages from "~/components/work_execution/AddImages.vue";
+import AddFile from "~/components/work_execution/AddFile.vue";
+import Comment from "~/components/work_execution/Comment.vue";
+import SatisfactionAssessment from '~/components/work_execution/SatisfactionAssessment.vue'
+import RecordKeeper from '~/components/work_execution/RecordKeeper.vue'
 import { ref, reactive } from "vue";
 
 // Import CSS
@@ -181,6 +224,17 @@ const workOrderData = reactive({
   plant_code: "I010  กฟอ.นครชัยศรี",
   operation_center: "BPPMMS01",
   cost_center: "A307101070",
+  satisfaction: {
+    rating: 0,
+    comment: '',
+    signature: ''
+  },
+  recordKeeper: {
+    employeeId: '356579 - นาย มงคล ธรรมปัญโน',
+    position: 'คช 8',
+    phoneNumber: '098 - 84950689',
+    signature: ''
+  },
 });
 
 const customerData = reactive({
@@ -192,15 +246,20 @@ const customerData = reactive({
 });
 
 const appointmentData = reactive({
-  appointmentDate: '',
-  appointmentTime: ''
+  appointmentDate: "",
+  appointmentTime: "",
 });
 
 const workExecutionData = reactive({
-  startDateTime: '',
-  endDateTime: '',
-  images: []
+  startDateTime: "",
+  endDateTime: "",
+  images: [],
+  
 });
+
+const files = ref([])
+
+
 
 // Methods
 const updateCurrentStep = (step: number) => {
@@ -223,14 +282,14 @@ const getPreviousStepName = () => {
   if (currentStep.value > 0) {
     return steps[currentStep.value - 1].name;
   }
-  return '';
+  return "";
 };
 
 const getNextStepName = () => {
   if (currentStep.value < steps.length - 1) {
     return steps[currentStep.value + 1].name;
   }
-  return '';
+  return "";
 };
 
 const updateCustomerData = (data: any) => {
@@ -277,7 +336,7 @@ const saveWorkOrder = () => {
 }
 
 .placeholder-section h3 {
-  color: #69306D;
+  color: #69306d;
   font-size: 24px;
   margin-bottom: 16px;
 }
@@ -304,7 +363,7 @@ const saveWorkOrder = () => {
   align-items: center;
   gap: 8px;
   background: transparent;
-  color: #69306D;
+  color: #69306d;
   border: none;
   padding: 12px 16px;
   border-radius: 8px;
@@ -339,21 +398,21 @@ const saveWorkOrder = () => {
     flex-direction: column;
     gap: 16px;
   }
-  
+
   .nav-spacer {
     display: none;
   }
-  
+
   .nav-button {
     width: 100%;
     justify-content: center;
     padding: 16px;
   }
-  
+
   .nav-button span {
     font-size: 14px;
   }
-  
+
   .nav-icon {
     width: 18px;
     height: 18px;
