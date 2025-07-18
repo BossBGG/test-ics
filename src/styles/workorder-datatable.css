@@ -14,26 +14,38 @@
   height: 20px;
 }
 
+.save-table-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.delete-table-icon {
+  width: 16px;
+  height: 20px;
+}
+
+.edit-table-icon {
+  width:20px;
+  height: 20px;
+}
+
 .table-header {
   display: grid;
   grid-template-columns: 80px 2fr 120px 120px;
-  background: #69306D;
+  background: #69306D !important;
 }
 
 .table-row {
   display: grid;
   grid-template-columns: 80px 2fr 120px 120px;
   border-bottom: 1px solid #e5e7eb;
-  background: white;
+  background: #f8f7f7;
 }
 
 .table-row:last-child {
   border-bottom: none;
 }
 
-.table-row:hover {
-  background: #f9fafb;
-}
 
 .table-cell {
   padding: 12px 8px;
@@ -64,7 +76,7 @@
   justify-content: center;
   align-items: center;
   padding: 40px 20px;
-  background: white;
+  background: #f8f7f7;
   color: #9ca3af;
   font-size: 16px;
   font-weight: 500;
@@ -107,37 +119,37 @@
   transition: all 0.2s ease;
 }
 
-.save-btn {
-  background: #10B981;
+.save-table-btn {
+  background: #f8f7f7;
   color: white;
 }
 
-.save-btn:hover {
-  background: #059669;
+.save-table-btn:hover {
+
   transform: scale(1.05);
 }
 
-.edit-btn {
-  background: #F59E0B;
+.edit-table-btn {
+  background: #f8f7f7;
   color: white;
 }
 
-.edit-btn:hover {
-  background: #D97706;
+.edit-table-btn:hover {
+  
   transform: scale(1.05);
 }
 
-.delete-btn {
-  background: #EF4444;
+.delete-table-btn {
+  background: #f8f7f7;
   color: white;
 }
 
-.delete-btn:hover {
-  background: #DC2626;
+.delete-table-btn:hover {
+
   transform: scale(1.05);
 }
 
-.action-btn svg {
+.action-table-btn svg {
   width: 14px;
   height: 14px;
 }

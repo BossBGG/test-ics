@@ -80,6 +80,7 @@ declare module 'vue-router/auto/routes' {
     '/system_log/[id]': RouteRecordInfo<'/system_log/[id]', '/system_log/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/system_log/list': RouteRecordInfo<'/system_log/list', '/system_log/list', Record<never, never>, Record<never, never>>,
     '/test': RouteRecordInfo<'/test', '/test', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s301/EquipmentInfo': RouteRecordInfo<'/work_order/special-form/s301/EquipmentInfo', '/work_order/special-form/s301/EquipmentInfo', Record<never, never>, Record<never, never>>,
     '/work_order/special-form/s301/list': RouteRecordInfo<'/work_order/special-form/s301/list', '/work_order/special-form/s301/list', Record<never, never>, Record<never, never>>,
   }
 }

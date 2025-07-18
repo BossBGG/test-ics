@@ -1,68 +1,56 @@
 <!-- src/components/work_order/WorkOrderStep.vue -->
 
 <script setup lang="ts">
-
 interface Step {
-  name: string
-  icon: string
+  name: string;
+  icon: string;
 }
 
 interface Props {
-  steps: Step[]
-  currentStep: number
+  steps: Step[];
+  currentStep: number;
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 
 const emit = defineEmits<{
-  'update:step': [step: number]
-}>()
+  "update:step": [step: number];
+}>();
 
 const updateStep = (step: number) => {
-  emit('update:step', step)
-}
+  emit("update:step", step);
+};
 </script>
 
 <template>
   <div class="work-order-step">
     <div class="step-container">
       <div class="steps-wrapper">
-        <div 
-          v-for="(step, index) in steps" 
-          :key="index"
-          class="step-item"
-          :class="{ 'is-last': index === steps.length - 1 }"
-          @click="updateStep(index)"
-        >
-          <label 
-            :for="`work_order_step_${index}`"
-            class="step-label"
-          >
-            <div 
-              class="step-icon"
-              :class="{ 'is-active': currentStep === index }"
-            >
-              <img 
-                v-if="step.icon.includes('.')"
-                :src="step.icon" 
-                :alt="step.name"
-                class="icon-image"
-              />
-              <component 
-                v-else 
-                :is="step.icon" 
-                class="icon-component"
-              />
+        <template v-for="(step, index) in steps" :key="index">
+          <!-- Step -->
+          <div class="step-item" @click="updateStep(index)">
+            <div class="step-content">
+              <div
+                class="step-icon"
+                :class="{ 'is-active': currentStep === index }"
+              >
+                <img
+                  v-if="step.icon.includes('.')"
+                  :src="step.icon"
+                  :alt="step.name"
+                  class="icon-image"
+                />
+                <component v-else :is="step.icon" class="icon-component" />
+              </div>
+              <div class="step-name">{{ step.name }}</div>
             </div>
-            <div class="step-name">{{ step.name }}</div>
-          </label>
+          </div>
 
-          <!-- Progress Line -->
-          <div 
-            v-if="index < steps.length - 1" 
-            class="progress-line"
-          ></div>
-        </div>
+          <!-- Progress Line (แทรกระหว่าง Step) -->
+          <div v-if="index < steps.length - 1" class="progress-line">
+            <div class="line-inner" />
+          </div>
+        </template>
       </div>
     </div>
   </div>
@@ -70,49 +58,51 @@ const updateStep = (step: number) => {
 
 <style scoped>
 .work-order-step {
-  background: #F2F2F2;
+  background: #f2f2f2;
   border-radius: 20px;
   margin-bottom: 16px;
   box-shadow: 0px 4px 4px 0px rgba(166, 175, 195, 0.4);
-  padding: 16px 8px;
+  padding: 24px 16px;
 }
 
 .step-container {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .steps-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  width: 80%;
+  width: 100%;
+  max-width: 900px;
 }
 
 .step-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   cursor: pointer;
+  position: relative;
+}
+
+.step-item:not(:last-child) {
   flex: 1;
 }
 
-.step-item.is-last {
-  flex: 0 0 auto;
-}
-
-.step-label {
+.step-content {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin: 0 12px;
-  cursor: pointer;
   gap: 8px;
+  flex-shrink: 0;
 }
 
 .step-icon {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #AAAAAA;
+  background: #aaaaaa;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,20 +110,24 @@ const updateStep = (step: number) => {
 }
 
 .step-icon.is-active {
-  background: #69306D;
-  color: white;
+  background: #6f2075 !important;
+  color: white !important;
+  
 }
+
 
 .icon-image {
   width: 24px;
   height: 24px;
   object-fit: contain;
+  transition: filter 0.3s ease;
 }
 
 .icon-component {
   width: 24px;
   height: 24px;
   color: inherit;
+  transition: color 0.3s ease;
 }
 
 .step-name {
@@ -141,50 +135,91 @@ const updateStep = (step: number) => {
   font-size: 14px;
   font-weight: 500;
   color: #333;
+  text-align: center;
 }
 
 .progress-line {
-  height: 6px;
-  background: #D4D6DD;
-  flex: 1;
-  margin: 0 8px;
-  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 100px; /* เพิ่มความกว้างชัดเจน */
+  margin: 0 44px;
+  position: relative;
+}
+
+.line-inner {
+  width: 100%;
+  height: 3px;
+  background: #aaaaaa !important;
+  border: none;
+  position: absolute;
+  top: 24px;
+  left: 0;
+  right: 0;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .steps-wrapper {
-    width: 95%;
+  .work-order-step {
+    padding: 20px 12px;
   }
-  
+
   .step-icon {
     width: 40px;
     height: 40px;
   }
-  
+
   .icon-image,
   .icon-component {
     width: 20px;
     height: 20px;
   }
-  
+
   .step-name {
     font-size: 12px;
   }
-  
-  .step-label {
-    margin: 0 8px;
-    gap: 6px;
+
+  .progress-line {
+    margin: 0 10px;
+    min-width: 30px;
+    height: 40px;
+  }
+
+  .line-inner {
+    height: 2px;
+    top: 20px;
   }
 }
 
 @media (max-width: 480px) {
   .step-name {
-    display: none;
+    font-size: 10px;
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  
-  .step-label {
-    margin: 0 4px;
+
+  .step-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .icon-image,
+  .icon-component {
+    width: 18px;
+    height: 18px;
+  }
+
+  .progress-line {
+    margin: 0 8px;
+    height: 36px;
+    min-width: 20px;
+  }
+
+  .line-inner {
+    height: 2px;
+    top: 18px;
   }
 }
 </style>

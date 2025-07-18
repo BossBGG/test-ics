@@ -4,18 +4,30 @@
     :breadcrumbs="[
       { text: 'หน้าหลัก', link: '/' },
       { text: 'ใบสั่งงาน', link: '/work_order' },
-      { text: 'สร้างใบสั่งงาน ขอซ่อมแซมอุปกรณ์ไฟฟ้า' }
+      { text: 'สร้างใบสั่งงาน ขอซ่อมแซมอุปกรณ์ไฟฟ้า' },
     ]"
   >
     <template #menu>
       <div class="header-actions">
         <button class="header-action-btn" @click="showRelationship">
-          <img src="/assets/images/link.png" alt="" class="header-action-link-icon">
+          <img
+            src="/assets/images/link.png"
+            alt=""
+            class="header-action-link-icon"
+          />
           แสดงความสัมพันธ์ใบสั่งงาน
         </button>
 
-        <button class="header-action-btn icon-only" @click="showHistory" title="History">
-          <img src="/assets/images/history.png" alt="" class="header-action-icon">
+        <button
+          class="header-action-btn icon-only"
+          @click="showHistory"
+          title="History"
+        >
+          <img
+            src="/assets/images/history.png"
+            alt=""
+            class="header-action-icon"
+          />
         </button>
       </div>
     </template>
@@ -24,17 +36,14 @@
     <WorkOrderInfo :data="workOrderData" />
 
     <!-- Work Order Steps -->
-    <WorkOrderStep 
-      :steps="steps" 
+    <WorkOrderStep
+      :steps="steps"
       :current-step="currentStep"
       @update:step="updateCurrentStep"
     />
 
     <!-- Customer Information with slot for additional components -->
-    <CustomerInfo 
-      :data="customerData"
-      @update:data="updateCustomerData"
-    >
+    <CustomerInfo :data="customerData" @update:data="updateCustomerData">
       <!-- Additional components can be passed here -->
       <template #additional-content>
         <EquipmentInfo />
@@ -42,9 +51,25 @@
     </CustomerInfo>
 
     <!-- Equipment Information -->
-    
-
-    
+    <div class="next-step">
+      <div class="">
+        ผู้ปฏิบัติงาน
+      </div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m8.25 4.5 7.5 7.5-7.5 7.5"
+        />
+      </svg>
+    </div>
 
     <!-- Action Buttons -->
     <div class="action-section">
@@ -54,6 +79,7 @@
         </button>
 
         <button class="action-button save-success-btn" @click="saveWorkOrder">
+          <img src="/assets/images/save-btn.png" alt="" class="save-icon-btn" />
           บันทึก
         </button>
       </div>
@@ -62,140 +88,76 @@
 </template>
 
 <script setup lang="ts">
-import ContentContainer from "~/layouts/ContentContainer.vue"
-import WorkOrderInfo from "~/components/work_order/WorkOrderInfo.vue"
-import WorkOrderStep from "~/components/work_order/WorkOrderStep.vue"
-import CustomerInfo from "~/components/work_order/CustomerInfo.vue"
-import EquipmentInfo from "~/components/work_order/EquipmentInfo.vue"
-import { ref, reactive } from 'vue'
+import ContentContainer from "~/layouts/ContentContainer.vue";
+import WorkOrderInfo from "~/components/work_order/WorkOrderInfo.vue";
+import WorkOrderStep from "~/components/work_order/WorkOrderStep.vue";
+import CustomerInfo from "~/components/work_order/CustomerInfo.vue";
+import EquipmentInfo from "~/pages/work_order/special-form/s301/EquipmentInfo.vue";
+import { ref, reactive } from "vue";
 
 // Import CSS
-import '@/styles/workorder.css'
+import "@/styles/workorder.css";
 
 // Reactive data
-const currentStep = ref(0)
+const currentStep = ref(0);
 
 const steps = [
   { name: "ข้อมูลลูกค้า", icon: "/assets/images/doc.png" },
   { name: "ผู้ปฏิบัติงาน", icon: "/assets/images/user.png" },
   { name: "อุปกรณ์ปฏิบัติงาน", icon: "/assets/images/material.png" },
-  { name: "ผลปฏิบัติงาน", icon: "/assets/images/write.png" }
-]
+  { name: "ผลปฏิบัติงาน", icon: "/assets/images/write.png" },
+];
 
 const workOrderData = reactive({
   order_no: "250412001465",
   request_no: "250412000002",
   request_sap_no: "130005697552",
-  request_type: "ขอซ่อมแซมอุปกรณ์ไฟฟ้า (2...)",
-  request_status: "ขอซ่อมแซมอุปกรณ์ไฟฟ้า/กิจกรรม",
-  job_priority: "1",
-  payment_received_date: "14 ธ.ค. 2566",
-  work_description: "การซ่อมแซม",
-  division: "กฟน.อยุธยา",
-  plant_code: "BPTV904503",
-  operation_center: "1035 อยุธยาเหนือ",
-  cost_center: "430116979"
-})
+  request_type: "ขอซ่อมแซมอุปกรณ์ไฟฟ้า",
+  request_status: "รอเปิดใบสั่งงาน/เบิกจ่ายพัสด",
+  job_priority: "สำคัญมาก (24 ชม.)",
+  payment_received_date: "14 ธันวาคม 2566",
+  work_description: "BPPMMS01",
+  division: "การไฟฟ้าอ้อมน้อย",
+  plant_code: "I010  กฟอ.นครชัยศรี",
+  operation_center: "BPPMMS01",
+  cost_center: "A307101070",
+});
 
 const customerData = reactive({
   name: "",
   tel: "",
   address: "",
   latitude: "",
-  longitude: ""
-})
+  longitude: "",
+});
 
 // Methods
 const updateCurrentStep = (step: number) => {
-  currentStep.value = step
-}
+  currentStep.value = step;
+};
 
 const updateCustomerData = (data: any) => {
-  Object.assign(customerData, data)
-}
+  Object.assign(customerData, data);
+};
 
 const showRelationship = () => {
-  console.log("แสดงความสัมพันธ์ใบสั่งงาน")
-}
+  console.log("แสดงความสัมพันธ์ใบสั่งงาน");
+};
 
 const showHistory = () => {
-  console.log("แสดง History")
-}
+  console.log("แสดง History");
+};
 
 const openGoogleMap = () => {
-  console.log("เปิด Google Map")
-}
+  console.log("เปิด Google Map");
+};
 
 const cancelWorkOrder = () => {
-  console.log("ยกเลิกใบสั่งงาน")
-}
+  console.log("ยกเลิกใบสั่งงาน");
+};
 
 const saveWorkOrder = () => {
-  console.log("บันทึกใบสั่งงาน")
-}
+  console.log("บันทึกใบสั่งงาน");
+};
 </script>
 
-<style scoped>
-.header-actions {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.header-action-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: #69306D;
-  color: white;
-  border: none;
-  padding: 12px 16px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  min-width: 44px;
-  height: 44px;
-}
-
-.header-action-btn:hover {
-  background: #5a285d;
-  transform: translateY(-2px);
-}
-
-.header-action-btn.icon-only {
-  padding: 12px;
-  min-width: 44px;
-}
-
-.header-action-icon {
-  width: 20px;
-  height: 20px;
-}
-
-.header-action-link-icon {
-  width: 20px;
-  height: 10px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .header-action-btn {
-    font-size: 12px;
-    padding: 8px 12px;
-  }
-  
-  .header-action-btn.icon-only {
-    padding: 8px;
-    min-width: 36px;
-    height: 36px;
-  }
-  
-  .header-action-icon {
-    width: 16px;
-    height: 16px;
-  }
-}
-</style>
