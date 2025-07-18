@@ -7,9 +7,13 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AddFile: typeof import('./components/work_execution/AddFile.vue')['default']
+    AddImages: typeof import('./components/work_execution/AddImages.vue')['default']
+    AddMaterial: typeof import('./components/material_equipment_list/AddMaterial.vue')['default']
     AddressInput: typeof import('./components/address/AddressInput.vue')['default']
     AddressInput2: typeof import('./components/address/AddressInput2.vue')['default']
     AddressInputNew: typeof import('./components/address/AddressInputNew.vue')['default']
+    AddWorker: typeof import('./components/worker/AddWorker.vue')['default']
     Alert: typeof import('./components/alert/Alert.vue')['default']
     AlertAnnounceSuccess: typeof import('./components/alert/AlertAnnounceSuccess.vue')['default']
     AlertConfirm: typeof import('./components/alert/AlertConfirm.vue')['default']
@@ -31,6 +35,7 @@ declare module 'vue' {
     DataServeyInformationMap: typeof import('./components/survey/DataServeyInformationMap.vue')['default']
     DataTable: typeof import('./components/form/DataTable.vue')['default']
     DataTableColumnHeader: typeof import('./components/form/DataTableColumnHeader.vue')['default']
+    DateAppointment: typeof import('./components/worker/DateAppointment.vue')['default']
     DialogChangeService: typeof import('./components/dialog/DialogChangeService.vue')['default']
     DistrictInput: typeof import('./components/address/DistrictInput.vue')['default']
     DropdownMenu: typeof import('./components/ui/dropdown-menu/DropdownMenu.vue')['default']
@@ -258,6 +263,8 @@ declare module 'vue' {
     TheIndexTest: typeof import('./components/TheIndexTest.vue')['default']
     TheInput: typeof import('./components/TheInput.vue')['default']
     TheMenu: typeof import('./components/TheMenu.vue')['default']
+    Work_execution: typeof import('./components/work_execution/work_execution.vue')['default']
+    WorkExecution: typeof import('./components/work_execution/WorkExecution.vue')['default']
     WorkOrderInfo: typeof import('./components/work_order/WorkOrderInfo.vue')['default']
     WorkOrderStep: typeof import('./components/work_order/WorkOrderStep.vue')['default']
   }

@@ -42,33 +42,87 @@
       @update:step="updateCurrentStep"
     />
 
-    <!-- Customer Information with slot for additional components -->
-    <CustomerInfo :data="customerData" @update:data="updateCustomerData">
-      <!-- Additional components can be passed here -->
-      <template #additional-content>
-        <EquipmentInfo />
-      </template>
-    </CustomerInfo>
+    <!-- Step Content -->
+    <div v-if="currentStep === 0">
+      <!-- Customer Information with slot for additional components -->
+      <CustomerInfo :data="customerData" @update:data="updateCustomerData">
+        <!-- Additional components can be passed here -->
+        <template #additional-content>
+          <EquipmentInfo />
+        </template>
+      </CustomerInfo>
+    </div>
 
-    <!-- Equipment Information -->
-    <div class="next-step">
-      <div class="">
-        ผู้ปฏิบัติงาน
-      </div>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="size-6"
+    <div v-else-if="currentStep === 1">
+      <!-- Worker Information -->
+      <AddWorker />
+      <DateAppointment :data="appointmentData" @update:data="updateAppointmentData" />
+    </div>
+
+    <div v-else-if="currentStep === 2">
+      <!-- Equipment Management -->
+      <AddMaterial />
+    </div>
+
+    <div v-else-if="currentStep === 3">
+      <!-- Work Results -->
+      <WorkExecution :data="workExecutionData" @update:data="updateWorkExecutionData" />
+      <AddImages 
+        :model-value="workExecutionData.images"
+        @images-change="(images) => workExecutionData.images = images"
+      />
+    </div>
+
+    <!-- Step Navigation -->
+    <div class="step-navigation">
+      <!-- Previous Step Button -->
+      <button 
+        v-if="currentStep > 0"
+        @click="goToPreviousStep"
+        class="nav-button prev-button"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="m8.25 4.5 7.5 7.5-7.5 7.5"
-        />
-      </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="nav-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 19.5 8.25 12l7.5-7.5"
+          />
+        </svg>
+        <span>{{ getPreviousStepName() }}</span>
+      </button>
+
+      <!-- Spacer -->
+      <div class="nav-spacer"></div>
+
+      <!-- Next Step Button -->
+      <button 
+        v-if="currentStep < steps.length - 1"
+        @click="goToNextStep"
+        class="nav-button next-button"
+      >
+        <span>{{ getNextStepName() }}</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="nav-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m8.25 4.5 7.5 7.5-7.5 7.5"
+          />
+        </svg>
+      </button>
     </div>
 
     <!-- Action Buttons -->
@@ -93,6 +147,12 @@ import WorkOrderInfo from "~/components/work_order/WorkOrderInfo.vue";
 import WorkOrderStep from "~/components/work_order/WorkOrderStep.vue";
 import CustomerInfo from "~/components/work_order/CustomerInfo.vue";
 import EquipmentInfo from "~/pages/work_order/special-form/s301/EquipmentInfo.vue";
+import AddWorker from "~/components/worker/AddWorker.vue";
+
+import DateAppointment from "~/components/worker/DateAppointment.vue";
+import AddMaterial from "~/components/material_equipment_list/AddMaterial.vue";
+import WorkExecution from "~/components/work_execution/WorkExecution.vue";
+import AddImages from "~/components/work_execution/AddImages.vue";
 import { ref, reactive } from "vue";
 
 // Import CSS
@@ -131,13 +191,58 @@ const customerData = reactive({
   longitude: "",
 });
 
+const appointmentData = reactive({
+  appointmentDate: '',
+  appointmentTime: ''
+});
+
+const workExecutionData = reactive({
+  startDateTime: '',
+  endDateTime: '',
+  images: []
+});
+
 // Methods
 const updateCurrentStep = (step: number) => {
   currentStep.value = step;
 };
 
+const goToNextStep = () => {
+  if (currentStep.value < steps.length - 1) {
+    currentStep.value++;
+  }
+};
+
+const goToPreviousStep = () => {
+  if (currentStep.value > 0) {
+    currentStep.value--;
+  }
+};
+
+const getPreviousStepName = () => {
+  if (currentStep.value > 0) {
+    return steps[currentStep.value - 1].name;
+  }
+  return '';
+};
+
+const getNextStepName = () => {
+  if (currentStep.value < steps.length - 1) {
+    return steps[currentStep.value + 1].name;
+  }
+  return '';
+};
+
 const updateCustomerData = (data: any) => {
   Object.assign(customerData, data);
+};
+
+const updateAppointmentData = (data: any) => {
+  Object.assign(appointmentData, data);
+};
+
+const updateWorkExecutionData = (data: any) => {
+  Object.assign(workExecutionData, data);
 };
 
 const showRelationship = () => {
@@ -161,3 +266,97 @@ const saveWorkOrder = () => {
 };
 </script>
 
+<style scoped>
+.placeholder-section {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.placeholder-section h3 {
+  color: #69306D;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.placeholder-section p {
+  color: #666;
+  font-size: 16px;
+}
+
+.step-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  margin: 20px 0;
+}
+
+.nav-spacer {
+  flex: 1;
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #69306D;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+  background: rgba(105, 48, 109, 0.1);
+  transform: translateX(2px);
+}
+
+.prev-button:hover {
+  transform: translateX(-2px);
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.nav-button span {
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .step-navigation {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .nav-spacer {
+    display: none;
+  }
+  
+  .nav-button {
+    width: 100%;
+    justify-content: center;
+    padding: 16px;
+  }
+  
+  .nav-button span {
+    font-size: 14px;
+  }
+  
+  .nav-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+</style>
