@@ -1,7 +1,7 @@
 <!-- src/components/worker/EquipmentInfo.vue -->
 <script setup lang="ts">
 import { ref } from 'vue'
-import CardCollapse from '~/components/ui/card/CardCollapse.vue'
+
 // Import CSS
 import '@/styles/workorder-datatable.css'
 
@@ -172,7 +172,7 @@ const clearAllData = () => {
         </button>
         
         <button class="action-btn-bottom add-btn-bottom" @click="addEquipment">
-          <img src="/assets/images/add-icon.png" alt="" class="add-icon">
+          <img src="/assets/images/add-icon.png" alt="" class="w-6 h-6">
           เพิ่มรายการ
         </button>
       </div>

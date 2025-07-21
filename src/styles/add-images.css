@@ -1,3 +1,5 @@
+/* src/styles/add-images.css - Component specific styles only */
+
 .add-images-container {
   padding: 16px 0;
 }
@@ -8,18 +10,10 @@
   gap: 24px;
 }
 
-/* Left Section - Images List */
 .images-list-section {
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
-
-.section-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #374151;
-  margin: 0;
 }
 
 .images-list {

@@ -82,6 +82,7 @@ declare module 'vue-router/auto/routes' {
     '/test': RouteRecordInfo<'/test', '/test', Record<never, never>, Record<never, never>>,
     '/work_order/special-form/s301/EquipmentInfo': RouteRecordInfo<'/work_order/special-form/s301/EquipmentInfo', '/work_order/special-form/s301/EquipmentInfo', Record<never, never>, Record<never, never>>,
     '/work_order/special-form/s301/list': RouteRecordInfo<'/work_order/special-form/s301/list', '/work_order/special-form/s301/list', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s302/list': RouteRecordInfo<'/work_order/special-form/s302/list', '/work_order/special-form/s302/list', Record<never, never>, Record<never, never>>,
   }
 }
 

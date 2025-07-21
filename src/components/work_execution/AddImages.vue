@@ -257,9 +257,10 @@ const getUploadStatus = (image: UploadedImage) => {
 
               <div class="upload-text">
                 <p class="upload-description">
-                  รองรับไฟล์นามสกุล .png หรือ .jpg
+                  อัปโหลดไฟล์ที่รองรับ 1 รายการ ขนาดสูงสุด 10 MB<br>
+                  ขนาดสูงสุด 800x400 px
                 </p>
-                <p class="upload-limit">ขนาดสูงสุด 10 MB</p>
+              
               </div>
 
               <div class="upload-button-container">

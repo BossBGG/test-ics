@@ -298,12 +298,12 @@ const getFilteredEquipmentNames = (currentId: number) => {
       <!-- Bottom Action Buttons -->
       <div class="flex justify-end space-x-3 mt-4 gap-4">
         <button class="material-clear-btn" @click="clearAllData">
-          <img src="/assets/images/delete-icon.png" alt="" class="w-4 h-4">
+          <img src="/assets/images/delete-icon.png" alt="" class="icon">
           ลบทั้งหมด
         </button>
         
         <button class="material-add-btn" @click="addMaterial">
-          <img src="/assets/images/add-icon.png" alt="" class="w-4 h-4">
+          <img src="/assets/images/add-icon.png" alt="" class="w-6 h-6">
           เพิ่มรายการ
         </button>
       </div>

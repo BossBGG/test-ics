@@ -240,9 +240,10 @@ const getUploadStatus = (file: UploadedFile) => {
 
               <div class="upload-text">
                 <p class="upload-description">
-                  รองรับไฟล์นามสกุล .pdf
+                  รองรับสกุลไฟล์ .pdf<br>
+                  ขนาดสูงสุด 10 MB
                 </p>
-                <p class="upload-limit">ขนาดสูงสุด 10 MB</p>
+              
               </div>
 
               <div class="upload-button-container">

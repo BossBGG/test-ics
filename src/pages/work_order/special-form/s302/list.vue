@@ -4,7 +4,7 @@
     :breadcrumbs="[
       { text: 'หน้าหลัก', link: '/' },
       { text: 'ใบสั่งงาน', link: '/work_order' },
-      { text: 'สร้างใบสั่งงาน ขอซ่อมแซมอุปกรณ์ไฟฟ้า' },
+      { text: 'สร้างใบสั่งงาน ขอตรวจสอบและบำรุงรักษาสวิตซ์เกียร์' },
     ]"
   >
     <template #menu>
@@ -47,14 +47,20 @@
       <!-- Customer Information with slot for additional components -->
       <CustomerInfo :data="customerData" @update:data="updateCustomerData">
         <!-- Additional components can be passed here -->
+
         <template #additional-content>
-          <div class="pb-4">
-            ประเภทอุปกรณ์ไฟฟ้า
-          </div>
-          
-          <EquipmentInfo />
+          <BusinessType
+            v-model="workOrderData.businessType"
+            @change="handleBusinessTypeUpdate"
+          />
         </template>
       </CustomerInfo>
+
+      <SurveyData
+        v-model="workOrderData.surveyImages"
+        :survey-data="workOrderData.surveyData"
+        @images-change="handleSurveyImagesUpdate"
+      />
     </div>
 
     <div v-else-if="currentStep === 1">
@@ -77,8 +83,11 @@
         :data="workExecutionData"
         @update:data="updateWorkExecutionData"
       />
-       <CardCollapse title="ประเภทอุปกรณ์ไฟฟ้า" icon="/assets/images/doc.png">
-      <EquipmentInfo />
+      <CardCollapse title="ประเภทธุรกิจ" icon="/assets/images/doc.png">
+        <BusinessType
+          v-model="workOrderData.businessType"
+          @change="handleBusinessTypeUpdate"
+        />
       </CardCollapse>
 
       <AddImages
@@ -94,16 +103,15 @@
         @comment-change="handleCommentChange"
       />
 
-      <SatisfactionAssessment 
+      <SatisfactionAssessment
         v-model="workOrderData.satisfaction"
         @data-change="handleSatisfactionUpdate"
       />
 
-      <RecordKeeper 
+      <RecordKeeper
         v-model="workOrderData.recordKeeper"
         @data-change="handleRecordKeeperUpdate"
       />
-
     </div>
 
     <!-- Step Navigation -->
@@ -160,30 +168,30 @@
 
     <!-- Action Buttons -->
     <div class="action-section">
-    <div v-if="currentStep === 3" class="action-buttons-grid">
-      <!-- ปุ่มแก้ไขใบงาน (step 3) -->
-      <button class="action-button end-step-edit-btn" @click="editWorkOrder">
-        <q-icon name="edit" class="action-icon" />
-        แก้ไขใบงาน
-      </button>
+      <div v-if="currentStep === 3" class="action-buttons-grid">
+        <!-- ปุ่มแก้ไขใบงาน (step 3) -->
+        <button class="action-button end-step-edit-btn" @click="editWorkOrder">
+          <q-icon name="edit" class="action-icon" />
+          แก้ไขใบงาน
+        </button>
 
-      <!-- ปุ่มสิ้นสุดการกระบวนการ (step 3) -->
-      <button class="action-button complete-btn" @click="completeWorkOrder">
-        สิ้นสุดการกระบวนการบน ICS ดำเนินการต่อบน SAP
-      </button>
-    </div>
+        <!-- ปุ่มสิ้นสุดการกระบวนการ (step 3) -->
+        <button class="action-button complete-btn" @click="completeWorkOrder">
+          สิ้นสุดการกระบวนการบน ICS ดำเนินการต่อบน SAP
+        </button>
+      </div>
 
-    <!-- ปุ่มเดิมสำหรับ step อื่นๆ -->
-    <div v-else class="action-buttons-grid">
-      <button class="action-button cancel-btn" @click="cancelWorkOrder">
-        ยกเลิกใบสั่งงาน
-      </button>
+      <!-- ปุ่มเดิมสำหรับ step อื่นๆ -->
+      <div v-else class="action-buttons-grid">
+        <button class="action-button cancel-btn" @click="cancelWorkOrder">
+          ยกเลิกใบสั่งงาน
+        </button>
 
-      <button class="action-button save-success-btn" @click="saveWorkOrder">
-        <img src="/assets/images/save-btn.png" alt="" class="save-icon-btn" />
-        บันทึก
-      </button>
-    </div>
+        <button class="action-button save-success-btn" @click="saveWorkOrder">
+          <img src="/assets/images/save-btn.png" alt="" class="save-icon-btn" />
+          บันทึก
+        </button>
+      </div>
     </div>
   </content-container>
 </template>
@@ -193,17 +201,18 @@ import ContentContainer from "~/layouts/ContentContainer.vue";
 import WorkOrderInfo from "~/components/work_order/WorkOrderInfo.vue";
 import WorkOrderStep from "~/components/work_order/WorkOrderStep.vue";
 import CustomerInfo from "~/components/work_order/CustomerInfo.vue";
-import EquipmentInfo from "~/pages/work_order/special-form/s301/EquipmentInfo.vue";
 import AddWorker from "~/components/worker/AddWorker.vue";
-import CardCollapse from '~/components/ui/card/CardCollapse.vue'
+import CardCollapse from "~/components/ui/card/CardCollapse.vue";
 import DateAppointment from "~/components/worker/DateAppointment.vue";
 import AddMaterial from "~/components/material_equipment_list/AddMaterial.vue";
 import WorkExecution from "~/components/work_execution/WorkExecution.vue";
 import AddImages from "~/components/work_execution/AddImages.vue";
 import AddFile from "~/components/work_execution/AddFile.vue";
 import Comment from "~/components/work_execution/Comment.vue";
-import SatisfactionAssessment from '~/components/work_execution/SatisfactionAssessment.vue'
-import RecordKeeper from '~/components/work_execution/RecordKeeper.vue'
+import SatisfactionAssessment from "~/components/work_execution/SatisfactionAssessment.vue";
+import RecordKeeper from "~/components/work_execution/RecordKeeper.vue";
+import BusinessType from "~/components/work_order/BusinessType.vue";
+import SurveyData from "~/components/work_order/SurveyData.vue";
 import { ref, reactive } from "vue";
 
 // Import CSS
@@ -234,15 +243,18 @@ const workOrderData = reactive({
   cost_center: "A307101070",
   satisfaction: {
     rating: 0,
-    comment: '',
-    signature: ''
+    comment: "",
+    signature: "",
   },
   recordKeeper: {
-    employeeId: '356579 - นาย มงคล ธรรมปัญโน',
-    position: 'คช 8',
-    phoneNumber: '098 - 84950689',
-    signature: ''
+    employeeId: "356579 - นาย มงคล ธรรมปัญโน",
+    position: "คช 8",
+    phoneNumber: "098 - 84950689",
+    signature: "",
   },
+  businessType: "",
+  surveyImages: [],
+  surveyData: [],
 });
 
 const customerData = reactive({
@@ -262,12 +274,13 @@ const workExecutionData = reactive({
   startDateTime: "",
   endDateTime: "",
   images: [],
-  
 });
 
-const files = ref([])
+const handleSurveyImagesUpdate = (images) => {
+  workOrderData.surveyImages = images;
+};
 
-
+const files = ref([]);
 
 // Methods
 const updateCurrentStep = (step: number) => {
@@ -298,6 +311,11 @@ const getNextStepName = () => {
     return steps[currentStep.value + 1].name;
   }
   return "";
+};
+
+const handleBusinessTypeUpdate = (value) => {
+  workOrderData.businessType = value;
+  // บันทึกข้อมูลหรือส่งไป API
 };
 
 const updateCustomerData = (data: any) => {
@@ -332,7 +350,3 @@ const saveWorkOrder = () => {
   console.log("บันทึกใบสั่งงาน");
 };
 </script>
-
-<style scoped>
-
-</style>

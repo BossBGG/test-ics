@@ -1,3 +1,6 @@
+/* src/styles/workorder-datatable.css - Component specific styles only */
+
+/* Equipment Section Specific */
 .equipment-section {
   padding: 8px 0;
 }
@@ -9,6 +12,7 @@
   margin-bottom: 16px;
 }
 
+/* Icon sizes - specific to this component */
 .icon {
   width: 16px;
   height: 20px;
@@ -25,10 +29,11 @@
 }
 
 .edit-table-icon {
-  width:20px;
+  width: 20px;
   height: 20px;
 }
 
+/* Table Layout - specific grid structure */
 .table-header {
   display: grid;
   grid-template-columns: 80px 2fr 120px 120px;
@@ -45,7 +50,6 @@
 .table-row:last-child {
   border-bottom: none;
 }
-
 
 .table-cell {
   padding: 12px 8px;
@@ -83,6 +87,7 @@
   grid-column: span 4;
 }
 
+/* Equipment specific styles */
 .equipment-select {
   width: 100%;
 }
@@ -101,6 +106,7 @@
   font-weight: 600;
 }
 
+/* Action buttons specific to table */
 .action-buttons {
   display: flex;
   gap: 6px;
@@ -125,7 +131,6 @@
 }
 
 .save-table-btn:hover {
-
   transform: scale(1.05);
 }
 
@@ -135,7 +140,6 @@
 }
 
 .edit-table-btn:hover {
-  
   transform: scale(1.05);
 }
 
@@ -145,7 +149,6 @@
 }
 
 .delete-table-btn:hover {
-
   transform: scale(1.05);
 }
 
@@ -154,6 +157,7 @@
   height: 14px;
 }
 
+/* Equipment actions */
 .equipment-actions {
   display: flex;
   gap: 12px;
@@ -206,6 +210,7 @@
   height: 16px;
 }
 
+/* Quasar overrides - specific to equipment table */
 :deep(.q-field--outlined .q-field__control) {
   border-radius: 6px;
   border-color: #d1d5db;
@@ -229,7 +234,7 @@
   padding-top: 0;
 }
 
-/* Responsive Design */
+/* Responsive Design - equipment table specific */
 @media (max-width: 768px) {
   .table-header,
   .table-row {
@@ -283,8 +288,6 @@
     width: 10px;
     height: 10px;
   }
-  
-
   
   .action-btn-bottom {
     min-width: 80px;
