@@ -83,6 +83,22 @@ declare module 'vue-router/auto/routes' {
     '/work_order/special-form/s301/EquipmentInfo': RouteRecordInfo<'/work_order/special-form/s301/EquipmentInfo', '/work_order/special-form/s301/EquipmentInfo', Record<never, never>, Record<never, never>>,
     '/work_order/special-form/s301/list': RouteRecordInfo<'/work_order/special-form/s301/list', '/work_order/special-form/s301/list', Record<never, never>, Record<never, never>>,
     '/work_order/special-form/s302/list': RouteRecordInfo<'/work_order/special-form/s302/list', '/work_order/special-form/s302/list', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s303/list': RouteRecordInfo<'/work_order/special-form/s303/list', '/work_order/special-form/s303/list', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s304/list': RouteRecordInfo<'/work_order/special-form/s304/list', '/work_order/special-form/s304/list', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s305/list': RouteRecordInfo<'/work_order/special-form/s305/list', '/work_order/special-form/s305/list', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s305/RequestServiceType': RouteRecordInfo<'/work_order/special-form/s305/RequestServiceType', '/work_order/special-form/s305/RequestServiceType', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s305/TransformerDetail': RouteRecordInfo<'/work_order/special-form/s305/TransformerDetail', '/work_order/special-form/s305/TransformerDetail', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s306/list': RouteRecordInfo<'/work_order/special-form/s306/list', '/work_order/special-form/s306/list', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s307/list': RouteRecordInfo<'/work_order/special-form/s307/list', '/work_order/special-form/s307/list', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s307/VoltageLevel': RouteRecordInfo<'/work_order/special-form/s307/VoltageLevel', '/work_order/special-form/s307/VoltageLevel', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s308/list': RouteRecordInfo<'/work_order/special-form/s308/list', '/work_order/special-form/s308/list', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s308/TransformerDetail': RouteRecordInfo<'/work_order/special-form/s308/TransformerDetail', '/work_order/special-form/s308/TransformerDetail', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s308/VoltageLevel': RouteRecordInfo<'/work_order/special-form/s308/VoltageLevel', '/work_order/special-form/s308/VoltageLevel', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s309/list': RouteRecordInfo<'/work_order/special-form/s309/list', '/work_order/special-form/s309/list', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s310/list': RouteRecordInfo<'/work_order/special-form/s310/list', '/work_order/special-form/s310/list', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s311/list': RouteRecordInfo<'/work_order/special-form/s311/list', '/work_order/special-form/s311/list', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s312/EquipmentInfo': RouteRecordInfo<'/work_order/special-form/s312/EquipmentInfo', '/work_order/special-form/s312/EquipmentInfo', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s312/list': RouteRecordInfo<'/work_order/special-form/s312/list', '/work_order/special-form/s312/list', Record<never, never>, Record<never, never>>,
   }
 }
 

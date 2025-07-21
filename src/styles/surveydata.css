@@ -108,8 +108,9 @@
   display: flex;
   gap: 16px;
   overflow-x: auto;
-  padding: 4px;
+  padding: 8px;
   min-height: 160px;
+ 
 }
 
 .surveydata-upload-container {
@@ -272,6 +273,8 @@
   }
 
   .surveydata-upload-button {
+   
+   
     font-size: 11px;
     padding: 6px 12px;
   }

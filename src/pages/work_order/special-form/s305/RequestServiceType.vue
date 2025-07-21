@@ -24,20 +24,14 @@ watch(
   }
 );
 
-const businessOptions = [
-  { value: "house", label: "บ้านอยู่อาศัย" },
-  { value: "manufacturing", label: "ธุรกิจการผลิต" },
-  { value: "trading", label: "ธุรกิจการค้า" },
-  { value: "agriculture", label: "ธุรกิจการเกษตร" },
-  { value: "technology", label: "ธุรกิจเทคโนโลยี" },
-];
+const serviceOptions = [{ value: "Fast Track", label: "Fast Track" }];
 
 // Get option labels for display
-const businessOptionLabels = businessOptions.map((option) => option.label);
+const businessOptionLabels = serviceOptions.map((option) => option.label);
 
 // Computed property to get selected label
 const selectedLabel = computed(() => {
-  const option = businessOptions.find(
+  const option = serviceOptions.find(
     (opt) => opt.value === selectedValue.value
   );
   return option ? option.label : "";
@@ -45,7 +39,7 @@ const selectedLabel = computed(() => {
 
 const handleValueChange = (newLabel: string) => {
   // Find the value corresponding to the selected label
-  const option = businessOptions.find((opt) => opt.label === newLabel);
+  const option = serviceOptions.find((opt) => opt.label === newLabel);
   if (option) {
     selectedValue.value = option.value;
     emit("update:modelValue", option.value);
@@ -56,8 +50,8 @@ const handleValueChange = (newLabel: string) => {
 
 <template>
   <div class="pb-4">
-    <div>
-      <div class="pb-4">ประเภทธุรกิจ</div>
+    <div >
+      <div class="pb-4">ประเภทการให้บริการ</div>
 
       <div>
         <q-select
@@ -65,7 +59,6 @@ const handleValueChange = (newLabel: string) => {
           :options="businessOptionLabels"
           outlined
           placeholder="เลือกประเภทธุรกิจ"
-          class="business-select"
           @update:model-value="handleValueChange"
         />
       </div>
@@ -73,7 +66,7 @@ const handleValueChange = (newLabel: string) => {
       <!-- Selected Business Type Display -->
       <div v-if="selectedValue">
         <p>
-          ประเภทธุรกิจ:
+          ประเภทการให้บริการ:
           <span>{{ selectedLabel }}</span>
         </p>
       </div>

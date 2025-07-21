@@ -172,30 +172,39 @@ const getResultClass = (result: string) => {
 
         <div class="surveydata-images-container">
           <!-- Uploaded Images -->
+
           <div
             v-for="image in uploadedImages"
             :key="image.id"
             class="surveydata-image-container"
           >
-            <img
-              :src="image.url"
-              :alt="image.name"
-              class="surveydata-uploaded-image"
-            />
-            <button
-              @click="removeImage(image.id)"
-              class="surveydata-remove-button"
-              title="ลบรูปภาพ"
-            >
-              <q-icon name="close" />
-            </button>
+            <div class="bg-white p-2 rounded-lg border border-[#CD9EBE]">
+              <img
+                :src="image.url"
+                :alt="image.name"
+                class="surveydata-uploaded-image"
+              /> 
+              <button
+                @click="removeImage(image.id)"
+                class="surveydata-remove-button"
+                title="ลบรูปภาพ"
+              >
+                <q-icon name="close" />
+              </button>
+            </div>
           </div>
 
           <!-- Upload Area (with upload button) -->
           <div class="surveydata-upload-container">
             <div class="surveydata-upload-area">
               <div class="surveydata-upload-content">
-                <img src="/assets/images/images.png" alt="" class="w-18 h-20" />
+                <div class="flex justify-center items-center mb-8">
+                  <img
+                    src="/assets/images/images.png"
+                    alt=""
+                    class="w-16 h-18 object-contain"
+                  />
+                </div>
 
                 <p class="upload-text">
                   อัปโหลดไฟล์ที่รองรับ 1 รายการ ขนาดสูงสุด 10 MB<br />
@@ -204,10 +213,10 @@ const getResultClass = (result: string) => {
 
                 <button
                   @click="triggerFileInput"
-                  class="surveydata-upload-button"
+                  class="surveydata-upload-button w-full items-center justify-center text-center"
                   type="button"
                 >
-                  <q-icon name="cloud_upload" />
+                  <q-icon name="cloud_upload " />
                   อัพโหลดรูปภาพ
                 </button>
               </div>
