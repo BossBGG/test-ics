@@ -1,30 +1,35 @@
-<!-- src/components/worker/TransformerDetail.vue -->
+<!-- src/components/work_order/MeterElectricalEquipment.vue -->
 <script setup lang="ts">
 import { ref } from "vue";
 
 // Import CSS
 import "@/styles/workorder-datatable.css";
 
-interface Equipment {
+interface MeterEquipment {
   id: number;
-  brand: string;
-  phase: string;
-  type: string;
-  serial: string;
+  equipmentType: string;
   size: string;
-  voltage: string;
+  quantity: string;
   isEditing: boolean;
   isSaved: boolean;
 }
 
-const equipmentData = ref<Equipment[]>([]);
+const equipmentData = ref<MeterEquipment[]>([]);
 
-// ตัวเลือกสำหรับ dropdown
-const brandOptions = ["หม้อแปลง 3P5000KVA"];
-
-const phaseOptions = ["1 ", "2", "3 "];
-
-const typeOptions = ["1", "2", "3", "4", "5"];
+// ตัวเลือกสำหรับมิเตอร์/อุปกรณ์ไฟฟ้า
+const equipmentTypeOptions = [
+  'มิเตอร์ไฟฟ้า 1 เฟส',
+  'มิเตอร์ไฟฟ้า 3 เฟส', 
+  'CT (Current Transformer)',
+  'PT (Potential Transformer)',
+  'เครื่องวัดแรงดัน',
+  'เครื่องวัดกระแส',
+  'รีเลย์ป้องกัน',
+  'สวิตช์ไฟฟ้า',
+  'เบรกเกอร์',
+  'ฟิวส์',
+  'อื่นๆ'
+];
 
 const addEquipment = () => {
   const newId =
@@ -33,12 +38,9 @@ const addEquipment = () => {
       : 1;
   equipmentData.value.push({
     id: newId,
-    brand: "",
-    phase: "",
-    type: "",
-    serial: "",
+    equipmentType: "",
     size: "",
-    voltage: "",
+    quantity: "",
     isEditing: true,
     isSaved: false,
   });
@@ -52,12 +54,9 @@ const saveEquipment = (id: number) => {
   const equipment = equipmentData.value.find((item) => item.id === id);
   if (
     equipment &&
-    equipment.brand &&
-    equipment.phase &&
-    equipment.type &&
-    equipment.serial &&
+    equipment.equipmentType &&
     equipment.size &&
-    equipment.voltage
+    equipment.quantity
   ) {
     equipment.isEditing = false;
     equipment.isSaved = true;
@@ -73,7 +72,7 @@ const editEquipment = (id: number) => {
   }
 };
 
-const updateEquipment = (id: number, field: keyof Equipment, value: any) => {
+const updateEquipment = (id: number, field: keyof MeterEquipment, value: any) => {
   const index = equipmentData.value.findIndex((item) => item.id === id);
   if (index !== -1) {
     equipmentData.value[index][field] = value;
@@ -83,25 +82,29 @@ const updateEquipment = (id: number, field: keyof Equipment, value: any) => {
 const clearAllData = () => {
   equipmentData.value = [];
 };
+
+// Expose methods for parent component (optional)
+defineExpose({
+  getData: () => equipmentData.value,
+  addEquipment,
+  clearAllData
+});
 </script>
 
 <template>
   <div>
-    <div class="transformer-table">
+    <div class="meter-equipment-table">
       <!-- Table Header -->
-      <div class="transformer-table-header">
+      <div class="meter-table-header">
         <div class="table-cell header-cell">ลำดับ</div>
-        <div class="table-cell des-header-cell">ยี่ห้อ</div>
-        <div class="table-cell des-header-cell">เฟส</div>
-        <div class="table-cell des-header-cell">ประเภท</div>
-        <div class="table-cell des-header-cell">serial</div>
+        <div class="table-cell des-header-cell">มิเตอร์/อุปกรณ์ไฟฟ้า</div>
         <div class="table-cell des-header-cell">ขนาด</div>
-        <div class="table-cell des-header-cell">แรงดัน</div>
+        <div class="table-cell des-header-cell">จำนวน</div>
         <div class="table-cell header-cell"></div>
       </div>
 
       <!-- No Data Message -->
-      <div v-if="equipmentData.length === 0" class="no-data-transformer">
+      <div v-if="equipmentData.length === 0" class="no-data-meter">
         <div class="no-data-text">ไม่มีข้อมูล</div>
       </div>
 
@@ -109,83 +112,28 @@ const clearAllData = () => {
       <div
         v-for="(equipment, index) in equipmentData"
         :key="equipment.id"
-        class="transformer-table-row"
+        class="meter-table-row"
       >
         <!-- ลำดับ -->
         <div class="table-cell center-cell">{{ index + 1 }}</div>
 
-        <!-- ยี่ห้อ -->
+        <!-- มิเตอร์/อุปกรณ์ไฟฟ้า -->
         <div class="table-cell">
           <q-select
             v-if="equipment.isEditing"
-            :model-value="equipment.brand"
-            :options="brandOptions"
+            :model-value="equipment.equipmentType"
+            :options="equipmentTypeOptions"
             outlined
-            placeholder="ยี่ห้อ"
-            class="transformer-select"
+            placeholder="เลือกมิเตอร์/อุปกรณ์ไฟฟ้า"
+            class="meter-select"
             use-input
             new-value-mode="add-unique"
             @update:model-value="
-              (value) => updateEquipment(equipment.id, 'brand', value)
+              (value) => updateEquipment(equipment.id, 'equipmentType', value)
             "
           />
           <span v-else class="equipment-display">{{
-            equipment.brand || "ยังไม่ได้เลือก"
-          }}</span>
-        </div>
-
-        <!-- เฟส -->
-        <div class="table-cell">
-          <q-select
-            v-if="equipment.isEditing"
-            :model-value="equipment.phase"
-            :options="phaseOptions"
-            outlined
-            placeholder="เฟส"
-            class="transformer-select"
-            @update:model-value="
-              (value) => updateEquipment(equipment.id, 'phase', value)
-            "
-          />
-          <span v-else class="equipment-display">{{
-            equipment.phase || "ยังไม่ได้เลือก"
-          }}</span>
-        </div>
-
-        <!-- ประเภท -->
-        <div class="table-cell">
-          <q-select
-            v-if="equipment.isEditing"
-            :model-value="equipment.type"
-            :options="typeOptions"
-            outlined
-            placeholder="ประเภท"
-            class="transformer-select"
-            use-input
-            new-value-mode="add-unique"
-            @update:model-value="
-              (value) => updateEquipment(equipment.id, 'type', value)
-            "
-          />
-          <span v-else class="equipment-display">{{
-            equipment.type || "ยังไม่ได้เลือก"
-          }}</span>
-        </div>
-
-        <!-- Serial -->
-        <div class="table-cell">
-          <q-input
-            v-if="equipment.isEditing"
-            :model-value="equipment.serial"
-            outlined
-            placeholder="serial"
-            class="transformer-input"
-            @update:model-value="
-              (value) => updateEquipment(equipment.id, 'serial', value)
-            "
-          />
-          <span v-else class="equipment-display">{{
-            equipment.serial || "ยังไม่ได้กรอก"
+            equipment.equipmentType || "ยังไม่ได้เลือก"
           }}</span>
         </div>
 
@@ -195,8 +143,8 @@ const clearAllData = () => {
             v-if="equipment.isEditing"
             :model-value="equipment.size"
             outlined
-            placeholder="ขนาด"
-            class="transformer-input"
+            placeholder="ระบุขนาด"
+            class="meter-input"
             @update:model-value="
               (value) => updateEquipment(equipment.id, 'size', value)
             "
@@ -206,20 +154,20 @@ const clearAllData = () => {
           }}</span>
         </div>
 
-        <!-- แรงดัน -->
+        <!-- จำนวน -->
         <div class="table-cell">
           <q-input
             v-if="equipment.isEditing"
-            :model-value="equipment.voltage"
+            :model-value="equipment.quantity"
             outlined
-            placeholder="แรงดัน"
-            class="transformer-input"
+            placeholder="ระบุจำนวน"
+            class="meter-input"
             @update:model-value="
-              (value) => updateEquipment(equipment.id, 'voltage', value)
+              (value) => updateEquipment(equipment.id, 'quantity', value)
             "
           />
           <span v-else class="equipment-display">{{
-            equipment.voltage || "ยังไม่ได้กรอก"
+            equipment.quantity || "ยังไม่ได้กรอก"
           }}</span>
         </div>
 
@@ -287,33 +235,33 @@ const clearAllData = () => {
 </template>
 
 <style scoped>
-/* Transformer Table Specific Styles */
-.transformer-table {
+/* Meter Equipment Table Specific Styles */
+.meter-equipment-table {
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 16px;
 }
 
-/* Table Layout - 8 columns for transformer */
-.transformer-table-header {
+/* Table Layout - 5 columns for meter equipment */
+.meter-table-header {
   display: grid;
-  grid-template-columns: 60px 1fr 100px 1fr 1fr 100px 100px 120px;
+  grid-template-columns: 60px 2fr 1fr 1fr 120px;
   background: #69306d !important;
 }
 
-.transformer-table-row {
+.meter-table-row {
   display: grid;
-  grid-template-columns: 60px 1fr 100px 1fr 1fr 100px 100px 120px;
+  grid-template-columns: 60px 2fr 1fr 1fr 120px;
   border-bottom: 1px solid #e5e7eb;
   background: #f8f7f7;
 }
 
-.transformer-table-row:last-child {
+.meter-table-row:last-child {
   border-bottom: none;
 }
 
-.no-data-transformer {
+.no-data-meter {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -322,21 +270,21 @@ const clearAllData = () => {
   color: #9ca3af;
   font-size: 16px;
   font-weight: 500;
-  grid-column: span 8;
+  grid-column: span 5;
 }
 
-/* Input styles specific to transformer */
-.transformer-select,
-.transformer-input {
+/* Input styles specific to meter equipment */
+.meter-select,
+.meter-input {
   width: 100%;
   min-width: 0;
 }
 
-/* Responsive adjustments for transformer table */
+/* Responsive adjustments for meter equipment table */
 @media (max-width: 1200px) {
-  .transformer-table-header,
-  .transformer-table-row {
-    grid-template-columns: 50px 120px 80px 120px 120px 80px 80px 100px;
+  .meter-table-header,
+  .meter-table-row {
+    grid-template-columns: 50px 2fr 120px 100px 100px;
     font-size: 12px;
   }
 
@@ -346,9 +294,9 @@ const clearAllData = () => {
 }
 
 @media (max-width: 768px) {
-  .transformer-table-header,
-  .transformer-table-row {
-    grid-template-columns: 40px 100px 70px 100px 100px 70px 70px 80px;
+  .meter-table-header,
+  .meter-table-row {
+    grid-template-columns: 40px 1fr 80px 80px 80px;
     font-size: 11px;
   }
 

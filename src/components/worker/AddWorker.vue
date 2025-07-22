@@ -11,6 +11,8 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
+import '@/styles/add-worker.css'
+
 interface Worker {
   id: number
   group: string
@@ -309,7 +311,7 @@ const formatDateTime = (datetime: string) => {
       <!-- Bottom Action Buttons -->
       <div class="flex justify-end space-x-3 mt-4 gap-4">
         <button class="worker-clear-btn" @click="clearAllData">
-          <img src="/assets/images/delete-icon.png" alt="" class="icon">
+          <img src="/assets/images/delete-icon.png" alt="" class="w-6 h-8">
           ลบทั้งหมด
         </button>
         
