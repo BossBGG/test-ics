@@ -4,7 +4,11 @@
     :breadcrumbs="[{ text: 'จัดการและรายงาน (Y3)' }, { text: 'จัดการประกาศ' }]"
     :last_update="'2025-06-19 10:00:00'"
   >
-    <data-table :columns="columns" :data="filteredData">
+    <data-table 
+      :columns="columns" 
+      :data="filteredData"
+      @show-filter="handleShowFilter"
+    >
       <template v-slot:createButton>
         <div class="flex justify-end mb-3">
           <RouterLink class="create-button" to="/news/create">
@@ -26,6 +30,7 @@
 import type { ColumnDef } from "@tanstack/vue-table";
 import { h, ref, computed } from "vue";
 import { Edit, Trash2, Plus, Filter } from "lucide-vue-next";
+import DataTable from "@/components/form/DataTable.vue";
 import DataTableColumnHeader from "~/components/form/DataTableColumnHeader.vue";
 import ContentContainer from "~/layouts/ContentContainer.vue";
 import FilterDialog from "~/components/dialog/FilterDialog.vue";
@@ -40,6 +45,7 @@ const currentFilters = ref({
   status: "",
 });
 
+// Remove pagination logic - ใช้ pagination เดิมใน DataTable
 const filteredData = computed(() => {
   let data = [...mockNewsData];
 
@@ -54,6 +60,10 @@ const filteredData = computed(() => {
 
 const handleApplyFilters = (filters: any) => {
   currentFilters.value = { ...filters };
+};
+
+const handleShowFilter = () => {
+  showFilterDialog.value = true;
 };
 
 const handleEdit = (id: number) => {
@@ -126,7 +136,7 @@ const columns: ColumnDef<NewsData>[] = [
                       "stroke-linecap": "round",
                       "stroke-linejoin": "round",
                       "stroke-width": "2",
-                      d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z",
+                      d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z",
                     }),
                   ]
                 ),

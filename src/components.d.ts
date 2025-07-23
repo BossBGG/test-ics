@@ -209,6 +209,7 @@ declare module 'vue' {
     RequestS399: typeof import('./components/informations/RequestS399.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    RowPagination: typeof import('./components/ui/pagination/RowPagination.vue')['default']
     S301: typeof import('./components/createApplication/S301.vue')['default']
     S302: typeof import('./components/createApplication/S302.vue')['default']
     S303: typeof import('./components/createApplication/S303.vue')['default']

@@ -4,6 +4,7 @@ import { ref, h, computed } from 'vue'
 import type { ColumnDef } from '@tanstack/vue-table'
 import DataTable from '@/components/form/DataTable.vue'
 import DataTableColumnHeader from '@/components/form/DataTableColumnHeader.vue'
+import RowPagination from '@/components/ui/pagination/RowPagination.vue'
 
 import SystemLogFilterDialog from '@/components/dialog/SystemLogFilterDialog.vue'
 import { mockSystemLogData, type SystemLogData } from '~/data/systemLogData'
@@ -16,8 +17,22 @@ const route = useRoute()
 const router = useRouter()
 
 // Reactive data
-const systemLogData = ref<SystemLogData[]>(mockSystemLogData)
+const allSystemLogData = ref<SystemLogData[]>(mockSystemLogData)
 const showFilterDialog = ref(false)
+
+// Pagination state
+const currentPage = ref(1)
+const itemsPerPage = ref(5)
+
+// Computed properties for pagination
+const totalItems = computed(() => allSystemLogData.value.length)
+const totalPages = computed(() => Math.ceil(totalItems.value / itemsPerPage.value))
+
+const paginatedData = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage.value
+  const end = start + itemsPerPage.value
+  return allSystemLogData.value.slice(start, end)
+})
 
 // Column definitions
 const columns: ColumnDef<SystemLogData>[] = [
@@ -120,6 +135,16 @@ const handleViewDetails = (id: number) => {
   router.push(`/system_log/${id}`)
 }
 
+// Pagination handlers
+const handlePageChange = (page: number) => {
+  currentPage.value = page
+}
+
+const handleItemsPerPageChange = (items: number) => {
+  itemsPerPage.value = items
+  currentPage.value = 1 // Reset to first page
+}
+
 // Computed page title
 const pageTitle = computed(() => 'System Log')
 const lastUpdate = computed(() => new Date())
@@ -139,9 +164,19 @@ const breadcrumbs = [
     <div>
       <DataTable
           :columns="columns"
-          :data="systemLogData"
+          :data="paginatedData"
           :is-system-log="true"
           @show-filter="handleFilterShow"
+      />
+      
+      <!-- Custom Pagination -->
+      <RowPagination
+        :current-page="currentPage"
+        :total-pages="totalPages"
+        :total-items="totalItems"
+        :items-per-page="itemsPerPage"
+        @update:current-page="handlePageChange"
+        @update:items-per-page="handleItemsPerPageChange"
       />
     </div>
   </ContentContainer>

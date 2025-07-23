@@ -55,10 +55,13 @@
           />
 
           <VoltageLevel />
+          
+          <div class="pb-4">รายละเอียดหม้อแปลง</div>
+          <TransformerDetail />
         </template>
       </CustomerInfo>
 
-      <TransformerDetail />
+      
     </div>
 
     <div v-else-if="currentStep === 1">

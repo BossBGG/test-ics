@@ -15,7 +15,7 @@
               class="create-button"
               to="/material_equipment/create"
           >
-            <Plus class="w-4 h-4"/>
+            <Plus class="w-8 h-8"/>
             สร้างกลุ่ม
           </RouterLink>
         </div>
@@ -175,11 +175,7 @@ const columns: ColumnDef<GroupMaterial>[] = [
   gap: 8px;
 }
 
-.create-button:hover {
-  opacity: 0.9;
-  color: #ffffff;
-  text-decoration: none;
-}
+
 
 .create-button:active {
   background-color: #5c0f88;
