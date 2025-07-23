@@ -3,7 +3,7 @@
   <content-container
     :breadcrumbs="[
       { text: 'หน้าหลัก', link: '/' },
-      { text: 'ใบสั่งงาน', link: '/work_order' },
+      { text: 'สร้าง', link: '/work_order' },
       { text: 'สร้างใบสั่งงาน ขอเช่าเครื่องกำเนิดไฟฟ้า' },
     ]"
   >
@@ -83,6 +83,12 @@
         :data="workExecutionData"
         @update:data="updateWorkExecutionData"
       />
+
+      <CardCollapse title="วันที่เช่าเครื่องกำเนิดไฟฟ้า" icon="/assets/images/doc.png">
+        <GeneratorDateSelector/>
+      </CardCollapse>
+      
+
       <CardCollapse title="เครื่องกำเนิดไฟฟ้า" icon="/assets/images/doc.png">
         <GeneratorList />
       </CardCollapse>

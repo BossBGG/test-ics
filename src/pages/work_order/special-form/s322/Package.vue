@@ -90,13 +90,7 @@ const handlePackageClick = () => {
         </button>
       </div>
 
-      <!-- Selected Package Display -->
-      <div v-if="selectedValue" class="selected-display">
-        <p class="selected-text">
-          Package ที่เลือก:
-          <span class="selected-value">{{ selectedLabel }}</span>
-        </p>
-      </div>
+      
     </div>
   </div>
 </template>

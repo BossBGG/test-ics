@@ -3,8 +3,8 @@
   <content-container
     :breadcrumbs="[
       { text: 'หน้าหลัก', link: '/' },
-      { text: 'ใบสั่งงาน', link: '/work_order' },
-      { text: 'สร้างใบสั่งงาน ขอซื้อขายใบรับรองการผลิตพลังงานหมุนเวียน' },
+      { text: 'สร้าง', link: '/work_order' },
+      { text: 'สร้างใบสั่งงาน Solar Air Conditioner' },
     ]"
   >
     <template #menu>

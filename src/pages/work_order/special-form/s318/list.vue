@@ -3,7 +3,7 @@
   <content-container
     :breadcrumbs="[
       { text: 'หน้าหลัก', link: '/' },
-      { text: 'ใบสั่งงาน', link: '/work_order' },
+      { text: 'สร้าง', link: '/work_order' },
       { text: 'สร้างใบสั่งงาน ขอตรวจสอบระบบไฟฟ้าพร้อมออกใบรับรอง' },
     ]"
   >

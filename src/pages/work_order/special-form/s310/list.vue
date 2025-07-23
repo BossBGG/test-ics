@@ -3,7 +3,7 @@
   <content-container
     :breadcrumbs="[
       { text: 'หน้าหลัก', link: '/' },
-      { text: 'ใบสั่งงาน', link: '/work_order' },
+      { text: 'สร้าง', link: '/work_order' },
       { text: 'สร้างใบสั่งงาน ขอปรึกษาด้านวิศวกรรมไฟฟ้า/ตรวจรับรองระบบ' },
     ]"
   >
@@ -56,11 +56,7 @@
         </template>
       </CustomerInfo>
 
-      <SurveyData
-        v-model="workOrderData.surveyImages"
-        :survey-data="workOrderData.surveyData"
-        @images-change="handleSurveyImagesUpdate"
-      />
+      
     </div>
 
     <div v-else-if="currentStep === 1">

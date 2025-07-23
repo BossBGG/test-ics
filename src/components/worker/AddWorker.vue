@@ -170,6 +170,8 @@ const formatDateTime = (datetime: string) => {
                     :options="workerGroups"
                     outlined
                     placeholder="เลือกกลุ่มผู้ปฏิบัติงาน"
+                    hide-selected
+                    fill-input
                     class="worker-select"
                     use-input
                     new-value-mode="add-unique"
@@ -186,6 +188,8 @@ const formatDateTime = (datetime: string) => {
                     :options="workerNames"
                     outlined
                     placeholder="เลือกผู้ปฏิบัติงาน"
+                    hide-selected
+                    fill-input
                     class="worker-select"
                     use-input
                     new-value-mode="add-unique"
@@ -215,6 +219,8 @@ const formatDateTime = (datetime: string) => {
                     :options="activities"
                     outlined
                     placeholder="เลือกกิจกรรม"
+                    hide-selected
+                    fill-input
                     class="worker-select"
                     use-input
                     new-value-mode="add-unique"

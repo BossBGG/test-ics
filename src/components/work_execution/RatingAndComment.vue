@@ -92,7 +92,7 @@ const handleCommentChange = (value: string) => {
     <!-- Rating Section -->
     <div class="rating-section">
       <label class="rating-label">
-        คะแนนประเมิน 5/5 :
+        คะแนนรวมความพอใจ 5/5 
       </label>
 
       <div class="rating-stars">
@@ -125,7 +125,7 @@ const handleCommentChange = (value: string) => {
     <div class="comment-section">
       <div class="comment-header">
         <label class="comment-label">
-          ความคิดเห็น :
+          ความคิดเห็นเพิ่มเติมจากลูกค้า :
         </label>
         <span 
           :class="[
@@ -133,7 +133,7 @@ const handleCommentChange = (value: string) => {
             { 'text-warning': isNearLimit }
           ]"
         >
-          {{ currentWordCount }}/{{ wordLimit }} คำ
+        
         </span>
       </div>
 

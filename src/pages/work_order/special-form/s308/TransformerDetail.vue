@@ -124,6 +124,8 @@ const clearAllData = () => {
             placeholder="ยี่ห้อ"
             class="transformer-select"
             use-input
+            hide-selected
+            fill-input
             new-value-mode="add-unique"
             @update:model-value="
               (value) => updateEquipment(equipment.id, 'brand', value)
@@ -141,6 +143,9 @@ const clearAllData = () => {
             :model-value="equipment.phase"
             :options="phaseOptions"
             outlined
+            use-input
+            hide-selected
+            fill-input
             placeholder="เฟส"
             class="transformer-select"
             @update:model-value="
@@ -162,6 +167,8 @@ const clearAllData = () => {
             placeholder="ประเภท"
             class="transformer-select"
             use-input
+            hide-selected
+            fill-input
             new-value-mode="add-unique"
             @update:model-value="
               (value) => updateEquipment(equipment.id, 'type', value)

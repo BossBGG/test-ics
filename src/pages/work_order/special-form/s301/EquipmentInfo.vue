@@ -108,6 +108,8 @@ const clearAllData = () => {
               placeholder="เลือกประเภทอุปกรณ์"
               class="equipment-select"
               use-input
+              hide-selected
+              fill-input
               new-value-mode="add-unique"
               @update:model-value="(value) => updateEquipment(equipment.id, 'type', value)"
             />

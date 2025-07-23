@@ -104,6 +104,8 @@ const clearAllData = () => {
               placeholder="ขนาดหม้อแปลง"
               class="equipment-select"
               use-input
+              hide-selected
+              fill-input
               new-value-mode="add-unique"
               @update:model-value="(value) => updateEquipment(equipment.id, 'type', value)"
             />

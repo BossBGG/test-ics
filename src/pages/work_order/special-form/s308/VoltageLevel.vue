@@ -68,7 +68,7 @@ const handleValueChange = (newLabel: string) => {
           @update:model-value="handleValueChange"
         />
 
-        <div class="bg-[#EDEDED] w-[10%] justify-center text-start items-center p-4 rounded-md">
+        <div class="bg-[#EDEDED] w-[180px] justify-center text-start items-center p-4 rounded-md">
           kw
         </div>
       </div>

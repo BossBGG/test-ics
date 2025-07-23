@@ -92,7 +92,7 @@ const clearAllData = () => {
       <div class="transformer-table-header">
         <div class="table-cell header-cell">ลำดับ</div>
         <div class="table-cell des-header-cell">ยี่ห้อ</div>
-        <div class="table-cell des-header-cell">เฟส</div>
+        <div class="table-cell des-header-cell" >เฟส</div>
         <div class="table-cell des-header-cell">ประเภท</div>
         <div class="table-cell des-header-cell">serial</div>
         <div class="table-cell des-header-cell">ขนาด</div>
@@ -121,10 +121,12 @@ const clearAllData = () => {
             :model-value="equipment.brand"
             :options="brandOptions"
             outlined
-            placeholder="ยี่ห้อ"
+            :placeholder="equipment.brand ? '' : 'ยี่ห้อ'"
             class="transformer-select"
             use-input
             new-value-mode="add-unique"
+            hide-selected
+            fill-input
             @update:model-value="
               (value) => updateEquipment(equipment.id, 'brand', value)
             "
@@ -141,8 +143,11 @@ const clearAllData = () => {
             :model-value="equipment.phase"
             :options="phaseOptions"
             outlined
-            placeholder="เฟส"
+            :placeholder="equipment.phase ? '' : 'เฟส'"
             class="transformer-select"
+            use-input
+            hide-selected
+            fill-input
             @update:model-value="
               (value) => updateEquipment(equipment.id, 'phase', value)
             "
@@ -159,10 +164,12 @@ const clearAllData = () => {
             :model-value="equipment.type"
             :options="typeOptions"
             outlined
-            placeholder="ประเภท"
+            :placeholder="equipment.type ? '' : 'ประเภท'"
             class="transformer-select"
             use-input
             new-value-mode="add-unique"
+            hide-selected
+            fill-input
             @update:model-value="
               (value) => updateEquipment(equipment.id, 'type', value)
             "

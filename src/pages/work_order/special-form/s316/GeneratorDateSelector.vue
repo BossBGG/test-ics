@@ -83,7 +83,7 @@ const hasAnyDate = computed(() => {
   <div>
     <div>
       <!-- Date Inputs Row -->
-      <div class="date-inputs-row">
+      <div class="date-inputs-row mb-4">
         <!-- วันที่เริ่มต้น -->
         <div class="date-input-group">
           <label class="date-label">วันที่เริ่มต้น</label>
@@ -92,7 +92,7 @@ const hasAnyDate = computed(() => {
             type="datetime-local"
             outlined
             placeholder="Invalid Date"
-            class="insulation-datetime-input"
+          
             @update:model-value="(value) => updateField('startDateTime', value)"
           >
           </q-input>
@@ -106,7 +106,7 @@ const hasAnyDate = computed(() => {
             type="datetime-local"
             outlined
             placeholder="Invalid Date"
-            class="insulation-datetime-input"
+           
             @update:model-value="(value) => updateField('endDateTime', value)"
           >
           </q-input>
@@ -155,7 +155,7 @@ const hasAnyDate = computed(() => {
   font-size: 14px;
   font-weight: 500;
   color: #374151;
-  margin-bottom: 9px;
+ 
 }
 
 .insulation-datetime-input {
@@ -180,7 +180,7 @@ const hasAnyDate = computed(() => {
   border-radius: 4px;
   padding: 12px 16px;
   height: 56px;
-  margin-bottom: 12px;
+
 }
 
 .days-number {

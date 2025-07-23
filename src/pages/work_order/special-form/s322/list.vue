@@ -3,7 +3,7 @@
   <content-container
     :breadcrumbs="[
       { text: 'หน้าหลัก', link: '/' },
-      { text: 'ใบสั่งงาน', link: '/work_order' },
+      { text: 'สร้าง', link: '/work_order' },
       {
         text: 'สร้างใบสั่งงาน ขอตรวจสอบและบำรุงรักษาระบบไฟฟ้า แบบครบวงจร (Package)',
       },
@@ -51,6 +51,11 @@
         <!-- Additional components can be passed here -->
 
         <template #additional-content>
+          <BusinessType
+            v-model="workOrderData.businessType"
+            @change="handleBusinessTypeUpdate"
+          />
+
           <Package
             v-model="packageValue"
             @change="handlePackageChange"
@@ -80,6 +85,15 @@
         :data="workExecutionData"
         @update:data="updateWorkExecutionData"
       />
+
+       
+      <CardCollapse title="ประเภทธุรกิจ" icon="/assets/images/doc.png">
+        <BusinessType
+            v-model="workOrderData.businessType"
+            @change="handleBusinessTypeUpdate"
+          />
+      </CardCollapse>
+
       <CardCollapse title="Package" icon="/assets/images/doc.png">
         <Package
           v-model="packageValue"
@@ -210,6 +224,7 @@ import Comment from "~/components/work_execution/Comment.vue";
 import SatisfactionAssessment from "~/components/work_execution/SatisfactionAssessment.vue";
 import RecordKeeper from "~/components/work_execution/RecordKeeper.vue";
 import Package from "~/pages/work_order/special-form/s322/Package.vue";
+import BusinessType from "~/components/work_order/BusinessType.vue";
 import { ref, reactive } from "vue";
 
 // Import CSS

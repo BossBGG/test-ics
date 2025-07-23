@@ -127,6 +127,8 @@ defineExpose({
             placeholder="เลือกมิเตอร์/อุปกรณ์ไฟฟ้า"
             class="meter-select"
             use-input
+            hide-selected
+            fill-input
             new-value-mode="add-unique"
             @update:model-value="
               (value) => updateEquipment(equipment.id, 'equipmentType', value)
