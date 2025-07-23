@@ -70,13 +70,7 @@ const handleValueChange = (newLabel: string) => {
         />
       </div>
 
-      <!-- Selected Business Type Display -->
-      <div v-if="selectedValue">
-        <p>
-          ประเภทธุรกิจ:
-          <span>{{ selectedLabel }}</span>
-        </p>
-      </div>
+      
     </div>
   </div>
 </template>

@@ -41,7 +41,7 @@ const mockSurveyData: SurveyRecord[] = [
     employee: "501616 : วิโรจน์ ถันชนนาง",
     surveyDate: "08/11/2024",
     result: "ผ่าน",
-    details: "ย้ายเสาไฟแรงสูงออกจากหน้าบ้่าน",
+    details: "ย้ายเสาไฟแรงสูงออกจากหน้าบ้าน",
   },
 ];
 
@@ -216,7 +216,7 @@ const getResultClass = (result: string) => {
                   class="surveydata-upload-button w-full items-center justify-center text-center"
                   type="button"
                 >
-                  <q-icon name="cloud_upload " />
+                  <img src="/assets/images/upload-icon.png" alt="" class="w-5 h-5 mx-2">
                   อัพโหลดรูปภาพ
                 </button>
               </div>

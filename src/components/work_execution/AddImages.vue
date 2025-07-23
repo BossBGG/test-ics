@@ -276,10 +276,10 @@ const getUploadStatus = (image: UploadedImage) => {
                 <button
                   type="button"
                   @click="triggerFileInput"
-                  class="upload-button"
+                  class="images-upload-button"
                   :disabled="uploading"
                 >
-                  <q-icon name="cloud_upload" />
+                  <img src="/assets/images/upload-icon.png" alt="" class="w-5 h-5 mx-2">
                   {{ uploading ? 'กำลังอัพโหลด...' : 'อัพโหลดรูปภาพ' }}
                 </button>
               </div>

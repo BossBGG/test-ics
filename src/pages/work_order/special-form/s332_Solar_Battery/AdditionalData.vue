@@ -7,6 +7,7 @@ interface SolarBatteryDataInfo {
   batteryDistance: string;
   inverterDistance: string;
   connectionType: string;
+  customConnection: string;
 }
 
 interface Props {
@@ -24,6 +25,7 @@ const batteryData = ref<SolarBatteryDataInfo>({
   batteryDistance: props.modelValue?.batteryDistance || '',
   inverterDistance: props.modelValue?.inverterDistance || '',
   connectionType: props.modelValue?.connectionType || '',
+  customConnection: props.modelValue?.customConnection || '',
 });
 
 // Watch for prop changes
@@ -46,6 +48,12 @@ const connectionOptions = [
 
 const updateField = (field: keyof SolarBatteryDataInfo, value: string) => {
   batteryData.value[field] = value;
+  
+  // ถ้าเปลี่ยนจาก "อื่นๆ" เป็นตัวเลือกอื่น ให้เคลียร์ customConnection
+  if (field === 'connectionType' && value !== 'อื่นๆ') {
+    batteryData.value.customConnection = '';
+  }
+  
   emitChanges();
 };
 
@@ -57,7 +65,12 @@ const emitChanges = () => {
 const hasAnyBatteryData = computed(() => {
   return batteryData.value.batteryDistance || 
          batteryData.value.inverterDistance || 
-         batteryData.value.connectionType;
+         batteryData.value.connectionType ||
+         batteryData.value.customConnection;
+});
+
+const showCustomField = computed(() => {
+  return batteryData.value.connectionType === 'อื่นๆ';
 });
 </script>
 
@@ -122,12 +135,26 @@ const hasAnyBatteryData = computed(() => {
                 class="radio-button"
                 @update:model-value="(value) => updateField('connectionType', value)"
               />
+
+              
             </div>
+
+            <!-- Custom Connection Input Field -->
+          <div v-if="showCustomField" class="custom-connection-field">
+  
+            <q-input
+              :model-value="batteryData.customConnection"
+              outlined
+              placeholder="ระบุ"
+              class="data-input custom-connection-input"
+              @update:model-value="(value) => updateField('customConnection', value)"
+            />
           </div>
+          </div>
+          
+          
         </div>
       </div>
-
-     
     </div>
   </CardCollapse>
 </template>

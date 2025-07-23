@@ -90,6 +90,39 @@
   font-weight: 500;
 }
 
+/* Custom Connection Field Styles */
+.custom-connection-field {
+  
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  
+}
+
+.custom-connection-input {
+  max-width: 300px;
+  margin-bottom: 4px ;
+}
+
+/* Responsive adjustments for custom field */
+@media (max-width: 768px) {
+  .custom-connection-field {
+    margin-top: 12px;
+    gap: 6px;
+  }
+  
+  .custom-connection-input {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-connection-field {
+    margin-top: 8px;
+    gap: 4px;
+  }
+}
+
 /* ====== RESPONSIVE DESIGN FOR NEW CLASSES ====== */
 
 /* Tablet styles */

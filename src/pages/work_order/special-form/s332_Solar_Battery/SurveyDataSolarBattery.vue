@@ -50,16 +50,23 @@ const mockSurveyData: SurveyRecord[] = [
 // Define image containers with titles
 const imageContainers = [
     { id: 'main_panel', title: 'ภาพหน้าบ้านลูกค้า' },
-    { id: 'air_conditioner', title: 'ภาพรุ่น model เครื่องปรับอากาศ' },
+    { id: 'inverter', title: 'ภาพ Inverter (Serial Number, รุ่น/model)' },
+    { id: 'solar_panel', title: 'ภาพ แผงโซลาร์ (Serial Number, รุ่น/model)' },
+    { id: 'battery', title: 'ภาพ Battery (Serial Number, รุ่น/model)' },
+    { id: 'inverter_install', title: 'ภาพการติดตั้ง Inverter' },
+    { id: 'combiner', title: 'ภาพตู้ Combiner' },
+    { id: 'mdb', title: 'ภาพภายในตู้ MDB(จุดขนานระบบ Solar Cell)' },
+    { id: 'fuse_dc', title: 'ภาพ Fuse DC' },
+    { id: 'surge_dc', title: 'ภาพ Surge DC' },
+    { id: 'ac_cable', title: 'ภาพขนาดสาย AC Cable' },
+    { id: 'dc_cable', title: 'ภาพขนาดสาย DC Cable' },
+    { id: 'ground', title: 'ภาพขนาดสาย Ground' },
+    { id: 'ct_zero_export', title: 'ภาพจุดคล้อง CT สำหรับ Zero Export' },
+    { id: 'ac_dc', title: 'ภาพแนวเดินรางไฟ / ท่อ AC / DC' },
     { id: 'mounting_structure', title: 'ภาพโครงสร้างยึดแผง (Mounting Structure)' },
-    { id: 'solar_panel', title: 'ภาพรุ่น/model แผงโซลาร์' },
-    { id: 'solar_installation', title: 'ภาพการติดตั้งแผงโซลาร์' },
-    { id: 'coil', title: 'ภาพคอยล์เย็น และ คอยล์ร้อน' },
-    { id: 'water_pipe', title: 'ภาพเดินท่อน้ำยาและน้ำทิ้ง' },
-    { id: 'ac_breaker', title: 'รูป AC Breaker และการเดินสายไฟ' },
-    { id: 'dc_breaker', title: 'รูป DC Breaker และการเดินสายไฟ' },
-    { id: 'warranty_card', title: 'ใบรับประกัน' },
-    { id: 'grounding_system', title: 'รูปการต่อสายกราวด์ (Grounding System) (ถ้ามี)' },
+    { id: 'solar_topview', title: 'ภาพแผงโซล่าเซลล์ (Top View)' },
+    { id: 'battery_install', title: 'ภาพจุดติดตั้ง Battery' },
+    { id: 'grounding_system', title: 'ภาพระบบกราวด์ (Grounding System)' },
 ];
 
 const uploadedImages = ref<{ [key: string]: UploadedImage | null }>({});
@@ -205,7 +212,7 @@ const imageContainerRows = computed(() => {
                     class="solar-upload-button"
                     type="button"
                   >
-                    <q-icon name="cloud_upload" />
+                    <img src="/assets/images/upload-icon.png" alt="" class="w-5 h-5 mx-2">
                     อัพโหลดรูปภาพ
                   </button>
                 </div>

@@ -249,7 +249,7 @@ const imageContainerRows = computed(() => {
                     class="solar-upload-button"
                     type="button"
                   >
-                    <q-icon name="cloud_upload" />
+                    <img src="/assets/images/upload-icon.png" alt="" class="w-5 h-5 mx-2">
                     อัพโหลดรูปภาพ
                   </button>
                 </div>

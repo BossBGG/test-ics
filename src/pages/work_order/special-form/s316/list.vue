@@ -4,7 +4,7 @@
     :breadcrumbs="[
       { text: 'หน้าหลัก', link: '/' },
       { text: 'ใบสั่งงาน', link: '/work_order' },
-      { text: 'สร้างใบสั่งงาน Solar Air Conditioner' },
+      { text: 'สร้างใบสั่งงาน ขอเช่าเครื่องกำเนิดไฟฟ้า' },
     ]"
   >
     <template #menu>
@@ -46,19 +46,20 @@
     <div v-if="currentStep === 0">
       <!-- Customer Information with slot for additional components -->
       <CustomerInfo :data="customerData" @update:data="updateCustomerData">
+        <!-- Additional components can be passed here -->
+
+        <template #additional-content>
+          <div class="pb-4">วันที่เช่าเครื่องกำเนิดไฟฟ้า</div>
+          <GeneratorDateSelector/>
+          <div class="pt-4">เครื่องกำเนิดไฟฟ้า</div>
+          <GeneratorList />
+        </template>
       </CustomerInfo>
 
-      <CardCollapse title="ข้อมูลการสำรวจ" icon="/assets/images/map-icon.png">
-        <SurveyDataSolarAirConditioner
-          v-model="surveyImages"
-          :survey-data="surveyData"
-          @images-change="handleImagesChange"
-        />
-      </CardCollapse>
-
-      <AdditionalData
-        v-model="workOrderData.additionalData"
-        @data-change="handleAdditionalDataUpdate"
+      <SurveyData
+        v-model="workOrderData.surveyImages"
+        :survey-data="workOrderData.surveyData"
+        @images-change="handleSurveyImagesUpdate"
       />
     </div>
 
@@ -82,19 +83,16 @@
         :data="workExecutionData"
         @update:data="updateWorkExecutionData"
       />
-
-      <CardCollapse title="รูปแนบเพิ่มเติม" icon="/assets/images/doc.png">
-        <SurveyDataSolarAirConditioner
-          v-model="surveyImages"
-          :show-survey-table="false"
-          @images-change="handleImagesChange"
-        />
+      <CardCollapse title="เครื่องกำเนิดไฟฟ้า" icon="/assets/images/doc.png">
+        <GeneratorList />
       </CardCollapse>
 
-      <InstallationFiles
-        v-model="installationFiles"
-        @files-change="handleInstallationFilesChange"
+      <AddImages
+        :model-value="workExecutionData.images"
+        @images-change="(images) => (workExecutionData.images = images)"
       />
+
+      <AddFile v-model="files" @files-change="handleFilesChange" />
 
       <Comment
         v-model="commentText"
@@ -210,11 +208,9 @@ import AddFile from "~/components/work_execution/AddFile.vue";
 import Comment from "~/components/work_execution/Comment.vue";
 import SatisfactionAssessment from "~/components/work_execution/SatisfactionAssessment.vue";
 import RecordKeeper from "~/components/work_execution/RecordKeeper.vue";
-import SurveyDataSolarAirConditioner from "~/pages/work_order/special-form/s332_Solar_Battery/SurveyDataSolarBattery.vue";
-import AdditionalData from "~/pages/work_order/special-form/s332_Solar_Battery/AdditionalData.vue";
-import InstallationFiles from "~/pages/work_order/special-form/s332_Solar_Battery/InstallationFiles.vue";
-
-
+import GeneratorDateSelector from "~/pages/work_order/special-form/s316/GeneratorDateSelector.vue";
+import SurveyData from "~/components/work_order/SurveyData.vue";
+import GeneratorList from "~/pages/work_order/special-form/s316/GeneratorList.vue";
 import { ref, reactive } from "vue";
 
 // Import CSS

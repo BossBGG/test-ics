@@ -1,6 +1,6 @@
-/* src/styles/add-file.css - Component specific styles only */
+/* src/styles/installation-files.css */
 
-.add-files-container {
+.installation-files-container {
   padding: 16px 0;
 }
 
@@ -14,6 +14,11 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.section-title {
+  color: #374151;
+  margin: 0;
 }
 
 .files-list {
@@ -32,6 +37,12 @@
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   background: white;
+  transition: all 0.2s ease;
+}
+
+.file-item:hover {
+  border-color: #69306d;
+  box-shadow: 0 2px 4px rgba(105, 48, 109, 0.1);
 }
 
 .file-icon {
@@ -46,6 +57,10 @@
   justify-content: center;
 }
 
+.file-type-icon {
+  font-size: 24px;
+}
+
 .loading-spinner {
   width: 100%;
   height: 100%;
@@ -58,7 +73,7 @@
   width: 24px;
   height: 24px;
   border: 2px solid #e5e7eb;
-  border-top: 2px solid #69306D;
+  border-top: 2px solid #69306d;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -66,11 +81,6 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-.pdf-icon {
-  font-size: 24px;
-  color: #dc2626;
 }
 
 .file-info {
@@ -115,7 +125,7 @@
 
 .progress-fill {
   height: 100%;
-  background: #69306D;
+  background: #69306d;
   border-radius: 2px;
   animation: progress-animation 2s ease-in-out infinite;
 }
@@ -204,15 +214,19 @@
 
 .upload-area {
   border: 2px dashed #d1d5db;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 32px;
   text-align: center;
   background: #fafafa;
   transition: all 0.3s ease;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .upload-area:hover {
-  border-color: #69306D;
+  border-color: #69306d;
   background: #f8f5ff;
 }
 
@@ -221,34 +235,37 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  width: 100%;
 }
 
 .upload-icon {
-  width: 64px;
-  height: 64px;
-  background: #fef2f2;
-  border-radius: 8px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
-  color: #dc2626;
+  font-size: 80px;
+  color: #9A3E7E;
+  margin-bottom: 8px;
 }
 
 .upload-text {
   text-align: center;
 }
 
-.upload-description {
+.upload-title {
+  font-size: 18px;
+  font-weight: 600;
   color: #374151;
   margin: 0 0 8px 0;
-  font-size: 16px;
 }
 
-.upload-limit {
+.upload-description {
   color: #6b7280;
   margin: 0;
   font-size: 14px;
+  line-height: 1.5;
 }
 
 .upload-button-container {
@@ -262,28 +279,25 @@
 .upload-button {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 4px;
-  background: #FDFDFD;
-  color: #9A3E7E;
-  border: 1px solid #9A3E7E;
-  margin-top: 16px;
-  padding: 6px 12px;
-  border-radius: 6px;
+  gap: 8px;
+  background: #69306d;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 10px;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 100%;
+  min-width: 180px;
+  justify-content: center;
 }
 
 .upload-button:hover:not(:disabled) {
-  background: #f3f3f3;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(105, 48, 109, 0.3);
+  background: #5a285d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(105, 48, 109, 0.3);
 }
-
-
 
 .upload-button:disabled {
   opacity: 0.6;
@@ -300,18 +314,27 @@
   
   .upload-area {
     padding: 24px;
+    min-height: 240px;
   }
   
   .upload-icon {
-    width: 48px;
-    height: 48px;
-    font-size: 24px;
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+  }
+  
+  .upload-title {
+    font-size: 16px;
+  }
+  
+  .upload-description {
+    font-size: 13px;
   }
   
   .upload-button {
     min-width: 100%;
     font-size: 14px;
-    padding: 10px 20px;
+    padding: 12px 24px;
   }
   
   .file-item {
@@ -322,22 +345,38 @@
     width: 40px;
     height: 40px;
   }
+  
+  .file-type-icon {
+    font-size: 20px;
+  }
 }
 
 @media (max-width: 480px) {
-  .add-files-container {
+  .installation-files-container {
     padding: 12px 0;
   }
   
   .upload-area {
     padding: 20px;
+    min-height: 200px;
+  }
+  
+  .upload-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+  
+  .upload-title {
+    font-size: 15px;
   }
   
   .upload-description {
-    font-size: 14px;
+    font-size: 12px;
   }
   
-  .upload-limit {
-    font-size: 12px;
+  .upload-button {
+    font-size: 13px;
+    padding: 10px 20px;
   }
 }

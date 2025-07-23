@@ -105,6 +105,9 @@ declare module 'vue-router/auto/routes' {
     '/work_order/special-form/s315/list': RouteRecordInfo<'/work_order/special-form/s315/list', '/work_order/special-form/s315/list', Record<never, never>, Record<never, never>>,
     '/work_order/special-form/s315/TransformerDateSelector': RouteRecordInfo<'/work_order/special-form/s315/TransformerDateSelector', '/work_order/special-form/s315/TransformerDateSelector', Record<never, never>, Record<never, never>>,
     '/work_order/special-form/s315/TransformerList': RouteRecordInfo<'/work_order/special-form/s315/TransformerList', '/work_order/special-form/s315/TransformerList', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s316/GeneratorDateSelector': RouteRecordInfo<'/work_order/special-form/s316/GeneratorDateSelector', '/work_order/special-form/s316/GeneratorDateSelector', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s316/GeneratorList': RouteRecordInfo<'/work_order/special-form/s316/GeneratorList', '/work_order/special-form/s316/GeneratorList', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s316/list': RouteRecordInfo<'/work_order/special-form/s316/list', '/work_order/special-form/s316/list', Record<never, never>, Record<never, never>>,
     '/work_order/special-form/s317/list': RouteRecordInfo<'/work_order/special-form/s317/list', '/work_order/special-form/s317/list', Record<never, never>, Record<never, never>>,
     '/work_order/special-form/s318/list': RouteRecordInfo<'/work_order/special-form/s318/list', '/work_order/special-form/s318/list', Record<never, never>, Record<never, never>>,
     '/work_order/special-form/s318/MeterElectricalEquipment': RouteRecordInfo<'/work_order/special-form/s318/MeterElectricalEquipment', '/work_order/special-form/s318/MeterElectricalEquipment', Record<never, never>, Record<never, never>>,
@@ -122,11 +125,9 @@ declare module 'vue-router/auto/routes' {
     '/work_order/special-form/s332_Solar_Air_Conditioner/SurveyDataSolarAirConditioner': RouteRecordInfo<'/work_order/special-form/s332_Solar_Air_Conditioner/SurveyDataSolarAirConditioner', '/work_order/special-form/s332_Solar_Air_Conditioner/SurveyDataSolarAirConditioner', Record<never, never>, Record<never, never>>,
     '/work_order/special-form/s332_Solar_Air_Conditioner/Video': RouteRecordInfo<'/work_order/special-form/s332_Solar_Air_Conditioner/Video', '/work_order/special-form/s332_Solar_Air_Conditioner/Video', Record<never, never>, Record<never, never>>,
     '/work_order/special-form/s332_Solar_Battery/AdditionalData': RouteRecordInfo<'/work_order/special-form/s332_Solar_Battery/AdditionalData', '/work_order/special-form/s332_Solar_Battery/AdditionalData', Record<never, never>, Record<never, never>>,
+    '/work_order/special-form/s332_Solar_Battery/InstallationFiles': RouteRecordInfo<'/work_order/special-form/s332_Solar_Battery/InstallationFiles', '/work_order/special-form/s332_Solar_Battery/InstallationFiles', Record<never, never>, Record<never, never>>,
     '/work_order/special-form/s332_Solar_Battery/list': RouteRecordInfo<'/work_order/special-form/s332_Solar_Battery/list', '/work_order/special-form/s332_Solar_Battery/list', Record<never, never>, Record<never, never>>,
     '/work_order/special-form/s332_Solar_Battery/SurveyDataSolarBattery': RouteRecordInfo<'/work_order/special-form/s332_Solar_Battery/SurveyDataSolarBattery', '/work_order/special-form/s332_Solar_Battery/SurveyDataSolarBattery', Record<never, never>, Record<never, never>>,
-    '/work_order/special-form/S332_Solar_Battery/AdditionalData': RouteRecordInfo<'/work_order/special-form/S332_Solar_Battery/AdditionalData', '/work_order/special-form/S332_Solar_Battery/AdditionalData', Record<never, never>, Record<never, never>>,
-    '/work_order/special-form/S332_Solar_Battery/list': RouteRecordInfo<'/work_order/special-form/S332_Solar_Battery/list', '/work_order/special-form/S332_Solar_Battery/list', Record<never, never>, Record<never, never>>,
-    '/work_order/special-form/S332_Solar_Battery/SurveyDataSolarBattery': RouteRecordInfo<'/work_order/special-form/S332_Solar_Battery/SurveyDataSolarBattery', '/work_order/special-form/S332_Solar_Battery/SurveyDataSolarBattery', Record<never, never>, Record<never, never>>,
     '/work_order/special-form/s399/list': RouteRecordInfo<'/work_order/special-form/s399/list', '/work_order/special-form/s399/list', Record<never, never>, Record<never, never>>,
   }
 }
