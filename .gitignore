@@ -1,0 +1,42 @@
+# System files
+.DS_Store
+*.local
+*.log
+npm-debug.log
+yarn-error.log
+
+# Dependencies
+/node_modules
+/node_modules.zip
+/_node_modules
+/vendor
+
+# IDE configs
+.idea/
+!/.idea/codeStyles
+.vscode/
+
+# Build artifacts
+/dist
+/dist-ssr
+.vite-ssg-dist
+.vite-ssg-temp
+
+# Cypress
+cypress/downloads
+cypress/screenshots
+
+# Environment variables
+.env
+.env.*
+!.env.example
+.env.backup
+/src/keycloak.js
+
+# PHPUnit
+.phpunit.result.cache
+
+# Homestead
+Homestead.json
+Homestead.yaml
+auth.json

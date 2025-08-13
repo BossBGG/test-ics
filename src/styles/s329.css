@@ -1,0 +1,323 @@
+/* src/styles/d329.css - Styles for D329 Renewable Energy Components */
+
+/* ========== SHARED D329 STYLES ========== */
+
+/* Common form styles for all D329 components */
+.s329-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.s329-form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin: 0;
+}
+
+.s329-form-select {
+  width: 100%;
+}
+
+/* Common selected display styles */
+.s329-selected-display {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid;
+}
+
+.s329-selected-text {
+  font-size: 14px;
+  margin: 0;
+}
+
+.s329-selected-value {
+  font-weight: 500;
+}
+
+/* ========== CERTIFICATE REQUIREMENT STYLES ========== */
+
+.s329-certificate-form {
+  padding: 8px 0;
+}
+
+.s329-certificate-selected {
+  background-color: #f0f9ff;
+  border-color: #bae6fd;
+}
+
+.s329-certificate-selected .s329-selected-text {
+  color: #0369a1;
+}
+
+.s329-certificate-selected .s329-selected-value {
+  color: #0c4a6e;
+}
+
+/* ========== ENERGY SOURCE STYLES ========== */
+
+.s329-energy-source-form {
+  padding: 8px 0;
+}
+
+.s329-energy-source-selected {
+  background-color: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.s329-energy-source-selected .s329-selected-text {
+  color: #166534;
+}
+
+.s329-energy-source-selected .s329-selected-value {
+  color: #14532d;
+}
+
+/* ========== YEAR SELECTOR STYLES ========== */
+
+.s329-year-selector-form {
+  padding: 8px 0;
+}
+
+.s329-year-form-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+
+.s329-year-input-group {
+  margin-bottom: 0;
+}
+
+.s329-years-count-group {
+  margin-bottom: 0;
+  min-width: 650px;
+}
+
+.s329-year-input,
+.s329-years-count-input {
+  width: 100%;
+}
+
+
+
+/* ========== QUASAR OVERRIDES FOR D329 ========== */
+
+/* Form Select Overrides */
+.s329-form-select:deep(.q-field--outlined .q-field__control) {
+  border-radius: 8px;
+  border-color: #d1d5db;
+  background-color: white;
+  min-height: 44px;
+}
+
+.s329-form-select:deep(.q-field--outlined .q-field__control:hover) {
+  border-color: #69306d;
+}
+
+.s329-form-select:deep(.q-field--outlined.q-field--focused .q-field__control) {
+  border-color: #69306d;
+  box-shadow: 0 0 0 3px rgba(105, 48, 109, 0.1);
+}
+
+.s329-form-select:deep(.q-field__inner) {
+  padding: 12px 16px;
+}
+
+.s329-form-select:deep(.q-field__control-container) {
+  padding-top: 0;
+}
+
+.s329-form-select:deep(.q-field__native) {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.s329-form-select:deep(.q-field__native::placeholder) {
+  color: #9ca3af;
+}
+
+/* Year Input Overrides */
+.s329-year-input:deep(.q-field--outlined .q-field__control),
+.s329-years-count-input:deep(.q-field--outlined .q-field__control) {
+  border-radius: 8px;
+  border-color: #d1d5db;
+  background-color: white;
+  min-height: 44px;
+}
+
+.s329-year-input:deep(.q-field--outlined .q-field__control:hover),
+.s329-years-count-input:deep(.q-field--outlined .q-field__control:hover) {
+  border-color: #69306d;
+}
+
+.s329-year-input:deep(.q-field--outlined.q-field--focused .q-field__control),
+.s329-years-count-input:deep(.q-field--outlined.q-field--focused .q-field__control) {
+  border-color: #69306d;
+  box-shadow: 0 0 0 3px rgba(105, 48, 109, 0.1);
+}
+
+.s329-year-input:deep(.q-field__inner),
+.s329-years-count-input:deep(.q-field__inner) {
+  padding: 12px 16px;
+}
+
+.s329-year-input:deep(.q-field__control-container),
+.s329-years-count-input:deep(.q-field__control-container) {
+  padding-top: 0;
+}
+
+.s329-year-input:deep(.q-field__native),
+.s329-years-count-input:deep(.q-field__native) {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.s329-year-input:deep(.q-field__native::placeholder),
+.s329-years-count-input:deep(.q-field__native::placeholder) {
+  color: #9ca3af;
+}
+
+/* Dropdown styling for D329 */
+.s329-form-select:deep(.q-menu) {
+  border-radius: 8px;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+}
+
+.s329-form-select:deep(.q-item) {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #374151;
+  transition: all 0.2s ease;
+}
+
+.s329-form-select:deep(.q-item:hover) {
+  background-color: #f3f4f6;
+}
+
+.s329-form-select:deep(.q-item--active) {
+  background-color: #69306d;
+  color: white;
+}
+
+.s329-form-select:deep(.q-item--active:hover) {
+  background-color: #5a285d;
+}
+
+/* ========== RESPONSIVE DESIGN FOR D329 ========== */
+
+/* Tablet styles */
+@media (max-width: 768px) {
+  .s329-certificate-form,
+  .s329-energy-source-form,
+  .s329-year-selector-form {
+    padding: 6px 0;
+  }
+
+  .s329-form-group {
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .s329-form-label {
+    font-size: 13px;
+  }
+
+  .s329-year-form-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .s329-years-count-group {
+    min-width: auto;
+  }
+
+  .s329-form-select:deep(.q-field--outlined .q-field__control),
+  .s329-year-input:deep(.q-field--outlined .q-field__control),
+  .s329-years-count-input:deep(.q-field--outlined .q-field__control) {
+    min-height: 40px;
+  }
+
+  .s329-form-select:deep(.q-field__inner),
+  .s329-year-input:deep(.q-field__inner),
+  .s329-years-count-input:deep(.q-field__inner) {
+    padding: 10px 12px;
+  }
+
+  .s329-form-select:deep(.q-field__native),
+  .s329-year-input:deep(.q-field__native),
+  .s329-years-count-input:deep(.q-field__native) {
+    font-size: 13px;
+  }
+
+  .s329-selected-display {
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+  .s329-selected-text {
+    font-size: 13px;
+  }
+
+  
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .s329-certificate-form,
+  .s329-energy-source-form,
+  .s329-year-selector-form {
+    padding: 4px 0;
+  }
+
+  .s329-form-group {
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+
+  .s329-form-label {
+    font-size: 12px;
+  }
+
+  .s329-year-form-row {
+    gap: 10px;
+  }
+
+  .s329-form-select:deep(.q-field--outlined .q-field__control),
+  .s329-year-input:deep(.q-field--outlined .q-field__control),
+  .s329-years-count-input:deep(.q-field--outlined .q-field__control) {
+    min-height: 36px;
+  }
+
+  .s329-form-select:deep(.q-field__inner),
+  .s329-year-input:deep(.q-field__inner),
+  .s329-years-count-input:deep(.q-field__inner) {
+    padding: 8px 10px;
+  }
+
+  .s329-form-select:deep(.q-field__native),
+  .s329-year-input:deep(.q-field__native),
+  .s329-years-count-input:deep(.q-field__native) {
+    font-size: 12px;
+  }
+
+  .s329-selected-display {
+    margin-top: 8px;
+    padding: 8px;
+  }
+
+  .s329-selected-text {
+    font-size: 12px;
+  }
+
+  
+}

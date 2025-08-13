@@ -1,0 +1,295 @@
+.video-container {
+  padding: 16px 0;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.video-item-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  
+}
+
+/* Video Header */
+.video-header {
+  background: #f8f9fa;
+  padding: 8px;
+  text-align: center;
+}
+
+.video-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.video-subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #dc2626;
+  line-height: 1.4;
+}
+
+/* Video Display */
+.video-display {
+  position: relative;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  
+}
+
+.uploaded-video-wrapper {
+  width: 100%;
+  height: 100%;
+  
+}
+
+.video-preview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.video-element {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #000;
+}
+
+.video-info {
+  margin-top: 12px;
+  padding: 8px 0;
+}
+
+.video-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.video-size {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.video-remove-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(220, 38, 38, 0.9);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.video-remove-button:hover {
+  background: rgba(220, 38, 38, 1);
+  transform: scale(1.1);
+}
+
+/* Upload Area */
+.video-upload-area {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 2px dashed #d1d5db;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.video-upload-area:hover {
+  border-color: #69306d;
+  background: #f8f5ff;
+}
+
+.video-upload-content {
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.upload-icon {
+  margin-bottom: 8px;
+}
+
+.upload-text {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.video-upload-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: #FDFDFD;
+  color: #9A3E7E;
+  border: 1px solid #9A3E7E;
+  margin-top: 16px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.video-upload-button:hover {
+  background: #f3f3f3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(105, 48, 109, 0.3);
+}
+
+
+.video-hidden-input {
+  display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .video-container {
+    padding: 12px 0;
+  }
+
+  .video-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .video-header {
+    padding: 12px;
+  }
+
+  .video-title,
+  .video-subtitle {
+    font-size: 13px;
+  }
+
+  .video-display {
+    min-height: 250px;
+    padding: 12px;
+  }
+
+  .video-element {
+    height: 200px;
+  }
+
+  .video-upload-area {
+    height: 200px;
+  }
+
+  .video-upload-content {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .upload-icon {
+    margin-bottom: 6px;
+  }
+
+  .upload-text {
+    font-size: 13px;
+  }
+
+  .video-upload-button {
+    font-size: 13px;
+    padding: 10px 16px;
+  }
+
+  .video-info {
+    margin-top: 8px;
+  }
+
+  .video-name {
+    font-size: 13px;
+  }
+
+  .video-size {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-container {
+    padding: 8px 0;
+  }
+
+  .video-grid {
+    gap: 12px;
+  }
+
+  .video-header {
+    padding: 10px;
+  }
+
+  .video-title,
+  .video-subtitle {
+    font-size: 12px;
+  }
+
+  .video-display {
+    min-height: 220px;
+    padding: 10px;
+  }
+
+  .video-element {
+    height: 180px;
+  }
+
+  .video-upload-area {
+    height: 180px;
+  }
+
+  .video-upload-content {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .upload-text {
+    font-size: 12px;
+  }
+
+  .video-upload-button {
+    font-size: 12px;
+    padding: 8px 14px;
+  }
+
+  .video-remove-button {
+    width: 24px;
+    height: 24px;
+    top: 6px;
+    right: 6px;
+  }
+}
