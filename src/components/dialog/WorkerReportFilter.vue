@@ -1,4 +1,4 @@
-<!-- src/components/dialog/WorkReportFilter.vue -->
+<!-- src/components/dialog/WorkerReportFilter.vue -->
 <template>
   <q-dialog v-model="isVisible" persistent>
     <q-card class="filter-dialog-card">
@@ -65,54 +65,39 @@
           </div>
         </div>
 
-        <!-- งานบริการ -->
+        <!-- กลุ่มผู้ปฏิบัติงาน -->
         <div class="filter-group">
-          <label class="filter-label">งานบริการ</label>
+          <label class="filter-label">กลุ่มผู้ปฏิบัติงาน (พนักงาน PEA/ผู้รับจ้าง)</label>
           <q-select
-            v-model="filters.workService"
-            :options="workServiceOptions"
+            v-model="filters.workerGroup"
+            :options="workerGroupOptions"
             option-label="label"
             option-value="value"
             emit-value
             map-options
             outlined
-            placeholder="งานบริการทั้งหมด"
+            placeholder="กลุ่มผู้ปฏิบัติงานทั้งหมด"
             class="filter-select"
           />
         </div>
 
         <!-- ประเภทใบสั่งงาน -->
         <div class="filter-group">
-          <label class="filter-label">ประเภทใบสั่งงาน</label>
+          <label class="filter-label">ผู้ปฏิบัติงานผู้ปฏิบัติงาน</label>
           <q-select
-            v-model="filters.workOrderType"
-            :options="workOrderTypeOptions"
+            v-model="filters.workerName"
+            :options="workerNameOptions"
             option-label="label"
             option-value="value"
             emit-value
             map-options
             outlined
-            placeholder="ประเภททั้งหมด"
+            placeholder="ผู้ปฏิบัติงานทั้งหมด"
             class="filter-select"
           />
         </div>
 
-        <!-- สถานะ -->
-        <div class="filter-group">
-          <label class="filter-label">สถานะ</label>
-          <q-select
-            v-model="filters.status"
-            :options="statusOptions"
-            option-label="label"
-            option-value="value"
-            emit-value
-            map-options
-            outlined
-            placeholder="สถานะทั้งหมด"
-            class="filter-select"
-          />
-        </div>
-      </div>
+    
 
       <!-- Footer Actions -->
       <div class="filter-dialog-footer">
@@ -138,9 +123,8 @@ import { ref, reactive, watch } from 'vue'
 interface FilterData {
   startDate: string
   endDate: string
-  workService: string
-  workOrderType: string
-  status: string
+  workerGroup: string
+  workerName: string
 }
 
 const props = defineProps<{
@@ -157,29 +141,24 @@ const isVisible = ref(props.modelValue)
 const filters = reactive<FilterData>({
   startDate: '',
   endDate: '',
-  workService: '',
-  workOrderType: '',
-  status: ''
+  workerGroup: '',
+  workerName: '',
+
 })
 
 // Status options
-const statusOptions = [
+const workerGroupOptions  = [
   { label: 'ทั้งหมด', value: '' },
-  { label: 'รอเปิดใบสั่งงาน', value: 'รอเปิดใบสั่งงาน' },
-  { label: 'รอเบิกพัสดุ', value: 'รอเบิกพัสดุ' },
-  { label: 'ปิดใบสั่งงาน', value: 'ปิดใบสั่งงาน' },
+  { label: 'พนักงาน PEA', value: 'พนักงาน PEA' },
+  { label: 'ผู้รับจ้าง', value: 'ผู้รับจ้าง' }
 ]
 
-const workServiceOptions = [
-  { label: 'ทั้งหมด', value: '' },
-  { label: 'งานเช่าหม้อแปลง', value: 'งานเช่าหม้อแปลง' },
+const workerNameOptions  = [
+  { label: '9011763 : สุขุมพร พิศนุมา', value: '9011763 : สุขุมพร พิศนุมา' },
+  { label: 'น.ส.พนักรัต จรยุม กฟส.สันกำแพง', value: 'น.ส.พนักรัต จรยุม กฟส.สันกำแพง' }
 ]
 
-const workOrderTypeOptions = [
-  { label: 'ทั้งหมด', value: '' },
-  { label: 'ใบสั่งงานหลัก', value: 'ใบสั่งงานหลัก' },
-  { label: 'ใบสั่งงานย่อย', value: 'ใบสั่งงานย่อย' },
-]
+
 
 // Watch for external changes to modelValue
 watch(() => props.modelValue, (val) => {
@@ -198,9 +177,8 @@ const closeDialog = () => {
 const clearFilters = () => {
   filters.startDate = ''
   filters.endDate = ''
-  filters.workService = ''
-  filters.workOrderType = ''
-  filters.status = ''
+  filters.workerGroup = ''
+  filters.workerName = ''
 }
 
 const applyFilters = () => {

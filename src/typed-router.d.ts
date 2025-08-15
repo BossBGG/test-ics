@@ -130,6 +130,7 @@ declare module 'vue-router/auto/routes' {
     '/work_order/special-form/S332_Solar_Battery/SurveyDataSolarBattery': RouteRecordInfo<'/work_order/special-form/S332_Solar_Battery/SurveyDataSolarBattery', '/work_order/special-form/S332_Solar_Battery/SurveyDataSolarBattery', Record<never, never>, Record<never, never>>,
     '/work_order/special-form/s399/list': RouteRecordInfo<'/work_order/special-form/s399/list', '/work_order/special-form/s399/list', Record<never, never>, Record<never, never>>,
     '/work_report/list': RouteRecordInfo<'/work_report/list', '/work_report/list', Record<never, never>, Record<never, never>>,
+    '/work_report/workerlist': RouteRecordInfo<'/work_report/workerlist', '/work_report/workerlist', Record<never, never>, Record<never, never>>,
   }
 }
 

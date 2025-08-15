@@ -1,4 +1,4 @@
-<!-- src/pages/work_report/list.vue -->
+<!-- src/pages/work_report/[id].vue -->
 <script setup lang="ts">
 import { ref, h, computed, watch } from "vue";
 import type { ColumnDef } from "@tanstack/vue-table";
@@ -6,8 +6,8 @@ import DataTable from "@/components/form/DataTable.vue";
 import { Plus, Filter, Download } from "lucide-vue-next";
 import DataTableColumnHeader from "@/components/form/DataTableColumnHeader.vue";
 import RowPagination from "@/components/ui/pagination/RowPagination.vue";
-import WorkReportFilter from "@/components/dialog/WorkReportFilter.vue";
-import { WorkReportDataData, type WorkReportData } from "~/data/workreportData";
+import WorkerReportFilter  from "@/components/dialog/WorkerReportFilter.vue";
+import { WorkerReportDataData, type WorkerReportData } from "~/data/workreportData";
 import ContentContainer from "~/layouts/ContentContainer.vue";
 import { useRoute, useRouter } from "vue-router";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -23,7 +23,7 @@ const route = useRoute();
 const router = useRouter();
 
 // Reactive data
-const allWorkReportData = ref<WorkReportData[]>(WorkReportDataData);
+const allWorkReportData = ref<WorkerReportData[]>(WorkerReportDataData);
 const showFilterDialog = ref(false);
 const showDownloadDialog = ref(false);
 const selectedWorkServices = ref<string[]>([]);
@@ -78,40 +78,27 @@ const filteredData = computed(() => {
   if (searchText.value) {
     data = data.filter(
       (item) =>
-        item.orderNumber
+        item.electricity
           .toLowerCase()
           .includes(searchText.value.toLowerCase()) ||
-        item.workOrderNumber
+        item.workerGroup
           .toLowerCase()
           .includes(searchText.value.toLowerCase()) ||
-        item.workService.toLowerCase().includes(searchText.value.toLowerCase()),
+        item.workerName.toLowerCase().includes(searchText.value.toLowerCase()),
     );
   }
 
-  // Apply work service filter from checkbox
-  if (selectedWorkServices.value.length > 0) {
-    data = data.filter((item) =>
-      selectedWorkServices.value.includes(item.workService),
-    );
-  }
 
-  // Apply other filters
-  if (currentFilters.value.workService) {
+  // Apply filters
+  if (currentFilters.value.workerGroup) {
     data = data.filter(
-      (item) => item.workService === currentFilters.value.workService,
+      (item) => item.workerGroup === currentFilters.value.workerGroup,
     );
   }
 
-  if (currentFilters.value.status) {
-    data = data.filter((item) => item.status === currentFilters.value.status);
+  if (currentFilters.value.workerName) {
+    data = data.filter((item) => item.workerName === currentFilters.value.workerName);
   }
-
-  if (currentFilters.value.workOrderType) {
-    data = data.filter(
-      (item) => item.workOrderType === currentFilters.value.workOrderType,
-    );
-  }
-
   return data;
 });
 
@@ -179,7 +166,7 @@ const toggleExportDropdown = () => {
 };
 
 // Column definitions
-const columns: ColumnDef<WorkReportData>[] = [
+const columns: ColumnDef<WorkerReportData>[] = [
   {
     id: "select",
     header: ({ table }) => {
@@ -211,116 +198,44 @@ const columns: ColumnDef<WorkReportData>[] = [
     },
     cell: ({ row }) => h("div", { class: "text-center" }, row.getValue("id")),
     enableSorting: true,
-  },
+  }, 
   {
-    accessorKey: "orderNumber",
-    header: ({ column }) =>
-      h(DataTableColumnHeader, { column, title: "เลขที่ใบคำร้อง" }),
-    cell: ({ row }) =>
-      h("div", { class: "font-medium" }, row.getValue("orderNumber")),
-    enableSorting: true,
-  },
-  {
-    accessorKey: "workOrderNumber",
-    header: ({ column }) =>
-      h(DataTableColumnHeader, { column, title: "เลขที่ใบสั่งงาน" }),
-    cell: ({ row }) =>
-      h("div", { class: "font-medium" }, row.getValue("workOrderNumber")),
-    enableSorting: true,
-  },
-  {
-    accessorKey: "Electricity",
+    accessorKey: "electricity",
     header: ({ column }) =>
       h(DataTableColumnHeader, { column, title: "การไฟฟ้า" }),
-    cell: ({ row }) => h("div", {}, row.getValue("Electricity")),
+    cell: ({ row }) => h("div", {}, row.getValue("electricity")),
     enableSorting: true,
   },
   {
-    accessorKey: "workService",
+    accessorKey: "workerGroup",
     header: ({ column }) =>
-      h(DataTableColumnHeader, { column, title: "งานบริการ" }),
-    cell: ({ row }) => h("div", {}, row.getValue("workService")),
+      h(DataTableColumnHeader, { column, title: "กลุ่มผู้ปฏิบัติงาน" }),
+    cell: ({ row }) =>
+      h("div", { class: "font-medium" }, row.getValue("workerGroup")),
     enableSorting: true,
   },
   {
-    accessorKey: "workType",
+    accessorKey: "workerName",
     header: ({ column }) =>
-      h(DataTableColumnHeader, { column, title: "ประเภทงาน" }),
-    cell: ({ row }) => h("div", {}, row.getValue("workType")),
+      h(DataTableColumnHeader, { column, title: "ผู้ปฏิบัติงาน" }),
+    cell: ({ row }) => h("div", {}, row.getValue("workerName")),
     enableSorting: true,
   },
   {
-    accessorKey: "workOrderType",
+    accessorKey: "workCount",
     header: ({ column }) =>
-      h(DataTableColumnHeader, { column, title: "ประเภทใบสั่งงาน" }),
-    cell: ({ row }) => h("div", {}, row.getValue("workOrderType")),
+      h(DataTableColumnHeader, { column, title: "จำนวนงาน" }),
+    cell: ({ row }) => h("div", {}, row.getValue("workCount")),
     enableSorting: true,
   },
   {
-    accessorKey: "status",
+    accessorKey: "workHours",
     header: ({ column }) =>
-      h(DataTableColumnHeader, { column, title: "สถานะ" }),
-    cell: ({ row }) => {
-      const status = row.getValue("status") as string;
-      const statusClass = getStatusClass(status);
-      return h(
-        "div",
-        {
-          class: `px-2 py-1 rounded text-sm font-medium ${statusClass}`,
-        },
-        status,
-      );
-    },
+      h(DataTableColumnHeader, { column, title: "จำนวนชั่วโมง" }),
+    cell: ({ row }) => h("div", {}, row.getValue("workHours")),
     enableSorting: true,
   },
-  {
-    accessorKey: "workDate",
-    header: ({ column }) =>
-      h(DataTableColumnHeader, { column, title: "วันที่" }),
-    cell: ({ row }) => h("div", { class: "text-sm" }, row.getValue("workDate")),
-    enableSorting: true,
-  },
-  {
-    id: "actions",
-    header: () => h("div", { class: "text-center w-full" }, "รายละเอียด"),
-    cell: ({ row }) => {
-      const item = row.original;
-
-      return h("div", { class: "flex justify-center" }, [
-        h(
-          "button",
-          {
-            class: "p-1 hover:opacity-80 transition-opacity",
-            onClick: () => handleViewDetails(item.id),
-            title: "ดูรายละเอียด",
-          },
-          [
-            h("img", {
-              src: "/assets/images/report-view-btn.png",
-              alt: "ดูรายละเอียด",
-              class: "w-8 h-8",
-            }),
-          ],
-        ),
-        h(
-          "button",
-          {
-            class: "p-1 hover:opacity-80 transition-opacity",
-            onClick: () => handleDownload(item.id),
-            title: "ดาวน์โหลด",
-          },
-          [
-            h("img", {
-              src: "/assets/images/report-download-btn.png ",
-              alt: "ดาวน์โหลด",
-              class: "w-8 h-8",
-            }),
-          ],
-        ),
-      ]);
-    },
-    enableSorting: false,
-  },
+  
 ];
 
 // Helper function for status styling
@@ -389,14 +304,13 @@ const breadcrumbs = [
   <ContentContainer :breadcrumbs="breadcrumbs">
     <template #menu>
       <div class="flex flex-row gap-6"> 
-        <RouterLink class="header-work-report-btn" :class="{ 'active': $route.path === '/work_report/list' }" to="/work_report/list">
+       <RouterLink class="header-work-report-btn" :class="{ 'active': $route.path === '/work_report/list' }" to="/work_report/list">
           ใบสั่งงาน
         </RouterLink>
 
         <RouterLink class="header-work-report-btn" :class="{ 'active': $route.path === '/work_report/workerlist' }" to="/work_report/workerlist">
           ผู้ปฏิบัติงาน
         </RouterLink>
-
       </div>
     </template>
     <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
@@ -600,7 +514,7 @@ const breadcrumbs = [
       </div>
     </div>
     <!-- Filter Dialog -->
-    <WorkReportFilter
+    <WorkerReportFilter 
       v-model="showFilterDialog"
       @apply-filters="handleFilterApply"
     />
