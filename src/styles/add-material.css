@@ -1,0 +1,289 @@
+/* src/styles/add-material.css - Component specific styles only */
+
+/* Table Styles - specific to material component */
+.material-data-table {
+  font-size: 14px;
+}
+
+.material-data-table th {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.material-data-table td {
+  vertical-align: middle;
+  min-height: 50px;
+}
+
+/* Form Input Styles - specific configurations */
+.material-select,
+.material-number-input,
+.material-unit-input {
+  width: 100%;
+  min-width: 0;
+}
+
+.material-display {
+  color: #374151;
+  font-weight: 500;
+  word-break: break-word;
+  line-height: 1.3;
+  font-size: 13px;
+}
+
+.material-quantity-text {
+  color: #374151;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Action Button Styles */
+.material-action-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.material-action-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Bottom Action Buttons */
+.material-clear-btn,
+.material-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.material-clear-btn {
+  background: #9A3E7E;
+  color: white;
+}
+
+.material-clear-btn:hover {
+  background: #8A3570;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(139, 90, 140, 0.3);
+}
+
+.material-add-btn {
+  background: #69306D;
+  color: white;
+}
+
+.material-add-btn:hover {
+  background: #5a285d;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(105, 48, 109, 0.3);
+}
+
+/* Quasar Input Overrides - material specific */
+:deep(.material-select .q-field--outlined .q-field__control) {
+  border-radius: 6px;
+  border-color: #d1d5db;
+  min-height: 40px;
+  font-size: 13px;
+}
+
+:deep(.material-select .q-field--outlined .q-field__control:hover) {
+  border-color: #69306D;
+}
+
+:deep(.material-select .q-field--outlined.q-field--focused .q-field__control) {
+  border-color: #69306D;
+  box-shadow: 0 0 0 2px rgba(105, 48, 109, 0.1);
+}
+
+:deep(.material-number-input .q-field--outlined .q-field__control) {
+  border-radius: 6px;
+  border-color: #d1d5db;
+  min-height: 40px;
+  width: 120px;
+}
+
+:deep(.material-unit-input .q-field--outlined .q-field__control) {
+  border-radius: 6px;
+  border-color: #d1d5db;
+  min-height: 40px;
+  width: 80px;
+}
+
+:deep(.material-select .q-field__inner) {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+:deep(.material-select .q-field__control-container) {
+  padding-top: 0;
+}
+
+:deep(.material-select .q-field__native) {
+  font-size: 13px;
+  min-height: 20px;
+}
+
+/* Responsive Design - material specific */
+@media (max-width: 1200px) {
+  .material-data-table th,
+  .material-data-table td {
+    font-size: 12px;
+    padding: 8px 4px;
+  }
+  
+  .material-action-btn {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .material-clear-btn,
+  .material-add-btn {
+    min-width: 100px;
+    font-size: 12px;
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .material-data-table th,
+  .material-data-table td {
+    font-size: 11px;
+    padding: 6px 2px;
+  }
+  
+  .material-action-btn {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .material-clear-btn,
+  .material-add-btn {
+    min-width: 80px;
+    font-size: 11px;
+    padding: 8px 12px;
+  }
+  
+  .flex.space-x-3 {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .flex.space-x-3 > * {
+    margin-left: 0 !important;
+  }
+}
+
+/* Quasar Input Overrides - material specific */
+:deep(.material-select .q-field--outlined .q-field__control) {
+  border-radius: 6px;
+  border-color: #d1d5db;
+  min-height: 40px;
+  font-size: 13px;
+}
+
+:deep(.material-select .q-field--outlined .q-field__control:hover) {
+  border-color: #69306D;
+}
+
+:deep(.material-select .q-field--outlined.q-field--focused .q-field__control) {
+  border-color: #69306D;
+  box-shadow: 0 0 0 2px rgba(105, 48, 109, 0.1);
+}
+
+:deep(.material-number-input .q-field--outlined .q-field__control) {
+  border-radius: 6px;
+  border-color: #d1d5db;
+  min-height: 40px;
+  width: 120px;
+}
+
+:deep(.material-unit-input .q-field--outlined .q-field__control) {
+  border-radius: 6px;
+  border-color: #d1d5db;
+  min-height: 40px;
+  width: 80px;
+}
+
+:deep(.material-select .q-field__inner) {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+:deep(.material-select .q-field__control-container) {
+  padding-top: 0;
+}
+
+:deep(.material-select .q-field__native) {
+  font-size: 13px;
+  min-height: 20px;
+}
+
+/* Responsive Design - material specific */
+@media (max-width: 1200px) {
+  .material-data-table th,
+  .material-data-table td {
+    font-size: 12px;
+    padding: 8px 4px;
+  }
+  
+  .material-action-btn {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .material-clear-btn,
+  .material-add-btn {
+    min-width: 100px;
+    font-size: 12px;
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .material-data-table th,
+  .material-data-table td {
+    font-size: 11px;
+    padding: 6px 2px;
+  }
+  
+  .material-action-btn {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .material-clear-btn,
+  .material-add-btn {
+    min-width: 80px;
+    font-size: 11px;
+    padding: 8px 12px;
+  }
+  
+  .flex.space-x-3 {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .flex.space-x-3 > * {
+    margin-left: 0 !important;
+  }
+}
