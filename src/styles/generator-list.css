@@ -1,0 +1,545 @@
+/* src/styles/generator-list.css */
+
+.generator-list-container {
+  
+  display: flex;
+  flex-direction: column;
+  
+}
+
+/* Date Section */
+.date-section {
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  
+}
+
+.generator-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #65004A;
+  
+}
+
+.date-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.date-input-group,
+.time-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.date-label,
+.time-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.date-icon {
+  font-size: 16px;
+  color: #69306d;
+}
+
+.date-range,
+.time-range {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.date-range-input,
+.time-range-input {
+  max-width: 300px;
+  background: white;
+}
+
+.date-input,
+.time-input {
+  flex: 1;
+  max-width: 200px;
+}
+
+.date-separator,
+.time-separator {
+  font-size: 16px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Generator Section */
+.generator-section {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.generator-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+ 
+}
+
+.generator-card {
+  overflow: hidden;
+  transition: all 0.2s ease;
+  
+}
+
+
+
+/* Card Header - No background, flex column */
+.card-header {
+  padding: 16px 16px 0 16px;
+  background: transparent;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.generator-type {
+  font-size: 16px;
+  font-weight: 600;
+  color: #65004A;
+}
+
+.remove-btn {
+  background: #69306d;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.remove-btn:hover {
+  background: #5a285d;
+  transform: scale(1.1);
+}
+
+/* Card Body */
+.card-body {
+  padding: 16px;
+  
+}
+
+.info-row {
+  display: flex;
+  gap: 24px;
+  
+}
+
+/* Location Section with Select Button */
+.location-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: white;
+  padding: 8px;
+  border-radius: 6px;
+  
+}
+
+.field-label {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+  
+}
+
+.location-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.location-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.location-name {
+  font-size: 14px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.location-distance {
+  font-size: 13px;
+  color: #65004A;
+}
+
+.select-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #69306d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.select-btn:hover {
+  background: #5a285d;
+  transform: translateY(-1px);
+}
+
+/* Contact Section */
+.contact-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: white;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.phone-display {
+  font-size: 14px;
+  color: #374151;
+  font-weight: 500;
+  padding: 8px 0;
+}
+
+.contact-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.copy-btn,
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-btn {
+  
+  color: #374151;
+  
+}
+
+.copy-btn:hover {
+  
+  transform: translateY(-1px);
+}
+
+.contact-btn {
+  background: #10b981;
+  color: white;
+}
+
+.contact-btn:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+/* Bottom Actions */
+.bottom-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.generator-action-btn-bottom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  max-width: 150px;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.generator-clear-btn {
+  background: #9a3e7e;
+  color: white;
+}
+
+.generator-clear-btn:hover {
+  background: #8a3570;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(139, 90, 140, 0.3);
+}
+
+.generator-add-btn-bottom {
+  background: #69306d;
+  color: white;
+}
+
+.generator-add-btn-bottom:hover {
+  background: #5a285d;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(105, 48, 109, 0.3);
+}
+
+.icon {
+  width: 16px;
+  height: 20px;
+}
+
+.w-6 {
+  width: 24px;
+  height: 24px;
+}
+
+/* Time Picker Popup Styles */
+.time-picker-container {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  min-width: 400px;
+}
+
+.time-picker-header {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.time-picker-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.time-input-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.time-input-section label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.time-separator {
+  font-size: 18px;
+  font-weight: 600;
+  color: #6b7280;
+  margin: 0 8px;
+}
+
+.time-picker-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 12px;
+}
+
+
+/* Quasar Input Overrides */
+:deep(.date-range-input .q-field--outlined .q-field__control),
+:deep(.time-range-input .q-field--outlined .q-field__control) {
+  border-radius: 6px;
+  border-color: #d1d5db;
+  min-height: 40px;
+}
+
+:deep(.date-range-input .q-field--outlined .q-field__control:hover),
+:deep(.time-range-input .q-field--outlined .q-field__control:hover) {
+  border-color: #69306d;
+}
+
+:deep(.date-range-input .q-field--outlined.q-field--focused .q-field__control),
+:deep(.time-range-input .q-field--outlined.q-field--focused .q-field__control) {
+  border-color: #69306d;
+  box-shadow: 0 0 0 2px rgba(105, 48, 109, 0.1);
+}
+
+:deep(.date-range-input .q-field__inner),
+:deep(.time-range-input .q-field__inner) {
+  padding: 8px 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .generator-list-container {
+    padding: 12px 0;
+    gap: 20px;
+  }
+
+  .date-inputs {
+    gap: 12px;
+  }
+
+ .date-range,
+  .time-range {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .date-range-input,
+  .time-range-input {
+    max-width: 100%;
+  }
+
+  .date-input,
+  .time-input {
+    max-width: 100%;
+  }
+
+  .time-picker-container {
+    min-width: 300px;
+    padding: 12px;
+  }
+
+  .time-picker-content {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .time-separator {
+    display: none;
+  }
+
+
+  .date-input{
+    max-width: 100%;
+  }
+
+ 
+
+  .info-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .location-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .select-btn {
+    align-self: flex-start;
+  }
+
+  .contact-actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .copy-btn,
+  .contact-btn {
+    justify-content: center;
+  }
+
+  .bottom-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .action-btn-bottom {
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .date-section {
+    padding: 12px;
+  }
+
+  .card-header {
+    padding: 12px 12px 0 12px;
+  }
+
+  .card-body {
+    padding: 12px;
+  }
+
+  .generator-type {
+    font-size: 14px;
+  }
+
+  .remove-btn {
+    width: 20px;
+    height: 20px;
+  }
+
+  .field-label {
+    font-size: 13px;
+  }
+
+  .location-name {
+    font-size: 13px;
+  }
+
+  .location-distance {
+    font-size: 12px;
+  }
+
+  .phone-display {
+    font-size: 13px;
+  }
+
+  .select-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .copy-btn,
+  .contact-btn {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}

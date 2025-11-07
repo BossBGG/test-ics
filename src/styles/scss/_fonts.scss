@@ -1,0 +1,275 @@
+$fa-font-display: block !default;
+$fa-font-path: '/assets/fonts' !default;
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-BlackItalic.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-BlackItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-BlackItalic.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-BlackItalic.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-BlackItalic.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-BlackItalic.svg#Prompt-BlackItalic')
+      format('svg');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-Bold.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-Bold.eot?#iefix') format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-Bold.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-Bold.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-Bold.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-Bold.svg#Prompt-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-Black.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-Black.eot?#iefix') format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-Black.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-Black.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-Black.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-Black.svg#Prompt-Black') format('svg');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-ExtraBoldItalic.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-ExtraBoldItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-ExtraBoldItalic.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-ExtraBoldItalic.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-ExtraBoldItalic.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-ExtraBoldItalic.svg#Prompt-ExtraBoldItalic')
+      format('svg');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-ExtraLightItalic.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-ExtraLightItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-ExtraLightItalic.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-ExtraLightItalic.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-ExtraLightItalic.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-ExtraLightItalic.svg#Prompt-ExtraLightItalic')
+      format('svg');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-Italic.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-Italic.eot?#iefix') format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-Italic.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-Italic.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-Italic.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-Italic.svg#Prompt-Italic') format('svg');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-ExtraLight.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-ExtraLight.eot?#iefix')
+      format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-ExtraLight.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-ExtraLight.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-ExtraLight.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-ExtraLight.svg#Prompt-ExtraLight')
+      format('svg');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-BoldItalic.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-BoldItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-BoldItalic.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-BoldItalic.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-BoldItalic.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-BoldItalic.svg#Prompt-BoldItalic')
+      format('svg');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-ExtraBold.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-ExtraBold.eot?#iefix')
+      format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-ExtraBold.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-ExtraBold.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-ExtraBold.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-ExtraBold.svg#Prompt-ExtraBold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-Light.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-Light.eot?#iefix') format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-Light.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-Light.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-Light.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-Light.svg#Prompt-Light') format('svg');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-LightItalic.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-LightItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-LightItalic.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-LightItalic.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-LightItalic.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-LightItalic.svg#Prompt-LightItalic')
+      format('svg');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-Medium.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-Medium.eot?#iefix') format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-Medium.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-Medium.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-Medium.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-Medium.svg#Prompt-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-MediumItalic.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-MediumItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-MediumItalic.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-MediumItalic.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-MediumItalic.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-MediumItalic.svg#Prompt-MediumItalic')
+      format('svg');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-Regular.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-Regular.eot?#iefix')
+      format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-Regular.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-Regular.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-Regular.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-Regular.svg#Prompt-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-SemiBold.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-SemiBold.eot?#iefix')
+      format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-SemiBold.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-SemiBold.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-SemiBold.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-SemiBold.svg#Prompt-SemiBold') format('svg');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-SemiBoldItalic.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-SemiBoldItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-SemiBoldItalic.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-SemiBoldItalic.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-SemiBoldItalic.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-SemiBoldItalic.svg#Prompt-SemiBoldItalic')
+      format('svg');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-ThinItalic.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-ThinItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-ThinItalic.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-ThinItalic.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-ThinItalic.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-ThinItalic.svg#Prompt-ThinItalic')
+      format('svg');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('#{$fa-font-path}/Prompt-Thin.eot');
+  src:
+    url('#{$fa-font-path}/Prompt-Thin.eot?#iefix') format('embedded-opentype'),
+    url('#{$fa-font-path}/Prompt-Thin.woff2') format('woff2'),
+    url('#{$fa-font-path}/Prompt-Thin.woff') format('woff'),
+    url('#{$fa-font-path}/Prompt-Thin.ttf') format('truetype'),
+    url('#{$fa-font-path}/Prompt-Thin.svg#Prompt-Thin') format('svg');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}

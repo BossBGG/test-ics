@@ -1,0 +1,148 @@
+// Font
+$html-font-size: 14px;
+
+// Font Family
+$font-family-name: "Prompt", sans-serif;
+
+//Color-Main ---------------
+$primary: #69306d !default;
+$secondary: #994c80 !default;
+$dark_grayish_magenta: #a583a7 !default;
+$dark_moderate_pink: #a64682 !default;
+$grayish_red: #d3bcc0 !default;
+$warning: #c99530 !default;
+$dark_blue: #0f103a !default;
+$positive: #7dbd6f !default;
+$negative: #ff3700 !default;
+$white: #ffffff !default;
+$black: #000000 !default;
+$border_bottom: #aaaaaa !default;
+
+//Color-Text ---------------
+$text_label: #57595b !default;
+$text_input: #343a40 !default;
+$text_dropdown: #454545 !default;
+
+//Color-BG ---------------
+$bg_field_gray: #f5f7f8 !default;
+$bg_field_mid_gray: #f2f2f2 !default;
+$bg_field_dark_gray: #dbdadc !default;
+$bg_field_light_gray: #e0e0e0 !default;
+$bg_field_gray2: #fafafa !default;
+
+// Colors-Gray ---------------
+$gray_25: #fefefe;
+$gray_50: #f7f7f7;
+$gray_100: #e3e3e3;
+$gray_200: #cecece;
+$gray_300: #bababa;
+$gray_400: #a5a5a5;
+$gray_500: #918f8f;
+$gray_600: #7d7979;
+$gray_700: #686363;
+$gray_800: #544f4f;
+$gray_900: #3f3a3a;
+
+// Colors-Primary ---------------
+$primary_25: #fff9fd;
+$primary_50: #ffedfa;
+$primary_100: #ffcef2;
+$primary_200: #ff90e1;
+$primary_300: #ff71d9;
+$primary_400: #ff52d1;
+$primary_500: #e032b1;
+$primary_600: #b7168c;
+$primary_700: #8e0369;
+$primary_800: #65004a;
+$primary_900: #39082c;
+
+// Colors-Secondary ---------------
+$secondary_25: #fff8e7;
+$secondary_50: #ffebbd;
+$secondary_100: #ffe4a0;
+$secondary_200: #ffdf92;
+$secondary_300: #ffd268;
+$secondary_400: #ffc63e;
+$secondary_500: #fdb813;
+$secondary_600: #d49600;
+$secondary_700: #b28100;
+$secondary_800: #835c00;
+$secondary_900: #614600;
+
+// Colors-Error ---------------
+$error_25: #fffbfa;
+$error_50: #fff0ef;
+$error_100: #ffc3bf;
+$error_200: #ff9a93;
+$error_300: #ff7167;
+$error_400: #f04438;
+$error_500: #ce3025;
+$error_600: #b3332a;
+$error_700: #912018;
+$error_800: #6f110a;
+$error_900: #4d0702;
+
+// Colors-Accent-Green ---------------
+$accent_green_25: #f6fef9;
+$accent_green_50: #ecfdf3;
+$accent_green_100: #d1fadf;
+$accent_green_200: #a6f4c5;
+$accent_green_300: #6ce9a6;
+$accent_green_400: #32d583;
+$accent_green_500: #12b76a;
+$accent_green_600: #039855;
+$accent_green_700: #027a48;
+$accent_green_800: #05603a;
+$accent_green_900: #054f31;
+
+$container-sm: 540px;
+$container-md: 720px;
+$container-lg: 960px;
+$container-xl: 1140px;
+$container-xxl: 1320px;
+
+// Responsive Variables
+$laptop-device: "only screen and (min-width: 1200px) and (max-width: 1499px)";
+$desktop-device: "only screen and (min-width: 992px) and (max-width: 1199px)";
+$tablet-device: "only screen and (min-width: 768px) and (max-width: 991px)";
+$large-mobile: "only screen and (max-width: 767px)";
+$small-mobile: "only screen and (max-width: 575px)";
+$extra-small-mobile: "only screen and (max-width: 479px)";
+
+$screen-lg-max: "(max-width: 1499px)";
+$screen-md-max: "(max-width: 1199px)";
+$screen-1053-max: "(max-width: 1053px)";
+$screen-mds-max: "(max-width: 1024px)";
+$screen-sm-max: "(max-width: 991px)";
+$screen-xs-max: "(max-width: 768px)";
+$screen-xss: "(max-width: 575px)";
+$screen-xs: "(max-width: 479px)";
+$screen-i: "(max-width: 375px)";
+
+// $screen-xxs: "(min-width: 0)";
+// $screen-xs: "(min-width: 480px)";
+// $screen-sm-min: "(min-width: 576px)";
+// $screen-md-min: "(min-width: 768px)";
+// $screen-lg-min: "(min-width: 992px)";
+// $screen-xl-min: "(min-width: 1200px)";
+// $screen-xxl-min: "(min-width: 1440px)";
+// $screen-xxxl-min: "(min-width: 1600px)";
+
+$screen-xs-min: "(min-width: 430px)";
+$screen-sm-min: "(min-width: 576px)"; //SM Small devices (landscape phones, 576px and up)
+$screen-md-min: "(min-width: 768px)"; //MD Medium devices (tablets, 768px and up)
+$screen-lg-min: "(min-width: 992px)"; //LG Large devices (desktops, 992px and up)
+$screen-xl-min: "(min-width: 1024px)"; //XL X-Large devices (large desktops, 1200px and up)
+$screen-xxl-min: "(min-width: 1400px)"; //XXL XX-Large devices (larger desktops, 1400px and up)
+$screen-xxxl-min: "(min-width: 1600px)"; //XXXL XX-Large devices (larger desktops, 1600px and up)
+$screen-mds-min: "(min-width: 600px)";
+$screen-xls-min: "(min-width: 1441px)";
+
+// costom //
+
+$grey-9: #454545 !default;
+
+$grey-14: #57595b !default;
+//57595B
+
+//#E1DAEF

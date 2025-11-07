@@ -1,0 +1,313 @@
+.survey-data-container {
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 16px 0;
+}
+
+/* Survey Table Styles */
+.survey-table-section {
+  width: 100%;
+}
+
+.table-container {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  background: white;
+}
+
+/* เพิ่ม specificity เพื่อ override workorder-datatable.css */
+.survey-data-container .survey-table {
+  width: 100%;
+  border-collapse: collapse;
+  display: table !important; /* บังคับให้เป็น table */
+}
+
+.survey-data-container .table-header {
+  background: #69306d;
+  display: table-row !important; /* บังคับให้เป็น table-row */
+}
+
+.survey-data-container .header-cell {
+  padding: 12px 8px;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  border-bottom: 1px solid #5a285d;
+  display: table-cell !important; /* บังคับให้เป็น table-cell */
+}
+
+.survey-data-container .employee-col {
+  min-width: 200px;
+  text-align: left !important;
+}
+
+.survey-data-container .details-col {
+  min-width: 250px;
+  text-align: left !important;
+}
+
+.survey-data-container .table-row {
+  border-bottom: 1px solid #e5e7eb;
+  display: table-row !important; /* บังคับให้เป็น table-row */
+}
+
+.survey-data-container .table-row:last-child {
+  border-bottom: none;
+}
+
+.survey-data-container .table-row:hover {
+  background-color: #f9fafb;
+}
+
+.survey-data-container .table-cell {
+  padding: 12px 8px;
+  font-size: 14px;
+  color: #374151;
+  vertical-align: middle;
+  display: table-cell !important; /* บังคับให้เป็น table-cell */
+}
+
+.survey-data-container .center-cell {
+  text-align: center;
+}
+
+.survey-data-container .no-data {
+  text-align: center;
+  color: #9ca3af;
+  font-style: italic;
+  padding: 20px;
+}
+
+.result-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.result-pass {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.result-fail {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* Images Section Styles */
+.surveydata-images-section {
+  width: 100%;
+}
+
+.surveydata-images-container {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 8px;
+  min-height: 160px;
+}
+
+.surveydata-upload-container {
+  flex-shrink: 0;
+}
+
+.surveydata-upload-area {
+  width: 400px;
+  height: 400px;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.surveydata-upload-area:hover {
+  border-color: #69306d;
+  background: #f8f5ff;
+}
+
+.surveydata-upload-content {
+  text-align: center;
+  padding: 16px;
+}
+
+.surveydata-upload-icon {
+  font-size: 32px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.surveydata-upload-text {
+  font-size: 14px;
+  color: #374151;
+  margin: 0 0 4px 0;
+  font-weight: 500;
+}
+
+.surveydata-upload-subtext {
+  font-size: 11px;
+  color: #6b7280;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+
+.surveydata-upload-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #FDFDFD;
+  color: #9A3E7E;
+  border: 1px solid #9A3E7E;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 auto;
+}
+
+.surveydata-upload-button:hover {
+  background: #f3f3f3;
+  transform: translateY(-1px);
+}
+
+.surveydata-image-container {
+  flex-shrink: 0;
+  position: relative;
+  width: 400px;
+  height: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.surveydata-uploaded-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.surveydata-remove-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(220, 38, 38, 0.8);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.surveydata-remove-button:hover {
+  background: rgba(220, 38, 38, 1);
+  transform: scale(1.1);
+}
+
+.surveydata-hidden-input {
+  display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .survey-data-container {
+    padding: 12px 0;
+    gap: 20px;
+  }
+
+  .section-title {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .survey-data-container .header-cell,
+  .survey-data-container .table-cell {
+    font-size: 12px;
+    padding: 8px 6px;
+  }
+
+  .survey-data-container .employee-col {
+    min-width: 150px;
+  }
+
+  .survey-data-container .details-col {
+    min-width: 180px;
+  }
+
+  .surveydata-upload-area {
+    width: 200px;
+    height: 120px;
+  }
+
+  .surveydata-image-container {
+    width: 200px;
+    height: 120px;
+  }
+
+  .surveydata-upload-icon {
+    font-size: 24px;
+  }
+
+  .surveydata-upload-text {
+    font-size: 12px;
+  }
+
+  .surveydata-upload-subtext {
+    font-size: 10px;
+  }
+
+  .surveydata-upload-button {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .survey-data-container .header-cell,
+  .survey-data-container .table-cell {
+    font-size: 11px;
+    padding: 6px 4px;
+  }
+
+  .survey-data-container .employee-col {
+    min-width: 120px;
+  }
+
+  .survey-data-container .details-col {
+    min-width: 150px;
+  }
+
+  .surveydata-upload-area {
+    width: 160px;
+    height: 100px;
+  }
+
+  .surveydata-image-container {
+    width: 160px;
+    height: 100px;
+  }
+
+  .surveydata-images-container {
+    gap: 12px;
+  }
+}

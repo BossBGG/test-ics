@@ -1,0 +1,36 @@
+FROM node:20-alpine AS build-stage
+
+WORKDIR /app
+RUN corepack --version
+RUN npm update -g corepack
+RUN corepack --version
+RUN corepack enable
+
+COPY .npmrc package.json pnpm-lock.yaml ./
+RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store \
+  pnpm install
+
+COPY . .
+
+ARG ENV_KEYS
+ENV ENV_KEYS=${ENV_KEYS}
+
+ARG ENV_VALUES
+ENV ENV_VALUES=${ENV_VALUES}
+
+RUN chmod +x ./env.sh
+RUN ./env.sh
+RUN cat .env
+RUN pnpm build
+
+FROM nginx:stable-alpine AS production-stage
+
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+COPY --from=build-stage /app/.docker/nginx/nginx.conf /etc/nginx/nginx.conf
+
+RUN mkdir -p /tmp/nginx-logs /tmp/nginx-logs/error
+RUN chown -R nginx:nginx /tmp/nginx-logs
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

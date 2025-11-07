@@ -1,0 +1,192 @@
+/* Table Styles */
+.worker-data-table {
+  font-size: 14px;
+}
+
+.worker-data-table th {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.worker-data-table td {
+  vertical-align: middle;
+  min-height: 50px;
+}
+
+/* Form Input Styles */
+.worker-select,
+.worker-number-input,
+.worker-datetime-input {
+  width: 100%;
+  min-width: 0;
+}
+
+.worker-display {
+  color: #374151;
+  font-weight: 500;
+  word-break: break-word;
+  line-height: 1.3;
+  font-size: 13px;
+}
+
+.worker-quantity-text {
+  color: #374151;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Action Button Styles */
+.worker-action-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.worker-action-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Bottom Action Buttons */
+.worker-clear-btn,
+.worker-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.worker-clear-btn {
+  background: #9A3E7E;
+  color: white;
+}
+
+.worker-clear-btn:hover {
+  background: #8A3570;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(139, 90, 140, 0.3);
+}
+
+.worker-add-btn {
+  background: #69306D;
+  color: white;
+}
+
+.worker-add-btn:hover {
+  background: #5a285d;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(105, 48, 109, 0.3);
+}
+
+/* Quasar Input Overrides */
+:deep(.worker-select .q-field--outlined .q-field__control) {
+  border-radius: 6px;
+  border-color: #d1d5db;
+  min-height: 40px;
+  font-size: 13px;
+}
+
+:deep(.worker-select .q-field--outlined .q-field__control:hover) {
+  border-color: #69306D;
+}
+
+:deep(.worker-select .q-field--outlined.q-field--focused .q-field__control) {
+  border-color: #69306D;
+  box-shadow: 0 0 0 2px rgba(105, 48, 109, 0.1);
+}
+
+:deep(.worker-number-input .q-field--outlined .q-field__control) {
+  border-radius: 6px;
+  border-color: #d1d5db;
+  min-height: 40px;
+  width: 80px;
+}
+
+:deep(.worker-datetime-input .q-field--outlined .q-field__control) {
+  border-radius: 6px;
+  border-color: #d1d5db;
+  min-height: 40px;
+  min-width: 160px;
+}
+
+:deep(.worker-select .q-field__inner) {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+:deep(.worker-select .q-field__control-container) {
+  padding-top: 0;
+}
+
+:deep(.worker-select .q-field__native) {
+  font-size: 13px;
+  min-height: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .worker-data-table th,
+  .worker-data-table td {
+    font-size: 12px;
+    padding: 8px 4px;
+  }
+  
+  .worker-action-btn {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .worker-clear-btn,
+  .worker-add-btn {
+    min-width: 100px;
+    font-size: 12px;
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .worker-data-table th,
+  .worker-data-table td {
+    font-size: 11px;
+    padding: 6px 2px;
+  }
+  
+  .worker-action-btn {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .worker-clear-btn,
+  .worker-add-btn {
+    min-width: 80px;
+    font-size: 11px;
+    padding: 8px 12px;
+  }
+  
+  .flex.space-x-3 {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .flex.space-x-3 > * {
+    margin-left: 0 !important;
+  }
+}

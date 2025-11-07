@@ -1,0 +1,298 @@
+/* src/styles/workorder-datatable.css - Component specific styles only */
+
+/* Equipment Section Specific */
+.equipment-section {
+  padding: 8px 0;
+}
+
+.equipment-table {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+/* Icon sizes - specific to this component */
+.icon {
+  width: 16px;
+  height: 20px;
+}
+
+.save-table-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.delete-table-icon {
+  width: 16px;
+  height: 20px;
+}
+
+.edit-table-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Table Layout - specific grid structure */
+.table-header {
+  display: grid;
+  grid-template-columns: 80px 2fr 120px 120px;
+  background: #69306D !important;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 80px 2fr 120px 120px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f8f7f7;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-cell {
+  padding: 12px 8px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.center-cell {
+  justify-content: center;
+  font-weight: 600;
+}
+
+.header-cell {
+  color: white;
+  font-weight: 600;
+  justify-content: center;
+}
+
+.des-header-cell {
+  color: white;
+  font-weight: 600;
+  justify-content: start;
+}
+
+.no-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: #f8f7f7;
+  color: #9ca3af;
+  font-size: 16px;
+  font-weight: 500;
+  grid-column: span 4;
+}
+
+/* Equipment specific styles */
+.equipment-select {
+  width: 100%;
+}
+
+.equipment-display {
+  color: #374151;
+  font-weight: 500;
+}
+
+.quantity-input {
+  width: 80px;
+}
+
+.quantity-text {
+  color: #374151;
+  font-weight: 600;
+}
+
+/* Action buttons specific to table */
+.action-buttons {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.action-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.save-table-btn {
+  background: #f8f7f7;
+  color: white;
+}
+
+.save-table-btn:hover {
+  transform: scale(1.05);
+}
+
+.edit-table-btn {
+  background: #f8f7f7;
+  color: white;
+}
+
+.edit-table-btn:hover {
+  transform: scale(1.05);
+}
+
+.delete-table-btn {
+  background: #f8f7f7;
+  color: white;
+}
+
+.delete-table-btn:hover {
+  transform: scale(1.05);
+}
+
+.action-table-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Equipment actions */
+.equipment-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: end;
+  margin-top: 8px;
+  margin-right: 8px;
+}
+
+.action-btn-bottom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  max-width: 150px;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.clear-btn {
+  background: #9A3E7E;
+  color: white;
+}
+
+.clear-btn:hover {
+  background: #9A3E7E;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(139, 90, 140, 0.3);
+}
+
+.add-btn-bottom {
+  background: #69306D;
+  color: white;
+}
+
+.add-btn-bottom:hover {
+  background: #5a285d;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(105, 48, 109, 0.3);
+}
+
+.action-btn-bottom svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Quasar overrides - specific to equipment table */
+:deep(.q-field--outlined .q-field__control) {
+  border-radius: 6px;
+  border-color: #d1d5db;
+  min-height: 40px;
+}
+
+:deep(.q-field--outlined .q-field__control:hover) {
+  border-color: #69306D;
+}
+
+:deep(.q-field--outlined.q-field--focused .q-field__control) {
+  border-color: #69306D;
+  box-shadow: 0 0 0 2px rgba(105, 48, 109, 0.1);
+}
+
+:deep(.q-field__inner) {
+  padding: 8px 12px;
+}
+
+:deep(.q-field__control-container) {
+  padding-top: 0;
+}
+
+/* Responsive Design - equipment table specific */
+@media (max-width: 768px) {
+  .table-header,
+  .table-row {
+    grid-template-columns: 60px 1fr 100px 100px;
+  }
+  
+  .table-cell {
+    padding: 8px 4px;
+    font-size: 12px;
+  }
+  
+  .action-btn {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .action-btn svg {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .quantity-input {
+    width: 60px;
+  }
+  
+  .action-btn-bottom {
+    min-width: 100px;
+    max-width: 120px;
+    font-size: 12px;
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .table-header,
+  .table-row {
+    grid-template-columns: 50px 1fr 80px 90px;
+  }
+  
+  .table-cell {
+    padding: 6px 2px;
+    font-size: 11px;
+  }
+  
+  .action-btn {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .action-btn svg {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .action-btn-bottom {
+    min-width: 80px;
+    max-width: 100px;
+    font-size: 11px;
+    padding: 8px 12px;
+  }
+}
